@@ -13,10 +13,16 @@ python color_detect.py -i 'path to image'
 ```
 ### Example
 ```bash
-python color_detect.py -i image1.jpg
+python color_detect.py -i ./images/image1.jpg
 ```
 In the same directory you are running the program a file `out.jpg`
 with the color count showing on the image will be created.
+
+-  A sample output.Code is still buggy.
+
+
+![Sample image](./images/out.jpg)
+
 
 #### ToDo
 - Allow color count in videos.
