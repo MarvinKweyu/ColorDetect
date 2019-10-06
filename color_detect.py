@@ -16,45 +16,72 @@ def main():
     # load the image
     image = cv2.imread(args["image"])
 
-    boundaries = [
-                  ([178,179,0],[255,255,255]),  # red
-                  ([ 10,244,172],[ 30,254,252]), # orange>blurry on 2
-                  ([ 30,244,131],[ 50,254,211]), # light green>>correct
-                  # ([33,80,40],[102,255,255]), # green
-                  ([110,245,214],[130,255,254]), # blue
-                  ([150,245,131],[170,255,211]), # purple>blurry on2
-                  ([ 20,245,172],[ 40,255,252]),  # brown>two images on 2
-                  ([ 80,245,173],[100,255,253]), # light blue
-                  ([ 60,235,45],[ 80,255,125])  # yellow> gives green
-                  ]
+    # Dictionaries of colors
+    colors = {
+                'red': [
+                        ([0,50,50],[10,255,255]),
+                        ([170,50,50],[180,255,255])
+                        ],
+                'blue':[
+                        ([110,50,50],[130,255,255])
+                        ],
+                'green':[
+                        ([50,50,50],[80,255,255])
+                        ],
+                'yellow':[
+                        ([26,100,100],[35,255,255])
+                        ],
+                'orange':[
+                        ([10,50,50],[22,255,255])
+                        ],
+                'purple':[
+                        ([140,50,0],[165,255,255])
+                        ],
+                'cyan':[
+                        ([80,50,50],[100,255,255])
+                        ],
+                'lightgreen':[
+                        ([35,50,50],[45,255,255])
+                        ]
 
-    colors_names = ['red','orange','blue','green','brown','yellow']
-    locate = 0
+    }
+
     pic_description = {}
-    for (lower,upper) in boundaries:
 
-        while locate < len(colors_names):
-            # color being worked on
-            color = colors_names[locate]
+    # convert image from BGR to HSV for better accuracy
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+
+    for color, boundaries in colors.items():
+
+        i = 0
+        for (lower,upper) in boundaries:
+
         	# find all the 'color' shapes in the image
             lower = np.array(lower,dtype="uint8")
             upper = np.array(upper,dtype="uint8")
-            shapeMask = cv2.inRange(image, lower, upper)
+            shapeMask = cv2.inRange(hsv, lower, upper)
 
-        	# find the contours in the mask
-            cnts=cv2.findContours(shapeMask.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE )
-            cnts = imutils.grab_contours(cnts)
-            print("{} : {} ".format(color,len(cnts)))
-            pic_description[color]= len(cnts)
-            cv2.imshow("Mask", shapeMask)
-            locate += 1
+            if i == 0:
+                result = shapeMask
+            else:
+                result = cv2.bitwise_or(result,shapeMask)
 
-        	# loop over the contours
-            # for c in cnts:
-            #     # draw the contour and show it
-            #     cv2.drawContours(image, [c], -1, (0, 255, 0), 2)
-            #     cv2.imshow("Image", image)
-            #     cv2.waitKey(0)
+            i += 1
+
+        # find the contours in the mask
+        cnts=cv2.findContours(result.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE )
+        cnts = imutils.grab_contours(cnts)
+        print("{} : {} ".format(color,len(cnts)))
+        pic_description[color]= len(cnts)
+        cv2.imshow(color+"Mask", result)
+
+
+        # loop over the contours
+        # for c in cnts:
+        #     # draw the contour and show it
+        #     cv2.drawContours(image, [c], -1, (0, 255, 0), 2)
+        #     cv2.imshow("Image", image)
+        #     cv2.waitKey(0)
     write_to_picture(image, pic_description)
 
     return
@@ -63,7 +90,7 @@ def main():
 def write_to_picture(image,pic_description):
     """write the color count to the image"""
     # Write some Text
-    y_axis = 330
+    y_axis = 200
     for k,v in pic_description.items():
 
         font                   = cv2.FONT_HERSHEY_SIMPLEX
