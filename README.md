@@ -1,3 +1,6 @@
+
+![Python](https://img.shields.io/badge/Python-3.7-green)
+
 Color recognition works to identify different color candies in an image.
 
 ### Basic Usage
