@@ -108,3 +108,17 @@ def write_to_picture(image,pic_description):
     return
 
 main()
+
+
+def get_input_image():
+    """
+    Get the image as a command-line argument
+    """
+    parser = argparse.ArgumentParser(description="Write the color count in an image ontu a copy of the image")
+    parser.add_argument("-i", "--image", help="path to the image file")
+    args = parser.parse_args()
+    return args
+
+
+if __name__ == "__main__":
+    get_input_image()

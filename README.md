@@ -33,6 +33,6 @@ with the color count showing on the image will be created.
 
 
 #### ToDo
-
+- [ ]  Let the user save the file as they want/ save with detault file_name.
 - [ ]  Allow color count in videos.
 
