@@ -14,8 +14,14 @@ def test_image_parsed_to_class(image):
     """
     test whether an image is parsed to the class ColorDetect(<image>)
     """
-    import pdb; pdb.set_trace()
-    ColorDetect(image)
+    # import pdb; pdb.set_trace()
+    # ColorDetect(image)
+    pass
+
+
+def test_foo(datadir):
+    expected_image = datadir.join('image2.jpg')
+    ColorDetect(expected_image)
    
 
 def test_dictionary_has_correct_image_count():
