@@ -5,22 +5,18 @@ From the developers perspective
 # Whether ()dictionary has the correct image count
 # test whether text in the dictionary is what is being written to the image
 
-# from ...color_detect import ColorDetect
+from ..src.color_detect import ColorDetect
+import os
+import pytest
 
 
-def test_colordetect_gets_object():
-    """
-
-    """
-    pass
-
-
-def test_image_parsed_to_class():
+def test_image_parsed_to_class(image):
     """
     test whether an image is parsed to the class ColorDetect(<image>)
     """
-
-    pass
+    import pdb; pdb.set_trace()
+    ColorDetect(image)
+   
 
 def test_dictionary_has_correct_image_count():
     pass

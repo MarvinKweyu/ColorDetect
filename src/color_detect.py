@@ -7,7 +7,7 @@ import imutils
 import cv2
 
 
-def main():
+def root():
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--image", help="path to the image file")
@@ -107,7 +107,7 @@ def write_to_picture(image,pic_description):
     cv2.waitKey(0)
     return
 
-main()
+# main()
 
 
 def get_input_image():
@@ -115,10 +115,19 @@ def get_input_image():
     Get the image as a command-line argument
     """
     parser = argparse.ArgumentParser(description="Write the color count in an image ontu a copy of the image")
-    parser.add_argument("-i", "--image", help="path to the image file")
+    parser.add_argument("-i", "--image", help="path to the image file",required=True)
     args = parser.parse_args()
     return args
 
 
+
+def main():
+    image = get_input_image()
+    ColorDetect(image)
+
+
+class ColorDetect(image):
+    pass
+
 if __name__ == "__main__":
-    get_input_image()
+    main()

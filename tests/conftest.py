@@ -15,4 +15,4 @@ def image(request):
     image_value = request.config.option.image
     if image_value is None:
         pytest.skip()
-    return image_value
+    return image_value # the image file name
