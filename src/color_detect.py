@@ -127,9 +127,61 @@ def main():
 
 
 class ColorDetect():
+    """
+    Detect and write the number of colors in an image
+    """
     def __init__(self, image):
         """Class constructor"""
         self.image = image
+            # Dictionaries of colors
+        self.colors = {
+                    'red': [
+                            ([0,50,50],[10,255,255]),
+                            ([170,50,50],[180,255,255])
+                            ],
+                    'blue':[
+                            ([110,50,50],[130,255,255])
+                            ],
+                    'green':[
+                            ([50,50,50],[80,255,255])
+                            ],
+                    'yellow':[
+                            ([26,100,100],[35,255,255])
+                            ],
+                    'orange':[
+                            ([10,50,50],[22,255,255])
+                            ],
+                    'purple':[
+                            ([140,50,0],[165,255,255])
+                            ],
+                    'cyan':[
+                            ([80,50,50],[100,255,255])
+                            ],
+                    'lightgreen':[
+                            ([35,50,50],[45,255,255])
+                            ]
+
+        }
+
+
+    def get_color_count(self):
+        """
+        Count the number of different colors
+        """
+        pass
+
+    def write_color_count_to_image(self):
+        """
+        Write the number of colors found to the image
+        """
+        pass
+
+    def save_picture(self):
+        """
+        Save the resultant image file of writing
+        to the local directory
+        """
+        pass
     
 
 if __name__ == "__main__":
