@@ -117,7 +117,7 @@ def get_input_image():
     parser = argparse.ArgumentParser(description="Write the color count in an image ontu a copy of the image")
     parser.add_argument("-i", "--image", help="path to the image file",required=True)
     args = parser.parse_args()
-    return args
+    return args.image
 
 
 
