@@ -10,13 +10,13 @@ import os
 import pytest
 
 
-def test_image_parsed_to_class(image):
+def test_image_parsed_to_class(datadir):
     """
     test whether an image is parsed to the class ColorDetect(<image>)
     """
-    # import pdb; pdb.set_trace()
+    import pdb; pdb.set_trace()
     # ColorDetect(image)
-    pass
+    
 
 
 def test_foo(datadir):
