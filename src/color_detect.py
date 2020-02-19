@@ -126,8 +126,11 @@ def main():
     ColorDetect(image)
 
 
-class ColorDetect(image):
-    pass
+class ColorDetect():
+    def __init__(self, image):
+        """Class constructor"""
+        self.image = image
+    
 
 if __name__ == "__main__":
     main()
