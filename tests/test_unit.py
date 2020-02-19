@@ -13,12 +13,11 @@ import pytest
 def test_image_parsed_to_class(datadir):
     """
     test whether an image is parsed to the class ColorDetect(<image>)
+    Check whether an instance is created
     """
-    import pdb; pdb.set_trace()
     expected_image = datadir.join('image2.jpg')
-    ColorDetect(expected_image)
-   
-    # ColorDetect(image)
+    # import pdb; pdb.set_trace()
+    isinstance(ColorDetect(expected_image),object)
     
     
 def test_dictionary_has_correct_image_count():
