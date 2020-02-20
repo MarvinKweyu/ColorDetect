@@ -32,7 +32,14 @@ with the color count showing on the image will be created.
 ![Sample image](./images/out.jpg)
 
 
+
+#### Tests
+To run tests:
+```bash
+pytest tests --image ./tests/test_files/image2.jpg
+```
+
+
 #### ToDo
 - [ ]  Let the user save the file as they want/ save with detault file_name.
 - [ ]  Allow color count in videos.
-
