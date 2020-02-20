@@ -23,7 +23,8 @@ def main():
     # image = cv2.imread(args["image"])
     image = cv2.imread(get_input_image())
     user_image = ColorDetect(image)
-    user_image.write_color_count()
+    user_image.get_color_count()
+    user_image.save_picture()
     sys.exit()
 
 
@@ -96,7 +97,9 @@ class ColorDetect():
             cnts = imutils.grab_contours(cnts)
             print("{} : {} ".format(color,len(cnts)))
             self.pic_description[color]= len(cnts)
-            cv2.imshow(color+"Mask", result)
+            # cv2.imshow(color+"Mask", result) # display the masks
+            self.write_color_count()
+            # return self.pic_description
         
 
     def write_color_count(self):
@@ -112,7 +115,7 @@ class ColorDetect():
             fontColor              = (0,0,0)
             lineType               = 1
 
-            cv2.putText(image,k +':' +str(v),
+            cv2.putText(self.image,k +':' +str(v),
                 bottomLeftCornerOfText,
                 font,
                 fontScale,
@@ -121,7 +124,7 @@ class ColorDetect():
             y_axis += 23
         # Display the image
         cv2.imshow("img", self.image)
-        self.save_picture()
+        
        
 
     def save_picture(self):
@@ -131,8 +134,9 @@ class ColorDetect():
         """
          # Save image
         cv2.imwrite("out_class.jpg", self.image)
-        cv2.waitKey(0)
-        print("Image processed successfully")
+        
+        print("Image processed and saved successfuly")
+        # cv2.waitKey(0)
         
     
 

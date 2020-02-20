@@ -23,8 +23,12 @@ def test_image_parsed_to_class(datadir):
 def test_dictionary_has_correct_image_count():
     pass
 
-def test_what_is_in_dictionary_is_being_written():
+def test_what_is_in_dictionary_is_being_written(datadir):
     """
     What is in the dictionary should be what is being written
     """
+    # compare input and output images
+    expected_image = datadir.join('image2.jpg')
+    
+
     pass
