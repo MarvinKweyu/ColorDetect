@@ -1,8 +1,20 @@
 version: 2
- jobs:
+jobs:
    build:
      docker:
        - image: circleci/python:3.7.5
      steps:
        - checkout
-       - run: echo "A first hello"
+       - run:
+           name: Install python dependencies
+           command:  |
+            python -m venv venv
+            .venv/bin/activate
+            pip install -r requirements.txt
+       - run:
+           name: Running tests
+           command: |
+               .venv/bin/activate
+               pytest tests --image ./tests/test_files/image2.jpg
+                
+           
