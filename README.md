@@ -6,6 +6,17 @@
 ColorDetect works to identify different color candies in an image.
 
 
+
+ ### Table of Contents
+
+ [ Basic Usage](#Setup)
+ 
+ [ Download](#Download)
+
+ [Contributions](#Contributions)
+
+ [License](#License)
+
 ### Basic Usage
 Create virtual environment and install dependencies
 Install dependencies
@@ -35,12 +46,21 @@ with the color count showing on the image will be created.
 ![Sample image](./images/out.jpg)
 
 
-
 #### Tests
 To run tests:
 ```bash
 pytest tests --image ./tests/test_files/image2.jpg
 ```
+
+
+### Download
+Get the latest release from the [release page](https://github.com/MarvinKweyu/ColorRecognition/releases)
+
+
+### Contributions
+
+Contributions are welcome.
+Do remember to take a look at the project [contribution guidelines](./CONTRIBUTING.md)
 
 
 #### ToDo
