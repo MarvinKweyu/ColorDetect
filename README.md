@@ -1,8 +1,10 @@
 
 ![Python](https://img.shields.io/badge/Python-3.7-green)
-![Version](https://img.shields.io/badge/Version-2.0rc-orange)
+![Release](https://img.shields.io/github/v/release/MarvinKweyu/ColorRecognition?include_prereleases)
+![Downloads](https://img.shields.io/github/downloads/MarvinKweyu/ColorRecognition/total?style=flat)
 
-Color recognition works to identify different color candies in an image.
+ColorDetect works to identify different color candies in an image.
+
 
 ### Basic Usage
 Create virtual environment and install dependencies
