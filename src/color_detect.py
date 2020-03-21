@@ -24,7 +24,7 @@ def main():
     image = cv2.imread(get_input_image())
     user_image = ColorDetect(image)
     user_image.get_color_count()
-    user_image.save_picture()
+    user_image.save_picture("../")
     sys.exit()
 
 
@@ -127,13 +127,21 @@ class ColorDetect():
         
        
 
-    def save_picture(self):
+    def save_picture(self, location=".", file_name="out.jpg"):
         """
-        Save the resultant image file of writing
-        to the local directory
+        Save the resultant image file to the local directory
+        
+        Parameters
+        ----------
+        location: str
+            The file location of the image
+        file_name:str
+            The name of the new image
+
         """
+        
          # Save image
-        cv2.imwrite("out_class.jpg", self.image)
+        cv2.imwrite(file_name, self.image)
         
         print("Image processed and saved successfuly")
         # cv2.waitKey(0)
