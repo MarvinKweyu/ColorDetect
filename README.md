@@ -1,6 +1,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.7-green)
 ![Release](https://img.shields.io/github/v/release/MarvinKweyu/ColorRecognition?include_prereleases)
+[![CircleCI](https://circleci.com/gh/MarvinKweyu/ColorDetect.svg?style=svg)](https://circleci.com/gh/MarvinKweyu/ColorDetect)
 ![Downloads](https://img.shields.io/github/downloads/MarvinKweyu/ColorRecognition/total?style=flat)
 
 ColorDetect works to identify different color candies in an image.
