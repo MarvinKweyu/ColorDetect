@@ -7,7 +7,7 @@ import pytest
 
 def pytest_addoption(parser):
     """
-    Store this parse into all the rtest of the tests
+    Store this parse into all the rest of the tests
     """
     parser.addoption("--image", action="store")
 

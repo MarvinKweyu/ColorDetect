@@ -1,11 +1,13 @@
 # USAGE
 # python  color_detect.py -i image.png
 
-import numpy as np
 import argparse
-import imutils
-import cv2
 import sys
+from pathlib import Path
+
+import cv2
+import imutils
+import numpy as np
 
 
 def get_input_image():
@@ -139,9 +141,12 @@ class ColorDetect():
             The name of the new image
 
         """
+
+        image_folder = Path(location)
+        image_to_save = image_folder / file_name
         
          # Save image
-        cv2.imwrite(file_name, self.image)
+        cv2.imwrite(str(image_to_save), self.image)
         
         print("Image processed and saved successfuly")
         # cv2.waitKey(0)

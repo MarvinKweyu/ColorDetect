@@ -35,7 +35,7 @@ python color_detect.py --image 'path to image'
 ```
 ### Example
 ```bash
-python color_detect.py -i ./images/image1.jpg
+python color_detect.py -i ./images/image2.jpg
 ```
 
 In the same directory you are running the program a file `out.jpg`
