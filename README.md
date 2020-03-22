@@ -1,6 +1,7 @@
 
 ![Python](https://img.shields.io/badge/Python-3.7-green)
 ![Release](https://img.shields.io/github/v/release/MarvinKweyu/ColorRecognition?include_prereleases)
+[![CircleCI](https://circleci.com/gh/MarvinKweyu/ColorDetect.svg?style=svg)](https://circleci.com/gh/MarvinKweyu/ColorDetect)
 ![Downloads](https://img.shields.io/github/downloads/MarvinKweyu/ColorRecognition/total?style=flat)
 
 ColorDetect works to identify different color candies in an image.
@@ -34,7 +35,7 @@ python color_detect.py --image 'path to image'
 ```
 ### Example
 ```bash
-python color_detect.py -i ./images/image1.jpg
+python color_detect.py -i ./images/image2.jpg
 ```
 
 In the same directory you are running the program a file `out.jpg`

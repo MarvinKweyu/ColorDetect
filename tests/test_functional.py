@@ -1,8 +1,12 @@
 
+from pathlib import Path
 # from ...color_detect import ColorDetect
 from unittest import TestCase
+
 import pytest
+
 from ..src.color_detect import get_input_image
+
 
 """
 Functional tests: from the users perspective
@@ -22,19 +26,21 @@ def test_prescence_of_argument(image):
   Test whether the filename used in the test is the first image
   """
   assert(image == './tests/test_files/image2.jpg') 
+  assert(Path(image).exists())
  
 
 def test_argument_is_image(image):
         """
         Ensure that the argument parsed is an image
         """
-        print(image)
+        assert Path(image)
 
 
 def test_image_has_been_saved(datadir):
         """
         Ensure that 'out.jpg' has been saved to the choice directory
         """
+        # image = Path(image)
         pass
 
 
