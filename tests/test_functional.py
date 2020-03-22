@@ -1,12 +1,10 @@
 
 from pathlib import Path
-# from ...color_detect import ColorDetect
 from unittest import TestCase
 
 import pytest
 
-from ..src.color_detect import get_input_image
-
+from ..colordetect.color_detect import get_input_image
 
 """
 Functional tests: from the users perspective

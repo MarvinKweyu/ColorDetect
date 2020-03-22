@@ -1,47 +1,37 @@
+# color-detect
+
 
 ![Python](https://img.shields.io/badge/Python-3.7-green)
 ![Release](https://img.shields.io/github/v/release/MarvinKweyu/ColorRecognition?include_prereleases)
 [![CircleCI](https://circleci.com/gh/MarvinKweyu/ColorDetect.svg?style=svg)](https://circleci.com/gh/MarvinKweyu/ColorDetect)
-![Downloads](https://img.shields.io/github/downloads/MarvinKweyu/ColorRecognition/total?style=flat)
+
 
 ColorDetect works to identify different color candies in an image.
 
 
 
- ### Table of Contents
 
- [ Basic Usage](#Setup)
- 
- [ Download](#Download)
+### Installation
 
- [Contributions](#Contributions)
-
- [License](#License)
+```bash
+pip install ColorDetect
+```
 
 ### Basic Usage
-Create virtual environment and install dependencies
-Install dependencies
-```bash
-pip install -r requirements.txt
+```python
+from colordetect import ColorDetect
+
+
+user_image = ColorDetect(<path_to_image>)
+user_image.get_color_count()
+user_image.save_picture(<storage_path>,<image_name>)
+
 ```
 
-To count the number of colored candy in an image
-```bash
-python color_detect.py -i 'path to image'
-```
-Alternatively
-```bash
-python color_detect.py --image 'path to image'
-```
-### Example
-```bash
-python color_detect.py -i ./images/image2.jpg
-```
+Resultant image is stored in the string `storage_path` of choice with the `image_name` which will default to the current location and **out.jpg** respectively by default.
 
-In the same directory you are running the program a file `out.jpg`
-with the color count showing on the image will be created.
 
--  A sample output.
+ *A sample output.*
 
 
 ![Sample image](./images/out.jpg)
@@ -53,11 +43,6 @@ To run tests:
 pytest tests --image ./tests/test_files/image2.jpg
 ```
 
-
-### Download
-Get the latest release from the [release page](https://github.com/MarvinKweyu/ColorRecognition/releases)
-
-
 ### Contributions
 
 Contributions are welcome.
@@ -65,5 +50,5 @@ Do remember to take a look at the project [contribution guidelines](./CONTRIBUTI
 
 
 #### ToDo
-- [ ]  Let the user save the file as they want/ save with detault file_name.
+
 - [ ]  Allow color count in videos.
