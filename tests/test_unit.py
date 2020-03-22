@@ -5,7 +5,7 @@ From the developers perspective
 # Whether ()dictionary has the correct image count
 # test whether text in the dictionary is what is being written to the image
 
-from ..src.color_detect import ColorDetect
+from ..colordetect import ColorDetect
 import os
 import pytest
 
