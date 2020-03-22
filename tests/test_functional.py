@@ -4,8 +4,7 @@ from unittest import TestCase
 
 import pytest
 
-from ..colordetect import get_input_image
-
+from ..colordetect.color_detect import get_input_image
 
 """
 Functional tests: from the users perspective
