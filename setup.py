@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ColorDetect",
-    version="0.1.1",
+    version="0.1.2",
     author="Marvin Kweyu",
     author_email="mkweyu1@gmail.com",
     description="Detect and get color count in images",
@@ -14,6 +14,7 @@ setuptools.setup(
     url="https://github.com/MarvinKweyu/ColorDetect",
     packages=setuptools.find_packages(),
     include_package_data=True,
+    license='MIT',
     install_requires=[
         "attrs==19.3.0",
         "importlib-metadata==1.5.0",
