@@ -4,11 +4,6 @@ from unittest import TestCase
 
 import pytest
 
-from ..colordetect.color_detect import get_input_image
-
-"""
-Functional tests: from the users perspective
-"""
 """
 # Tests to be written:
 
@@ -19,11 +14,10 @@ test whether text is written to the image
 """
 
 
-def test_prescence_of_argument(image):
+def test_existence_of_image_path(image):
   """
   Test whether the filename used in the test is the first image
   """
-  assert(image == './tests/test_files/image2.jpg') 
   assert(Path(image).exists())
  
 

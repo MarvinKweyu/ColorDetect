@@ -23,8 +23,10 @@ from colordetect import ColorDetect
 
 
 user_image = ColorDetect(<path_to_image>)
+# get a dictionary return of color count
 user_image.get_color_count()
-user_image.save_picture(<storage_path>,<image_name>)
+# save the color count onto the image
+user_image.save_color_count(<storage_path>,<image_name>)
 
 ```
 
@@ -37,17 +39,17 @@ Resultant image is stored in the string `storage_path` of choice with the `image
 ![Sample image](./images/out.jpg)
 
 
-#### Tests
-To run tests:
-```bash
-pytest tests --image ./tests/test_files/image2.jpg
-```
 
 ### Contributions
 
 Contributions are welcome.
 Do remember to take a look at the project [contribution guidelines](./CONTRIBUTING.md)
 
+#### Tests
+To run tests:
+```bash
+pytest tests --image ./tests/test_files/image2.jpg
+```
 
 #### ToDo
 

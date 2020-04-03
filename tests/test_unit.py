@@ -17,11 +17,12 @@ def test_image_parsed_to_class(datadir):
     """
     expected_image = datadir.join('image2.jpg')
     # import pdb; pdb.set_trace()
-    isinstance(ColorDetect(expected_image),object)
-    
-    
-def test_dictionary_has_correct_image_count():
+    isinstance(ColorDetect(expected_image), object)
+
+
+def test_dictionary_has_correct_color_count():
     pass
+
 
 def test_what_is_in_dictionary_is_being_written(datadir):
     """
@@ -29,6 +30,5 @@ def test_what_is_in_dictionary_is_being_written(datadir):
     """
     # compare input and output images
     expected_image = datadir.join('image2.jpg')
-    
 
     pass

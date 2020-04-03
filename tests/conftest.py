@@ -4,7 +4,6 @@ import os
 import pytest
 
 
-
 def pytest_addoption(parser):
     """
     Store this parse into all the rest of the tests
@@ -20,9 +19,7 @@ def image(request):
     image_value = request.config.option.image
     if image_value is None:
         pytest.skip()
-    return image_value # the image file name
-
-
+    return image_value  # the image file name
 
 
 @pytest.fixture
