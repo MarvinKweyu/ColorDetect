@@ -16,9 +16,9 @@ setuptools.setup(
     include_package_data=True,
     license='MIT',
     install_requires=[
-        "imutils==0.5.3",
         "numpy==1.18.1",
         "opencv-python==4.2.0.32",
+        "imutils==0.5.3",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
