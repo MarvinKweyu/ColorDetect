@@ -16,18 +16,23 @@ class ColorDetect:
         self.image = cv2.imread(image)
         self.color_description = {}
 
-    def get_color_count(self, color_id=5) -> dict:
+    def get_color_count(self, color_count=5) -> dict:
         """
         Count the number of different colors
+
+         Parameters
+        ----------
+        color_count: int
+            The number of most dominant colors to be obtained from the image
         """
 
-        # convert image from BGR to HSV for better accuracy
+        # convert image from BGR to RGB for better accuracy
         rgb = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
         reshape = rgb.reshape((rgb.shape[0] * rgb.shape[1], 3))
-        cluster = KMeans(n_clusters=color_id).fit(reshape)
-        import pdb;
-        pdb.set_trace()
+        cluster = KMeans(n_clusters=color_count).fit(reshape)
+
         unique_colors = self.find_unique_colors(cluster, cluster.cluster_centers_)
+        self.color_description = unique_colors
 
         return self.color_description
 
@@ -39,17 +44,12 @@ class ColorDetect:
         hist = hist.astype("float")
         hist /= hist.sum()
 
-        # Create frequency rect and iterate through each cluster's color and percentage
-        rect = np.zeros((50, 300, 3), dtype=np.uint8)
-        colors = sorted([(percent, color) for (percent, color) in zip(hist, centroids)])
-        start = 0
-        print(colors)
+        # iterate through each cluster's color and percentage
+        colors = sorted([((percent * 100), color) for (percent, color) in zip(hist, centroids)])
+
         for (percent, color) in colors:
-            # print(color, "{:0.2f}%".format(percent * 100))
-            end = start + (percent * 300)
             color.astype("uint8").tolist()
-            start = end
-        return colors
+        return dict(colors)
 
     def write_color_count(self):
         """
@@ -63,7 +63,7 @@ class ColorDetect:
             fontColor = (0, 0, 0)
             lineType = 1
 
-            cv2.putText(self.image, k + ':' + str(v),
+            cv2.putText(self.image, str(round(k, 2)) + '% :' + str(v),
                         bottomLeftCornerOfText,
                         font,
                         fontScale,
