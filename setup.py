@@ -18,7 +18,8 @@ setuptools.setup(
     install_requires=[
         "numpy==1.18.1",
         "opencv-python==4.2.0.32",
-        "imutils==0.5.3",
+        "scikit-learn==0.22.2.post1"
+
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

@@ -1,9 +1,9 @@
 # color-detect
 
 
-![Python](https://img.shields.io/badge/Python-3.7-green)
-![Release](https://img.shields.io/github/v/release/MarvinKweyu/ColorRecognition?include_prereleases)
+[![PyPI version](https://badge.fury.io/py/ColorDetect.svg)](https://pypi.org/project/ColorDetect/)
 [![CircleCI](https://circleci.com/gh/MarvinKweyu/ColorDetect.svg?style=svg)](https://circleci.com/gh/MarvinKweyu/ColorDetect)
+[![Downloads](https://pepy.tech/badge/colordetect)](https://pypi.org/project/ColorDetect/)
 
 
 ColorDetect works to identify different color candies in an image.

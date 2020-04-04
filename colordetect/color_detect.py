@@ -1,7 +1,6 @@
 from pathlib import Path
 
 import cv2
-import imutils
 import numpy as np
 from sklearn.cluster import KMeans
 
