@@ -3,6 +3,7 @@ from pathlib import Path
 import cv2
 import imutils
 import numpy as np
+from sklearn.cluster import KMeans
 
 
 class ColorDetect:
@@ -13,70 +14,42 @@ class ColorDetect:
     def __init__(self, image):
         """Class constructor"""
         self.image = cv2.imread(image)
-
-        # Dictionaries of colors
-        self.colors = {
-            'red': [
-                ([0, 50, 50], [10, 255, 255]),
-                ([170, 50, 50], [180, 255, 255])
-            ],
-            'blue': [
-                ([110, 50, 50], [130, 255, 255])
-            ],
-            'green': [
-                ([50, 50, 50], [80, 255, 255])
-            ],
-            'yellow': [
-                ([26, 100, 100], [35, 255, 255])
-            ],
-            'orange': [
-                ([10, 50, 50], [22, 255, 255])
-            ],
-            'purple': [
-                ([140, 50, 0], [165, 255, 255])
-            ],
-            'cyan': [
-                ([80, 50, 50], [100, 255, 255])
-            ],
-            'lightgreen': [
-                ([35, 50, 50], [45, 255, 255])
-            ]
-
-        }
-
         self.color_description = {}
 
-    def get_color_count(self) -> dict:
+    def get_color_count(self, color_id=5) -> dict:
         """
         Count the number of different colors
         """
 
         # convert image from BGR to HSV for better accuracy
-        hsv = cv2.cvtColor(self.image, cv2.COLOR_BGR2HSV)
-
-        for color, boundaries in self.colors.items():
-
-            i = 0
-            for (lower, upper) in boundaries:
-
-                # find all the 'color' shapes in the image
-                lower = np.array(lower, dtype="uint8")
-                upper = np.array(upper, dtype="uint8")
-                shapeMask = cv2.inRange(hsv, lower, upper)
-
-                if i == 0:
-                    result = shapeMask
-                else:
-                    result = cv2.bitwise_or(result, shapeMask)
-
-                i += 1
-
-            # find the contours in the mask
-            cnts = cv2.findContours(result.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-            cnts = imutils.grab_contours(cnts)
-            self.color_description[color] = len(cnts)
+        rgb = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
+        reshape = rgb.reshape((rgb.shape[0] * rgb.shape[1], 3))
+        cluster = KMeans(n_clusters=color_id).fit(reshape)
+        import pdb;
+        pdb.set_trace()
+        unique_colors = self.find_unique_colors(cluster, cluster.cluster_centers_)
 
         return self.color_description
+
+    def find_unique_colors(self, cluster, centroids):
+
+        # Get the number of different clusters, create histogram, and normalize
+        labels = np.arange(0, len(np.unique(cluster.labels_)) + 1)
+        (hist, _) = np.histogram(cluster.labels_, bins=labels)
+        hist = hist.astype("float")
+        hist /= hist.sum()
+
+        # Create frequency rect and iterate through each cluster's color and percentage
+        rect = np.zeros((50, 300, 3), dtype=np.uint8)
+        colors = sorted([(percent, color) for (percent, color) in zip(hist, centroids)])
+        start = 0
+        print(colors)
+        for (percent, color) in colors:
+            # print(color, "{:0.2f}%".format(percent * 100))
+            end = start + (percent * 300)
+            color.astype("uint8").tolist()
+            start = end
+        return colors
 
     def write_color_count(self):
         """
