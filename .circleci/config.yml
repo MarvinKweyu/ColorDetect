@@ -15,6 +15,6 @@ jobs:
            name: Running tests
            command: |
                source .venv/bin/activate
-               pytest tests --image ./tests/test_files/image2.jpg
+               pytest
                 
            

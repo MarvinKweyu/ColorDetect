@@ -41,7 +41,7 @@ Do remember to take a look at the project [contribution guidelines](./CONTRIBUTI
 #### Tests
 To run tests:
 ```bash
-pytest tests --image ./tests/test_files/image2.jpg
+pytest 
 ```
 
 #### ToDo
