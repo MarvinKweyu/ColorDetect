@@ -30,8 +30,9 @@ user_image.save_color_count(<storage_path>,<image_name>)
 
 Resultant image is stored in the string `storage_path` of choice with the `image_name` which will default to the current location and **out.jpg** respectively by default.
 
+### Project Documentation
 
-> For further project documentation, visit [ColorDetect's page]() 
+For further project documentation, visit [ColorDetect's page](https://colordetect.readthedocs.io/en/latest/) 
 
 ### Contributions
 
