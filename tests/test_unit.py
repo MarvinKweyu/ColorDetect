@@ -10,14 +10,12 @@ import os
 import pytest
 
 
-def test_image_parsed_to_class(datadir):
+def test_image_parsed_to_class(image):
     """
     test whether an image is parsed to the class ColorDetect(<image>)
     Check whether an instance is created
     """
-    expected_image = datadir.join('image2.jpg')
-    # import pdb; pdb.set_trace()
-    isinstance(ColorDetect(expected_image), object)
+    isinstance(ColorDetect(image), object)
 
 
 def test_dictionary_has_correct_color_count():
@@ -29,6 +27,6 @@ def test_what_is_in_dictionary_is_being_written(datadir):
     What is in the dictionary should be what is being written
     """
     # compare input and output images
-    expected_image = datadir.join('image2.jpg')
+    # expected_image = datadir.join('image2.jpg')
 
     pass

@@ -1,6 +1,6 @@
 # Contributing to ColorDetect
 
-Thank you for taking your time to  look at the [**ColorDetect**](https://github.com/MarvinKweyu/Detect) project. Let's build better software together.:clap:
+Thank you for taking your time to  look at the [**ColorDetect**](https://github.com/MarvinKweyu/ColorDetect) project. Let's build better software together.:clap:
 
 Use the following as guidelines to making your contributions and do feel free to propose changes to this document in a pull request.
 

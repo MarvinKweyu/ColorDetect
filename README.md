@@ -1,4 +1,4 @@
-# color-detect
+# ColorDetect
 
 
 [![PyPI version](https://badge.fury.io/py/ColorDetect.svg)](https://pypi.org/project/ColorDetect/)
@@ -6,9 +6,7 @@
 [![Downloads](https://pepy.tech/badge/colordetect)](https://pypi.org/project/ColorDetect/)
 
 
-ColorDetect works to identify different color candies in an image.
-
-
+ColorDetect works to recognize and identify different colors in an image.
 
 
 ### Installation
@@ -33,12 +31,7 @@ user_image.save_color_count(<storage_path>,<image_name>)
 Resultant image is stored in the string `storage_path` of choice with the `image_name` which will default to the current location and **out.jpg** respectively by default.
 
 
- *A sample output.*
-
-
-![Sample image](./images/out.jpg)
-
-
+> For further project documentation, visit [ColorDetect's page]() 
 
 ### Contributions
 

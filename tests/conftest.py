@@ -4,19 +4,12 @@ import os
 import pytest
 
 
-def pytest_addoption(parser):
-    """
-    Store this parse into all the rest of the tests
-    """
-    parser.addoption("--image", action="store")
-
-
 @pytest.fixture(scope='session')
 def image(request):
     """
     parse the argument in the test else let the tests skip
     """
-    image_value = request.config.option.image
+    image_value = "tests/test_files/image2.jpg"
     if image_value is None:
         pytest.skip()
     return image_value  # the image file name

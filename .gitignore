@@ -3,9 +3,6 @@
 .color_recognition
 .idea
 
-# Created by https://www.gitignore.io/api/linux,python
-# Edit at https://www.gitignore.io/?templates=linux,python
-
 ### Linux ###
 *~
 
@@ -125,5 +122,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-# End of https://www.gitignore.io/api/linux,python

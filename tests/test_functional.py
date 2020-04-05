@@ -1,5 +1,6 @@
 
 from pathlib import Path
+import imghdr
 from unittest import TestCase
 
 import pytest
@@ -25,7 +26,7 @@ def test_argument_is_image(image):
         """
         Ensure that the argument parsed is an image
         """
-        assert Path(image)
+        assert type(imghdr.what(Path(image))) is str
 
 
 def test_image_has_been_saved(datadir):
