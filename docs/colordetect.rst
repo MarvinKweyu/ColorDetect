@@ -8,9 +8,9 @@ Getting started
 
 Installation
 ------------
-From pypy::
+.. code-block:: bash
 
-    pip install ColorDetect
+    $ pip install ColorDetect
 
 For usage , import as::
 
@@ -19,7 +19,7 @@ For usage , import as::
 
 
 Examples
-========
+--------
 
 As a walk through some of the capabilities of ColorDetect we will use
 this sample image.
@@ -33,10 +33,16 @@ this sample image.
     >>>
     >>> my_image = ColorDetect("<image_path>")
     >>> my_image.get_color_count()
-    {6.2: array([  2.008,   2.07 , 249.287]), 7.15: array([  5.083, 210.89 , 212.356]), 15.71: array([172.708, 167.685,   5.291]), 20.41: array([148.619,  33.651,  88.661]), 50.53: array([253.272, 253.382, 252.612])}
+    {6.2: [2.0, 2.0, 249.0], 7.15: [5.0, 211.0, 212.0], 17.49: [173.0, 25.0, 98.0], 18.62: [146.0, 155.0, 9.0], 50.54: [253.0, 253.0, 253.0]}
 
-A dictionary, with the RGB value of the color as the key and its percentage occurrence in the image
-as the value is returned.
+A dictionary, with the RGB value of the color as the value and its percentage occurrence in the image
+as the key is returned.
+
+For clarification::
+
+    6.2: [2.0, 2.0, 249.0]
+    # this key value pair would imply 6.2 % of the image, has an RGB of [2.0, 2.0, 249.0]
+
 
 Now suppose you want to take it a step further and write the result to the image itself.
 
@@ -57,22 +63,4 @@ Depending on the size of the image, you might want to decide whether
 to write the count to the image or not. As observed, a smaller image gives
 a crowded appearance.
 
-
-Developer Notes
-===============
-
-Here, we dive into ColorDetect's inner definitions and working.
-Found a bug or feature request you would like to address? Take a look at the  `Contribution guidelines <https://github.com/MarvinKweyu/ColorDetect/blob/master/CONTRIBUTING.md>`_
-and feel free to submit a pull. The project source is hosted on `Github <https://github.com/MarvinKweyu/ColorDetect/>`_
-
-.. automodule:: colordetect.color_detect
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-
-.. automodule:: colordetect
-   :members:
-   :undoc-members:
-   :show-inheritance:
 

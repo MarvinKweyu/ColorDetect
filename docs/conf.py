@@ -15,7 +15,8 @@ import sys
 from datetime import date
 
 file_loc = os.path.split(__file__)[0]
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(file_loc), ".")))
+sys.path.insert(0, os.path.abspath(
+    os.path.join(os.path.dirname(file_loc), ".")))
 
 from colordetect import ColorDetect
 
@@ -37,6 +38,7 @@ extensions = [
     'sphinx.ext.autodoc',  # grab documentation from docstrings
     'sphinx.ext.doctest',
     'sphinx.ext.viewcode',  # package rst sources with docs
+    'sphinx.ext.intersphinx',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
