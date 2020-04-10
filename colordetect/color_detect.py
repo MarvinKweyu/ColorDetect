@@ -50,7 +50,7 @@ class ColorDetect:
 
         # round  up figures
         for percentage, v in unique_colors.items():
-            self.color_description[round(percentage, 2)] = np.around(v, 3)
+            self.color_description[round(percentage, 2)] = list(np.around(v))
 
         return self.color_description
 
