@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ColorDetect",
-    version="0.1.4",
+    version="0.1.5",
     author="Marvin Kweyu",
     author_email="mkweyu1@gmail.com",
     description="Detect and recognize color in images",

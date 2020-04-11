@@ -1,7 +1,21 @@
-
 =====================
 ColorDetect Changelog
 =====================
+
+
+0.1.5 (11-04-2020)
+==================
+
+Features
+--------
+
+- Return a whole number for the RGB value instead of float.
+
+Documentation
+-------------
+
+- Add changelog to the documentation.
+
 
 0.1.4 (5-04-2020)
 ==================
@@ -19,7 +33,6 @@ Bugfixes
 
 - Update CI config file with correct requirements path.
 - Correct test running instructions on README.
-
 
 
 Improved Documentation
