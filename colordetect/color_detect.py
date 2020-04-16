@@ -19,6 +19,7 @@ from pathlib import Path
 import cv2
 import numpy as np
 from sklearn.cluster import KMeans
+import matplotlib.colors as mcolors
 
 
 class ColorDetect:
@@ -31,7 +32,7 @@ class ColorDetect:
         self.image = cv2.imread(image)
         self.color_description = {}
 
-    def get_color_count(self, color_count=5) -> dict:
+    def get_color_count(self, color_count: int = 5, color_format: str = 'rgb') -> dict:
         """
         Count the number of different colors
 
@@ -39,6 +40,13 @@ class ColorDetect:
         ----------
         color_count: int
             The number of most dominant colors to be obtained from the image
+        color_format:str
+            The format to return  the color in.
+            Options:
+                hsv:(60°,100%,100%)
+                rgb: rgb(255, 255, 0) for yellow
+                hex: #FFFF00 for yellow
+                # Todo name: yellow 
         """
 
         # convert image from BGR to RGB for better accuracy
@@ -46,15 +54,34 @@ class ColorDetect:
         reshape = rgb.reshape((rgb.shape[0] * rgb.shape[1], 3))
         cluster = KMeans(n_clusters=color_count).fit(reshape)
 
-        unique_colors = self._find_unique_colors(cluster, cluster.cluster_centers_)
+        unique_colors = self._find_unique_colors(
+            cluster, cluster.cluster_centers_)
 
         # round  up figures
         for percentage, v in unique_colors.items():
-            self.color_description[round(percentage, 2)] = list(np.around(v))
-
+            rgb_value = list(np.around(v))
+            if color_format != 'rgb':
+                color_value = self._format_color(v, color_format)
+                self.color_description[round(percentage, 2)] = color_value
+            else:
+                self.color_description[round(percentage, 2)] = rgb_value
         return self.color_description
 
-    def _find_unique_colors(self, cluster, centroids):
+    def _format_color(self, rgb_value, color_format):
+        """
+        Get the correct color format as specified
+        :return:
+        """
+        if color_format == 'hsv':
+            # list(np.around(v))
+            return mcolors.rgb_to_hsv(rgb_value)  # <class 'numpy.ndarray'>
+
+        elif color_format == 'hex':
+            rgb_value = np.divide(rgb_value, 255)  # give a scale from 0-1
+            # Todo: Normalize rgb_value to get a range of 0-1 on each scale mcolors.Normalize
+            return mcolors.to_hex(rgb_value)
+
+    def _find_unique_colors(self, cluster, centroids) -> dict:
 
         # Get the number of different clusters, create histogram, and normalize
         labels = np.arange(0, len(np.unique(cluster.labels_)) + 1)
@@ -63,7 +90,8 @@ class ColorDetect:
         hist /= hist.sum()
 
         # iterate through each cluster's color and percentage
-        colors = sorted([((percent * 100), color) for (percent, color) in zip(hist, centroids)])
+        colors = sorted([((percent * 100), color)
+                         for (percent, color) in zip(hist, centroids)])
 
         for (percent, color) in colors:
             color.astype("uint8").tolist()
@@ -92,7 +120,7 @@ class ColorDetect:
     def save_color_count(self, location=".", file_name="out.jpg"):
         """
         Save the resultant image file to the local directory
-        
+
         Parameters
         ----------
         location: str
