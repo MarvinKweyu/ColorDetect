@@ -2,12 +2,12 @@
 Unit tests: testing a small bit of code like function or class in isolation of the system
 From the developers perspective
 """
-# Whether ()dictionary has the correct image count
-# test whether text in the dictionary is what is being written to the image
+
+import os
+
+import pytest
 
 from ..colordetect import ColorDetect
-import os
-import pytest
 
 
 def test_image_parsed_to_class(image):
@@ -18,15 +18,20 @@ def test_image_parsed_to_class(image):
     isinstance(ColorDetect(image), object)
 
 
-def test_dictionary_has_correct_color_count():
-    pass
+def test_dictionary_has_correct_color_count(image):
+    """
+    Ensure the method gets the correct color count
+    """
+    user_image = ColorDetect(image)
+    # since the image is plain 255,255,255
+    assert len(user_image.get_color_count(color_count=1)) == 1
 
 
-def test_what_is_in_dictionary_is_being_written(datadir):
+def test_what_is_in_dictionary_is_being_written(datadir, image):
     """
     What is in the dictionary should be what is being written
     """
-    # compare input and output images
-    # expected_image = datadir.join('image2.jpg')
+    user_image = ColorDetect(image)
+    color_dictionary = user_image.get_color_count(color_count=1)
 
-    pass
+    

@@ -9,7 +9,7 @@ def image(request):
     """
     parse the argument in the test else let the tests skip
     """
-    image_value = "tests/test_files/image2.jpg"
+    image_value = "tests/test_files/plain-white-background.jpg"
     if image_value is None:
         pytest.skip()
     return image_value  # the image file name

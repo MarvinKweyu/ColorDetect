@@ -1,9 +1,11 @@
-
-from pathlib import Path
 import imghdr
+from pathlib import Path
 from unittest import TestCase
 
 import pytest
+
+from ..colordetect import ColorDetect
+
 
 """
 # Tests to be written:
@@ -16,25 +18,28 @@ test whether text is written to the image
 
 
 def test_existence_of_image_path(image):
-  """
+    """
   Test whether the filename used in the test is the first image
   """
-  assert(Path(image).exists())
- 
+    assert (Path(image).exists())
+
 
 def test_argument_is_image(image):
-        """
+    """
         Ensure that the argument parsed is an image
         """
-        assert type(imghdr.what(Path(image))) is str
+    assert type(imghdr.what(Path(image))) is str
 
 
-def test_image_has_been_saved(datadir):
-        """
+def test_image_has_been_saved(datadir, image):
+    """
         Ensure that 'out.jpg' has been saved to the choice directory
         """
-        # image = Path(image)
-        pass
+    user_image = ColorDetect(image)
+    user_image.get_color_count(color_count=1)
+    file_name = 'out.jpg'
+    user_image.save_color_count(location=datadir, file_name=file_name)
+    assert (Path(datadir / file_name).exists())
 
 
 def test_text_in_image(datadir):
