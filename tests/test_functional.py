@@ -6,7 +6,6 @@ import pytest
 
 from ..colordetect import ColorDetect
 
-
 """
 # Tests to be written:
 
@@ -40,6 +39,15 @@ def test_image_has_been_saved(datadir, image):
     file_name = 'out.jpg'
     user_image.save_color_count(location=datadir, file_name=file_name)
     assert (Path(datadir / file_name).exists())
+
+
+def test_correct_color_format(image):
+    """
+    What user specified is the color format to be written is being written
+    :param image:
+    :return:
+    """
+    pass
 
 
 def test_text_in_image(datadir):
