@@ -14,12 +14,15 @@ Image processed and saved successfully
 >>>
 """
 
+import logging
 from pathlib import Path
 
 import cv2
 import numpy as np
 from sklearn.cluster import KMeans
 import matplotlib.colors as mcolors
+
+logger = logging.getLogger(__name__)
 
 
 class ColorDetect:
@@ -36,18 +39,23 @@ class ColorDetect:
         """
         Count the number of different colors
 
+        .. _get_color_count:
+
         Parameters
         ----------
         color_count: int
             The number of most dominant colors to be obtained from the image
         color_format:str
             The format to return  the color in.
-            Options:
-                hsv:(60°,100%,100%)
-                rgb: rgb(255, 255, 0) for yellow
-                hex: #FFFF00 for yellow
-                # Todo name: yellow 
+            Options::
+                hsv -(60°,100%,100%)
+                rgb -rgb(255, 255, 0) for yellow
+                hex - #FFFF00 for yellow
+                # Todo name - yellow 
         """
+
+        if type(color_count) != int:
+            raise TypeError(f"color_count has to be an integer. Provided {type(color_count)} \n Means {color_count is not int}")
 
         # convert image from BGR to RGB for better accuracy
         rgb = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
@@ -56,6 +64,11 @@ class ColorDetect:
 
         unique_colors = self._find_unique_colors(
             cluster, cluster.cluster_centers_)
+
+        color_format_options = ['rgb', 'hex', 'hsv']
+
+        if color_format not in color_format_options:
+            raise ValueError(f"Invalid color format: {color_format}")
 
         # round  up figures
         for percentage, v in unique_colors.items():
@@ -78,7 +91,6 @@ class ColorDetect:
 
         elif color_format == 'hex':
             rgb_value = np.divide(rgb_value, 255)  # give a scale from 0-1
-            # Todo: Normalize rgb_value to get a range of 0-1 on each scale mcolors.Normalize
             return mcolors.to_hex(rgb_value)
 
     def _find_unique_colors(self, cluster, centroids) -> dict:
@@ -117,9 +129,11 @@ class ColorDetect:
                         lineType)
             y_axis += 23
 
-    def save_color_count(self, location=".", file_name="out.jpg"):
+    def save_color_count(self, location=".", file_name: str = "out.jpg"):
         """
         Save the resultant image file to the local directory
+
+        .. _save_color_count:
 
         Parameters
         ----------
@@ -129,6 +143,8 @@ class ColorDetect:
             The name of the new image
 
         """
+        if type(file_name) != str:
+            raise TypeError(f"file_name should be a string.Provided {file_name}")
         # write image colors to the image
         self.write_color_count()
 
@@ -138,4 +154,4 @@ class ColorDetect:
         # Save image
         cv2.imwrite(str(image_to_save), self.image)
 
-        print("Image processed and saved successfully")
+        logger.info("Image processed and saved successfully")
