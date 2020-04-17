@@ -37,14 +37,10 @@ For further project documentation, visit [ColorDetect's page](https://colordetec
 ### Contributions
 
 Contributions are welcome.
-Do remember to take a look at the project [contribution guidelines](./CONTRIBUTING.md)
+Do remember to take a look at the project [contribution guidelines](CONTRIBUTING.rst)
 
 #### Tests
 To run tests:
 ```bash
 pytest 
 ```
-
-#### ToDo
-
-- [ ]  Allow color count in videos.
