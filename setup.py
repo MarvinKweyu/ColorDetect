@@ -17,6 +17,7 @@ setuptools.setup(
     license='MIT',
     install_requires=[
         "numpy==1.18.1",
+        "matplotlib==3.2.1",
         "opencv-python==4.2.0.32",
         "scikit-learn==0.22.2.post1"
 
