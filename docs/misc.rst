@@ -12,7 +12,9 @@ Helpful pages.
    :titlesonly:
    
    developer_notes
+   contributing
    changes
+
 
 Indices and tables
 ------------------
