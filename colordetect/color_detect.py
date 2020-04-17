@@ -37,9 +37,11 @@ class ColorDetect:
 
     def get_color_count(self, color_count: int = 5, color_format: str = 'rgb') -> dict:
         """
+        .. _get_color_count:
+        get_color_count
+        ---------------
         Count the number of different colors
 
-        .. _get_color_count:
 
         Parameters
         ----------
@@ -47,15 +49,14 @@ class ColorDetect:
             The number of most dominant colors to be obtained from the image
         color_format:str
             The format to return  the color in.
-            Options::
-                hsv -(60°,100%,100%)
-                rgb -rgb(255, 255, 0) for yellow
-                hex - #FFFF00 for yellow
-                # Todo name - yellow 
+            Options
+                * hsv - (60°,100%,100%)
+                * rgb - rgb(255, 255, 0) for yellow
+                * hex - #FFFF00 for yellow
         """
 
         if type(color_count) != int:
-            raise TypeError(f"color_count has to be an integer. Provided {type(color_count)} \n Means {color_count is not int}")
+            raise TypeError(f"color_count has to be an integer. Provided {type(color_count)} ")
 
         # convert image from BGR to RGB for better accuracy
         rgb = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
@@ -111,6 +112,8 @@ class ColorDetect:
 
     def write_color_count(self):
         """
+        write_color_count
+        -----------------
         Write the number of colors found to the image
         """
         y_axis = 200
@@ -131,9 +134,11 @@ class ColorDetect:
 
     def save_color_count(self, location=".", file_name: str = "out.jpg"):
         """
-        Save the resultant image file to the local directory
-
         .. _save_color_count:
+        save_color_count
+        ----------------
+
+        Save the resultant image file to the local directory
 
         Parameters
         ----------

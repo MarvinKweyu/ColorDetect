@@ -3,6 +3,23 @@ ColorDetect Changelog
 =====================
 
 
+0.1.6 (17-04-2020)
+==================
+
+Features
+--------
+
+- Add color format return options. Include RGB, hex and hsv
+
+Misc
+----
+
+- Add tests suite and move test files out of project root.
+- Add contributions file
+- Update dev requirements
+- Improve methods types specification and exception catching.
+
+
 0.1.5 (11-04-2020)
 ==================
 
