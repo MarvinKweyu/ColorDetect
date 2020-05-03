@@ -22,7 +22,7 @@ import numpy as np
 from sklearn.cluster import KMeans
 import matplotlib.colors as mcolors
 
-logger = logging.getLogger(__name__)
+LOGGER = logging.getLogger(__name__)
 
 
 class ColorDetect:
@@ -76,9 +76,10 @@ class ColorDetect:
             rgb_value = list(np.around(v))
             if color_format != 'rgb':
                 color_value = self._format_color(v, color_format)
-                self.color_description[round(percentage, 2)] = color_value
+                self.color_description[color_value] = round(percentage, 2)
             else:
-                self.color_description[round(percentage, 2)] = rgb_value
+                self.color_description[str(rgb_value)] = round(percentage, 2)
+
         return self.color_description
 
     def _format_color(self, rgb_value, color_format):
@@ -88,7 +89,7 @@ class ColorDetect:
         """
         if color_format == 'hsv':
             # list(np.around(v))
-            return mcolors.rgb_to_hsv(rgb_value)  # <class 'numpy.ndarray'>
+            return str(mcolors.rgb_to_hsv(rgb_value).tolist())
 
         elif color_format == 'hex':
             rgb_value = np.divide(rgb_value, 255)  # give a scale from 0-1
@@ -124,7 +125,7 @@ class ColorDetect:
             fontColor = (0, 0, 0)
             lineType = 1
 
-            cv2.putText(self.image, str(k) + '% :' + str(v),
+            cv2.putText(self.image, str(v) + '% :' + k,
                         bottomLeftCornerOfText,
                         font,
                         fontScale,
@@ -159,4 +160,4 @@ class ColorDetect:
         # Save image
         cv2.imwrite(str(image_to_save), self.image)
 
-        logger.info("Image processed and saved successfully")
+        LOGGER.info("Image processed and saved successfully")

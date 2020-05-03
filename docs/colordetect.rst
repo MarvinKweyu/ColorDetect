@@ -36,8 +36,13 @@ this sample image.
     >>> my_image.get_color_count()
     {6.2: [2.0, 2.0, 249.0], 7.15: [5.0, 211.0, 212.0], 17.49: [173.0, 25.0, 98.0], 18.62: [146.0, 155.0, 9.0], 50.54: [253.0, 253.0, 253.0]}
 
-A dictionary, with the RGB value of the color as the value and its percentage occurrence in the image
-as the key is returned.
+A dictionary, with the RGB value of the color as the key and its percentage occurrence in the image
+as the value is returned.
+
+.. note:: As of the ColorDetect 0.1.7, the percentage changed from being presented as a
+          key to being presented as a value. This attributed to the uniqueness of python
+          dictionary keys. See the :ref:`change log<0.1.7>` for more info.
+
 
 For clarification::
 
