@@ -37,7 +37,7 @@ For further project documentation, visit [ColorDetect's page](https://colordetec
 ### Contributions
 
 Contributions are welcome.
-Do remember to take a look at the project [contribution guidelines](CONTRIBUTING.rst)
+Do remember to take a look at the project [contribution guidelines](https://github.com/MarvinKweyu/ColorDetect/blob/master/CONTRIBUTING.rst)
 
 #### Tests
 To run tests:
