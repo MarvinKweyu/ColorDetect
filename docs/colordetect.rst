@@ -34,7 +34,7 @@ this sample image.
     >>>
     >>> my_image = ColorDetect("<image_path>")
     >>> my_image.get_color_count()
-    {6.2: [2.0, 2.0, 249.0], 7.15: [5.0, 211.0, 212.0], 17.49: [173.0, 25.0, 98.0], 18.62: [146.0, 155.0, 9.0], 50.54: [253.0, 253.0, 253.0]}
+    '[2.0, 2.0, 249.0]': 6.2, '[5.0, 211.0, 212.0]': 7.15, '[173.0, 25.0, 98.0]': 17.49, '[146.0, 155.0, 9.0]': 18.62, '[253.0, 253.0, 253.0]': 50.54}
 
 A dictionary, with the RGB value of the color as the key and its percentage occurrence in the image
 as the value is returned.
@@ -46,7 +46,7 @@ as the value is returned.
 
 For clarification::
 
-    6.2: [2.0, 2.0, 249.0]
+    '[2.0, 2.0, 249.0]': 6.2
     # this key value pair would imply 6.2 % of the image, has an RGB of [2.0, 2.0, 249.0]
 
 
