@@ -6,6 +6,12 @@ ColorDetect Changelog
 0.1.7 (17-04-2020)
 ==================
 
+Features
+--------
+
+- Invert return of recognized colors dictionary. Return the colors
+  as keys and percentages as values to avoid duplicate dictionary keys.
+
 0.1.6 (17-04-2020)
 ==================
 
