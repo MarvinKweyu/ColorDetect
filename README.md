@@ -1,5 +1,12 @@
 # ColorDetect
 
+<p align="center">
+  <b>ColorDetect</b><br>
+  <a href="https://colordetect.readthedocs.io/en/latest/">Documentation</a> |
+  <a href="https://pypi.org/project/ColorDetect/">Package</a> 
+  <br><br>
+  <img src="./img/ColorDetect.png" alt="ColorDetect">
+</p>
 
 [![PyPI version](https://badge.fury.io/py/ColorDetect.svg)](https://pypi.org/project/ColorDetect/)
 [![CircleCI](https://circleci.com/gh/MarvinKweyu/ColorDetect.svg?style=svg)](https://circleci.com/gh/MarvinKweyu/ColorDetect)
