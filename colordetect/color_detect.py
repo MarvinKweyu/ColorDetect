@@ -117,7 +117,7 @@ class ColorDetect:
         -----------------
         Write the number of colors found to the image
         """
-        line_spacing = 200
+        line_spacing = 0
         for k, v in self.color_description.items():
             color_values = str(v) + '% :' + k
             self.write_text(text=color_values, line_spacing=line_spacing)

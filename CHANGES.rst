@@ -1,6 +1,18 @@
 =====================
 ColorDetect Changelog
 =====================
+.. _0.2.0:
+0.2.0 (13-08-2020)
+==================
+
+Features
+--------
+- Enable input of custom text onto the image
+
+Documentation
+-------------
+
+- Add ``write_text`` method along with other breaking changes to the documentation
 
 .. _0.1.7:
 0.1.7 (17-04-2020)
@@ -64,7 +76,7 @@ Bugfixes
 Improved Documentation
 ----------------------
 
-- Publish package documentation 
+- Publish package documentation
   `ColorDetect <https://colordetect.readthedocs.io/en/latest/>`_
 
 Misc
@@ -87,7 +99,7 @@ Features
 Bug fixes
 ---------
 
-- Fix image reading. 
+- Fix image reading.
 
 Misc
 ----
