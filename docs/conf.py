@@ -27,7 +27,7 @@ copyright = '2020, Marvin Kweyu'
 author = 'Marvin Kweyu'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1.7'
+release = '0.2.0'
 
 # -- General configuration ---------------------------------------------------
 
@@ -55,6 +55,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 #
 html_theme = 'alabaster'
+
+html_logo = '../img/ColorDetect.png'
 
 html_theme_options = {
     'description': "Recognize and identify different colors in an image.",
