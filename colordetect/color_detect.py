@@ -158,7 +158,7 @@ class ColorDetect:
                         fontColor,
                         lineType)
 
-    def save_color_count(self, location=".", file_name: str = "out.jpg"):
+    def save_image(self, location=".", file_name: str = "out.jpg"):
         """
         .. _save_color_count:
         save_color_count
