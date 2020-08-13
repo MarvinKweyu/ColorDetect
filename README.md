@@ -28,10 +28,16 @@ from colordetect import ColorDetect
 
 
 user_image = ColorDetect(<path_to_image>)
-# get a dictionary return of color count
+# return dictionary of color count. Do anything with this
 user_image.get_color_count()
-# save the color count onto the image
-user_image.save_color_count(<storage_path>,<image_name>)
+
+# write color count
+user_image.write_color_count()
+# optionally, write any text to the image
+user_image.write_text(text="any text")
+
+# save the image after using either of the options (write_color_count/write_text) or both
+user_image.save_image(<storage_path>,<image_name>)
 
 ```
 
