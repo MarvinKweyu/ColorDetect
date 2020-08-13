@@ -59,11 +59,14 @@ Look up :ref:`get_color_count<get_color_count>` for details
 on the different arguments it accepts including the different color format return values.
 Now suppose you want to take it a step further and write the result to the image itself.
 
+.. warning:: Take note of the difference in saving the image to storage from hte previous
+           `save_color_count<save_color_count>` to `save_image<save_color_count>`
 ::
 
-    my_image.save_color_count("<path_to_save_image>", "<name_of_image>")
+    >>> my_image.write_color_count()
+    >>> my_image.save_image("<path_to_save_image>", "<name_of_image>")
 
-The :ref:`save_color_count<save_color_count>` method will accept , as optional parameters, the path and name of the image with color count on it.
+Just as `save_color_count`,  :ref:`save_image<save_color_count>` will accept , as optional parameters, the path and name of the image with color count on it.
 By default, these values are ``.`` (For the current directory the script is being run from)
 and ``out.jpg`` respectively.
 
@@ -79,4 +82,26 @@ a crowded appearance.
 As a similar example, with colors represented in their hex format,
 
 .. image:: _static/out_hex.jpg
+
+
+Additionally, to enable the use of custom text on an image:
+
+::
+
+    >>> import ColorDetect
+    >>> my_image = ColorDetect("<image_path>")
+    >>> my_image.write_text(text="a random string", line_spacing=10)
+
+
+.. image:: _static/out_random_string.jpg
+
+
+Here, `line_spacing` would be the space between the lines, depending on how many characters are
+input, you want. By default, this value is an integer, zero, `0`, denoted as values on the Y axis scale
+
+Whether using `write_text` or `write_color_count`, the image has to be saved using `save_image`.
+
+Interested to see just how far you can go? Take a look at :ref:`Contribution guidelines<Contributing>`.
+
+`ColorDetect <https://github.com/MarvinKweyu/ColorDetect>`_  is always looking for the next step.
 
