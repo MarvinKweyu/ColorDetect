@@ -117,21 +117,46 @@ class ColorDetect:
         -----------------
         Write the number of colors found to the image
         """
-        y_axis = 200
+        line_spacing = 200
         for k, v in self.color_description.items():
-            font = cv2.FONT_HERSHEY_SIMPLEX
-            bottomLeftCornerOfText = (10, y_axis)
-            fontScale = 1
-            fontColor = (0, 0, 0)
-            lineType = 1
+            color_values = str(v) + '% :' + k
+            self.write_text(text=color_values, line_spacing=line_spacing)
 
-            cv2.putText(self.image, str(v) + '% :' + k,
-                        bottomLeftCornerOfText,
+            line_spacing += 23
+
+    def write_text(self, text: str = "", line_spacing: int = 0):
+        """
+        write_text
+        ----------
+        Write text onto an image
+
+         Parameters
+        ----------
+        text: str
+            The text to be written onto the image
+        line_spacing:int
+            The spacing between lines
+        :return:
+        """
+        if type(text) != str:
+            raise TypeError(f"text should be a string.Provided {text} of type {type(text)}")
+
+        if text == "":
+            raise IOError(f"text should not be empty")
+
+        y_axis = 200 + line_spacing
+
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        bottomLeftCornerOfText = (10, y_axis)
+        fontScale = 1
+        fontColor = (0, 0, 0)
+        lineType = 1
+
+        cv2.putText(self.image, text, bottomLeftCornerOfText,
                         font,
                         fontScale,
                         fontColor,
                         lineType)
-            y_axis += 23
 
     def save_color_count(self, location=".", file_name: str = "out.jpg"):
         """
@@ -151,8 +176,6 @@ class ColorDetect:
         """
         if type(file_name) != str:
             raise TypeError(f"file_name should be a string.Provided {file_name}")
-        # write image colors to the image
-        self.write_color_count()
 
         image_folder = Path(location)
         image_to_save = image_folder / file_name
