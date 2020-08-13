@@ -1,10 +1,10 @@
 import imghdr
 from pathlib import Path
-from unittest import TestCase
 
 import pytest
 
 from ..colordetect import ColorDetect
+import matplotlib.colors as mcolors
 
 """
 # Tests to be written:
@@ -12,6 +12,8 @@ from ..colordetect import ColorDetect
 Whether an image is loaded/present in the given folder
 whether an image is loaded
 test whether text is written to the image
+return of correct color format
+
 
 """
 
@@ -20,7 +22,7 @@ def test_existence_of_image_path(image):
     """
   Test whether the filename used in the test is the first image
   """
-    assert (Path(image).exists())
+    assert Path(image).exists()
 
 
 def test_argument_is_image(image):
@@ -36,9 +38,9 @@ def test_image_has_been_saved(datadir, image):
         """
     user_image = ColorDetect(image)
     user_image.get_color_count(color_count=1)
-    file_name = 'out.jpg'
-    user_image.save_color_count(location=datadir, file_name=file_name)
-    assert (Path(datadir / file_name).exists())
+    file_name = "out.jpg"
+    user_image.save_image(location=datadir, file_name=file_name)
+    assert Path(datadir / file_name).exists()
 
 
 def test_correct_color_format(image):
@@ -47,11 +49,15 @@ def test_correct_color_format(image):
     :param image:
     :return:
     """
-    pass
+    user_image = ColorDetect(image)
+    #  test rgb returns rgb color format
+    color_codes = user_image.get_color_count(color_count=1, color_format="hex")
+    color_code = list(color_codes.keys())[0]
+    assert mcolors.is_color_like(color_code)
 
 
 def test_text_in_image(datadir):
     """
-    output image should have text 
+    output image should have text
     """
     pass

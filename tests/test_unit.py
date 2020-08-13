@@ -61,4 +61,4 @@ def test_result_file_name_is_valid(image, datadir):
     user_image.get_color_count(color_count=1)
 
     with pytest.raises(Exception) as e_info:
-        user_image.save_color_count(location=datadir, file_name=5)
+        user_image.save_image(location=datadir, file_name=5)
