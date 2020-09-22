@@ -32,7 +32,13 @@ class ColorDetect:
 
     def __init__(self, image):
         """Create ColorDetect object by providing an image"""
-        self.image = cv2.imread(image)
+
+        #  check type of data being passed
+        if isinstance(image, np.ndarray):
+            self.image = image
+        else:
+            self.image = cv2.imread(image)
+
         self.color_description = {}
 
     def get_color_count(self, color_count: int = 5, color_format: str = 'rgb') -> dict:
