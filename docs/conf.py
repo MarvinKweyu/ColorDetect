@@ -27,7 +27,7 @@ copyright = '2020, Marvin Kweyu'
 author = 'Marvin Kweyu'
 
 # The full version, including alpha/beta/rc tags
-release = '0.2.0'
+release = '0.3.0'
 
 # -- General configuration ---------------------------------------------------
 
@@ -59,7 +59,7 @@ html_theme = 'alabaster'
 html_logo = '../img/ColorDetect.png'
 
 html_theme_options = {
-    'description': "Recognize and identify different colors in an image.",
+    'description': "Recognize and identify different colors in an image or video.",
     'logo_text_align': 'justify',
 }
 

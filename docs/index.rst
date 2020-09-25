@@ -11,6 +11,7 @@ Welcome to ColorDetect's documentation!
    :caption: Contents:
 
    colordetect.rst
+   videocolor.rst
    misc
 
 
