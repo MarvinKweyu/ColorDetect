@@ -88,7 +88,7 @@ class ColorDetect:
 
         return self.color_description
 
-    def _format_color(self, rgb_value, color_format):
+    def _format_color(self, rgb_value, color_format: str):
         """
         Get the correct color format as specified
         :return:
