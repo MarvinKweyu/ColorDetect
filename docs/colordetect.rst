@@ -15,7 +15,7 @@ Installation
 
 For usage , import as::
 
-    import ColorDetect
+    import colordetect
 
 
 
@@ -34,7 +34,7 @@ this sample image.
 ::
 
     # Get the most dominant color count from an image
-    >>> import ColorDetect
+    >>> from colordetect import ColorDetect
     >>>
     >>> my_image = ColorDetect("<image_path>")
     >>> my_image.get_color_count()
@@ -67,6 +67,7 @@ Now suppose you want to take it a step further and write the result to the image
            `save_color_count<save_color_count>` to `save_image<save_color_count>`
 ::
 
+
     >>> my_image.write_color_count()
     >>> my_image.save_image("<path_to_save_image>", "<name_of_image>")
 
@@ -92,7 +93,7 @@ Additionally, to enable the use of custom text on an image:
 
 ::
 
-    >>> import ColorDetect
+    >>> from colordetect import ColorDetect
     >>> my_image = ColorDetect("<image_path>")
     >>> my_image.write_text(text="a random string", line_spacing=10)
 
@@ -104,6 +105,8 @@ Here, `line_spacing` would be the space between the lines, depending on how many
 input, you want. By default, this value is an integer, zero, `0`, denoted as values on the Y axis scale
 
 Whether using `write_text` or `write_color_count`, the image has to be saved using `save_image`.
+
+Video color recognition can be done using :ref:`VideoColor<video_color_recognition>`
 
 Interested to see just how far you can go? Take a look at :ref:`Contribution guidelines<Contributing>`.
 

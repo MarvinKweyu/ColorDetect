@@ -14,6 +14,7 @@ Documentation
 -------------
 
 - Include video color detection documentation
+- Correction in package imports
 
 .. _0.2.0:
 0.2.0 (13-08-2020)

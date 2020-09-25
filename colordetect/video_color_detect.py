@@ -15,6 +15,7 @@ class VideoColor(ColorDetect):
 
     def get_video_frames(self, frame_color_count: int = 5, color_format: str = "rgb", progress: bool = False) -> dict:
         """
+        .. _get_video_frames:
         get_video_frames
         ----------------
         Get image frames and their colors from the video
@@ -72,6 +73,7 @@ class VideoColor(ColorDetect):
 
     def color_sort(self, color_count: int = 5, ascending: bool = True):
         """
+        .. _color_sort
         color_sort
         ----------------
         Get number of colors wanted from video
