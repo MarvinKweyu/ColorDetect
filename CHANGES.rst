@@ -1,6 +1,20 @@
 =====================
 ColorDetect Changelog
 =====================
+
+.. _0.3.0:
+0.3.0 (26-09-2020)
+==================
+
+Features
+--------
+- Video color detection and recognition
+
+Documentation
+-------------
+
+- Include video color detection documentation
+
 .. _0.2.0:
 0.2.0 (13-08-2020)
 ==================

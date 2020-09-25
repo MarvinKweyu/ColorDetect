@@ -133,8 +133,10 @@ def test_ordered_colors_are_correct_count(video):
     user_video = VideoColor(video)
     user_video.get_video_frames()
     with pytest.raises(Exception) as e_info:
-        user_video.sorted_colors(color_count="5")
-    dominant_colors = user_video.sorted_colors(color_count=6)
+        user_video.color_sort(color_count="5")
+    dominant_colors = user_video.color_sort(color_count=6)
+    with pytest.raises(Exception) as e_info:
+        user_video.color_sort(ascending='random')
     assert len(dominant_colors) == 6
     '''
     below line might fail as colors are grabbed on the second instead of per frame
