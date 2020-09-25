@@ -22,7 +22,7 @@ def video(request):
     :param request:
     :return:
     """
-    video_value = "tests/test_files/SampleTree.mp4"
+    video_value = "tests/test_files/earth.mp4"
 
     if video_value is None:
         pytest.skip()

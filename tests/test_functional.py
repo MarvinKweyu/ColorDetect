@@ -14,7 +14,7 @@ test whether text is written to the image
 """
 
 
-def test_existence_of_image_path(image, video):
+def test_existence_of_image_vid_path(image, video):
     """
   Test whether the filename used in the test is the first image
   """
@@ -66,4 +66,5 @@ def test_text_in_image(datadir):
     """
     output image should have text
     """
+    # Todo
     pass
