@@ -13,11 +13,32 @@ class VideoColor(ColorDetect):
         self.video_file = cv2.VideoCapture(video)
         self.color_description = {}
 
-    def get_video_frames(self):
+    def get_video_frames(self, frame_color_count: int = 5, color_format: str = 'rgb') -> dict:
         """
-         Get image frames from the video
+        get_video_frames
+        ----------------
+        Get image frames and their colors from the video
+
+         Parameters
+        ----------
+        frame_color_count: int
+            The number of most dominant colors to be obtained from a single frame
+        color_format:str
+            The format to return the color in.
+            Options
+                * hsv - (60°,100%,100%)
+                * rgb - rgb(255, 255, 0) for yellow
+                * hex - #FFFF00 for yellow
           :return:
         """
+        if type(frame_color_count) != int:
+            raise TypeError(f"frame_color_count has to be an integer. Provided {type(frame_color_count)} ")
+
+        color_format_options = ['rgb', 'hex', 'hsv']
+
+        if color_format not in color_format_options:
+            raise ValueError(f"Invalid color format: {color_format}")
+
         count = 0
         while self.video_file.isOpened():
             # frame is the image
@@ -25,13 +46,10 @@ class VideoColor(ColorDetect):
             if success:
                 # save frame as JPEG file
                 image_object = ColorDetect(frame)
-                colors = image_object.get_color_count()
+                colors = image_object.get_color_count(color_count=frame_color_count, color_format=color_format)
                 # merge dictionaries as they are created
                 self.color_description = {**self.color_description, **colors}
-                # image_object.write_color_count()
-                # storage_path = os.path.join("Random/frame{:d}.jpg".format(count))
-                # image_name = "frame" + str(count) + ".jpg"
-                # image_object.save_image("Random", image_name)
+                # print(f'{self.color_description}')
                 count += 1
 
         self.video_file.release()

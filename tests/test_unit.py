@@ -4,10 +4,12 @@ From the developers perspective
 """
 
 import os
-
+import mimetypes
 import pytest
-
+import cv2
+import pytesseract
 from ..colordetect import ColorDetect
+from ..colordetect import VideoColor
 
 
 def test_image_parsed_to_class(image):
@@ -31,17 +33,26 @@ def test_what_is_in_dictionary_is_being_written(datadir, image):
     """
     What is in the dictionary should be what is being written
     """
+    text_in_image = []
     user_image = ColorDetect(image)
     color_dictionary = user_image.get_color_count(color_count=1)
+    user_image.get_color_count(color_count=1)
+    file_name = "out.jpg"
+    user_image.save_image(location=datadir, file_name=file_name)
+    result_image = os.path.join(datadir, file_name)
 
 
-def test_valid_color_format_is_parsed(image):
+def test_valid_color_format_is_parsed(image, video):
     """
     An exception is raised if an invalid color_format is parsed
     """
     user_image = ColorDetect(image)
+    user_video = VideoColor(video)
     with pytest.raises(Exception) as e_info:
         user_image.get_color_count(color_count=1, color_format='invalid_random_format')
+
+    with pytest.raises(Exception) as e_info:
+        user_video.get_video_frames(frame_color_count=1, color_format='invalid_random_format')
 
 
 def test_valid_color_count_value(image):
