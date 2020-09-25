@@ -23,6 +23,8 @@ pip install ColorDetect
 ```
 
 ### Basic Usage
+
+#### Images
 ```python
 from colordetect import ColorDetect
 
@@ -42,6 +44,19 @@ user_image.save_image(<storage_path>,<image_name>)
 ```
 
 Resultant image is stored in the string `storage_path` of choice with the `image_name` which will default to the current location and **out.jpg** respectively by default.
+
+#### Videos
+
+```python
+from colordetect import VideoColor
+
+user_video = VideoColor(<path_to_video>)
+# return dictionary of color count. Do anything with this result
+user_video.get_video_frames()
+# to order this rather long result and get only a specific number
+user_video.color_sort(color_count=6)
+```
+
 
 ### Project Documentation
 

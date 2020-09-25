@@ -70,9 +70,9 @@ class VideoColor(ColorDetect):
         print("\n")
         return self.color_description
 
-    def sorted_colors(self, color_count: int = 5):
+    def color_sort(self, color_count: int = 5, ascending: bool = True):
         """
-        sorted_colors
+        color_sort
         ----------------
         Get number of colors wanted from video
 
@@ -85,9 +85,12 @@ class VideoColor(ColorDetect):
         if type(color_count) != int:
             raise TypeError(f"color_count has to be an integer. Provided {type(color_count)} ")
 
+        if type(ascending) != bool:
+            raise TypeError(f"The value of the 'ascending' parameter is a boolean. Provided {type(ascending)} ")
+
         sorted_colors = {
             k: v
-            for k, v in sorted(self.color_description.items(), key=lambda item: item[1], reverse=True)
+            for k, v in sorted(self.color_description.items(), key=lambda item: item[1], reverse=ascending)
         }
         return dict(list(sorted_colors.items())[0:color_count])
 
