@@ -19,7 +19,11 @@ For usage , import as::
 
 
 
-Examples
+
+Image color recognition
+=======================
+
+Example
 --------
 
 As a walk through some of the capabilities of ColorDetect we will use
