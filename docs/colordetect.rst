@@ -1,7 +1,7 @@
 Welcome to ColorDetect's documentation
 ======================================
 
-This site covers ColorDetect's usage and method documentation.
+This site covers ColorDetect's usage and module documentation.
 
 
 Getting started
@@ -54,6 +54,7 @@ For clarification::
     # this key value pair would imply 6.2 % of the image, has an RGB of [2.0, 2.0, 249.0]
 
 
+
 By default, `ColorDetect <https://colordetect.readthedocs.io/en/latest/>`_ will count
 the 5 most dominant colors. This can , of course ,be overridden by parsing an argument specifying how many
 colors most dominant you need from the image, with values decreasing in their percentage presence
@@ -64,7 +65,8 @@ on the different arguments it accepts including the different color format retur
 Now suppose you want to take it a step further and write the result to the image itself.
 
 .. warning:: Take note of the difference in saving the image to storage from hte previous
-           `save_color_count<save_color_count>` to `save_image<save_color_count>`
+             `save_color_count<save_color_count>` to `save_image<save_color_count>`
+
 ::
 
 
