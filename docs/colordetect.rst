@@ -1,7 +1,7 @@
 Welcome to ColorDetect's documentation
 ======================================
 
-This site covers ColorDetect's usage and method documentation.
+This site covers ColorDetect's usage and module documentation.
 
 
 Getting started
@@ -15,11 +15,15 @@ Installation
 
 For usage , import as::
 
-    import ColorDetect
+    import colordetect
 
 
 
-Examples
+
+Image color recognition
+=======================
+
+Example
 --------
 
 As a walk through some of the capabilities of ColorDetect we will use
@@ -30,7 +34,7 @@ this sample image.
 ::
 
     # Get the most dominant color count from an image
-    >>> import ColorDetect
+    >>> from colordetect import ColorDetect
     >>>
     >>> my_image = ColorDetect("<image_path>")
     >>> my_image.get_color_count()
@@ -50,6 +54,7 @@ For clarification::
     # this key value pair would imply 6.2 % of the image, has an RGB of [2.0, 2.0, 249.0]
 
 
+
 By default, `ColorDetect <https://colordetect.readthedocs.io/en/latest/>`_ will count
 the 5 most dominant colors. This can , of course ,be overridden by parsing an argument specifying how many
 colors most dominant you need from the image, with values decreasing in their percentage presence
@@ -60,8 +65,10 @@ on the different arguments it accepts including the different color format retur
 Now suppose you want to take it a step further and write the result to the image itself.
 
 .. warning:: Take note of the difference in saving the image to storage from hte previous
-           `save_color_count<save_color_count>` to `save_image<save_color_count>`
+             `save_color_count<save_color_count>` to `save_image<save_color_count>`
+
 ::
+
 
     >>> my_image.write_color_count()
     >>> my_image.save_image("<path_to_save_image>", "<name_of_image>")
@@ -88,7 +95,7 @@ Additionally, to enable the use of custom text on an image:
 
 ::
 
-    >>> import ColorDetect
+    >>> from colordetect import ColorDetect
     >>> my_image = ColorDetect("<image_path>")
     >>> my_image.write_text(text="a random string", line_spacing=10)
 
@@ -100,6 +107,8 @@ Here, `line_spacing` would be the space between the lines, depending on how many
 input, you want. By default, this value is an integer, zero, `0`, denoted as values on the Y axis scale
 
 Whether using `write_text` or `write_color_count`, the image has to be saved using `save_image`.
+
+Video color recognition can be done using :ref:`VideoColor<video_color_recognition>`
 
 Interested to see just how far you can go? Take a look at :ref:`Contribution guidelines<Contributing>`.
 

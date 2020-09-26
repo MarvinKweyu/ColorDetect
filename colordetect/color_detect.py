@@ -1,17 +1,19 @@
 """
+.. _module_ColorDetect:
 Module ColorDetect
 ==================
 Defines ColorDetect class
+
 For example:
 
+>>> from colordetect import ColorDetect
 >>> user_image = ColorDetect("<path_to_image>")
 # where color_count is the target most dominant colors to be found. Default set to 5
 >>> colors =  user_image.get_color_count(color_count=5)
 >>> colors
 # alternatively, save these RGB values to the image
 >>> user_image.save_color_count()
-Image processed and saved successfully
->>>
+# Image processed and saved successfully
 """
 
 import logging
@@ -32,7 +34,13 @@ class ColorDetect:
 
     def __init__(self, image):
         """Create ColorDetect object by providing an image"""
-        self.image = cv2.imread(image)
+
+        #  check type of data being passed
+        if isinstance(image, np.ndarray):
+            self.image = image
+        else:
+            self.image = cv2.imread(image)
+
         self.color_description = {}
 
     def get_color_count(self, color_count: int = 5, color_format: str = 'rgb') -> dict:
@@ -53,6 +61,7 @@ class ColorDetect:
                 * hsv - (60°,100%,100%)
                 * rgb - rgb(255, 255, 0) for yellow
                 * hex - #FFFF00 for yellow
+        :return: color description
         """
 
         if type(color_count) != int:
@@ -82,7 +91,7 @@ class ColorDetect:
 
         return self.color_description
 
-    def _format_color(self, rgb_value, color_format):
+    def _format_color(self, rgb_value, color_format: str):
         """
         Get the correct color format as specified
         :return:

@@ -14,6 +14,33 @@ Documentation
 
 - Add ``write_text`` method along with other breaking changes to the documentation
 
+.. _0.3.0:
+0.3.0 (26-09-2020)
+==================
+
+Features
+--------
+- Video color detection and recognition
+
+Documentation
+-------------
+
+- Include video color detection documentation
+- Correction in package imports
+
+.. _0.2.0:
+0.2.0 (13-08-2020)
+==================
+
+Features
+--------
+- Enable input of custom text onto the image
+
+Documentation
+-------------
+
+- Add ``write_text`` method along with other breaking changes to the documentation
+
 .. _0.1.7:
 0.1.7 (17-04-2020)
 ==================

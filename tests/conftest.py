@@ -15,6 +15,20 @@ def image(request):
     return image_value  # the image file name
 
 
+@pytest.fixture(scope='session')
+def video(request):
+    """
+    parse video to test else skip
+    :param request:
+    :return:
+    """
+    video_value = "tests/test_files/earth.mp4"
+
+    if video_value is None:
+        pytest.skip()
+    return video_value
+
+
 @pytest.fixture
 def datadir(tmpdir, request):
     '''
