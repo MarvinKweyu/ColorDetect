@@ -1,3 +1,21 @@
+"""
+.. _module_VideoColor:
+Module VideoColor
+==================
+Defines VideoColor class
+
+For example:
+
+>>> from colordetect import VideoColor
+>>> user_video = VideoColor("<path_to_video>")
+# where color_count is the target most dominant colors to be found. Default set to 5
+>>> colors =  user_video.get_video_frames()
+>>> colors
+# alternatively shorten the dictionary to get a specific number of sorted colors from the whole lot
+>>> user_video.color_sort(color_count=6)
+
+"""
+
 import sys
 import cv2
 from .color_detect import ColorDetect
@@ -30,7 +48,7 @@ class VideoColor(ColorDetect):
                 * hsv - (60°,100%,100%)
                 * rgb - rgb(255, 255, 0) for yellow
                 * hex - #FFFF00 for yellow
-          :return:
+          :return: color_description dictionary
         """
         if type(frame_color_count) != int:
             raise TypeError(
@@ -82,7 +100,7 @@ class VideoColor(ColorDetect):
         ----------
         color_count: int
             The number of most dominant colors to be obtained from the image
-        :return:
+        :return: A sorted dictionary with specific number of color dominance
         """
         if type(color_count) != int:
             raise TypeError(f"color_count has to be an integer. Provided {type(color_count)} ")
@@ -97,7 +115,18 @@ class VideoColor(ColorDetect):
         return dict(list(sorted_colors.items())[0:color_count])
 
     def _progress_bar(self, i, total_length: int, post_text: str = "Color Detection"):
-        """display a progress bar of video processing"""
+        """
+        _progress_bar
+        ----------------
+        Display a progress bar of video processing
+
+        Parameters
+        ----------
+        total_length: int
+            Total length of process
+        post_text: str
+            Text to display along with progress bar
+        """
         n_bar = 100
 #       # size of progress bar
         j = i / total_length
