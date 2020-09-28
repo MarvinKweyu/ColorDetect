@@ -12,7 +12,8 @@ For example:
 >>> colors =  user_image.get_color_count(color_count=5)
 >>> colors
 # alternatively, save these RGB values to the image
->>> user_image.save_color_count()
+>>> user_image.write_color_count()
+>>> user_image.save_image("<storage_path>","<image_file_name>")
 # Image processed and saved successfully
 """
 
@@ -23,6 +24,7 @@ import cv2
 import numpy as np
 from sklearn.cluster import KMeans
 import matplotlib.colors as mcolors
+from . import col_share
 
 LOGGER = logging.getLogger(__name__)
 

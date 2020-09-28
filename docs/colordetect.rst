@@ -64,7 +64,7 @@ Look up :ref:`get_color_count<get_color_count>` for details
 on the different arguments it accepts including the different color format return values.
 Now suppose you want to take it a step further and write the result to the image itself.
 
-.. warning:: Take note of the difference in saving the image to storage from hte previous
+.. warning:: Take note of the difference in saving the image to storage from the previous
              `save_color_count<save_color_count>` to `save_image<save_color_count>`
 
 ::
