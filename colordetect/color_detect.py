@@ -126,6 +126,10 @@ class ColorDetect:
         -----------------
         Write the number of colors found to the image
         """
+
+        if not self.color_description:
+            raise AttributeError(f"No color description found on this object. Perform get_color_count() first.")
+
         line_spacing = 0
         for k, v in self.color_description.items():
             color_values = str(v) + '% :' + k
@@ -162,10 +166,10 @@ class ColorDetect:
         lineType = 1
 
         cv2.putText(self.image, text, bottomLeftCornerOfText,
-                        font,
-                        fontScale,
-                        fontColor,
-                        lineType)
+                    font,
+                    fontScale,
+                    fontColor,
+                    lineType)
 
     def save_image(self, location=".", file_name: str = "out.jpg"):
         """
@@ -184,7 +188,7 @@ class ColorDetect:
 
         """
         if type(file_name) != str:
-            raise TypeError(f"file_name should be a string.Provided {file_name}")
+            raise TypeError(f"file_name should be a string.Provided {type(file_name)}")
 
         image_folder = Path(location)
         image_to_save = image_folder / file_name

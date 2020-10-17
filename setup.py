@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ColorDetect",
-    version="0.3.0",
+    version="0.3.1",
     author="Marvin Kweyu",
     author_email="mkweyu1@gmail.com",
-    description="Detect and recognize colors in images",
+    description="Detect and recognize colors in images or video",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/MarvinKweyu/ColorDetect",

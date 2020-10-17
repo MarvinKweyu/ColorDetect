@@ -13,7 +13,7 @@
 [![Downloads](https://pepy.tech/badge/colordetect)](https://pypi.org/project/ColorDetect/)
 [![Documentation Status](https://readthedocs.org/projects/colordetect/badge/?version=master)](https://colordetect.readthedocs.io/en/master/)
 
-ColorDetect works to recognize and identify different colors in an image.
+ColorDetect works to recognize and identify different colors in an image or video.
 
 
 ### Installation
