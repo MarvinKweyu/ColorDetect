@@ -75,15 +75,18 @@ def test_valid_params_to_get_color_count(image):
         user_image.get_color_count(color_count="many_colors")
 
 
-def test_file_name_param_is_valid(image, datadir):
+def test_save_params_are_valid(image, datadir):
     """
-    A string is being used as a file name
+    A string is being used as a file name as well as location
     """
     user_image = ColorDetect(image)
     user_image.get_color_count(color_count=1)
 
     with pytest.raises(Exception) as e_info:
         user_image.save_image(location=datadir, file_name=5)
+
+    # with pytest.raises(Exception) as e_info:
+    #     user_image.save_image(location=500, file_name="output.jpg")
 
 
 def test_result_file_name_is_valid(image, datadir):
