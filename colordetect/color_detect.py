@@ -45,7 +45,7 @@ class ColorDetect:
 
         self.color_description = {}
 
-    def get_color_count(self, color_count: int = 5, color_format: str = 'rgb') -> dict:
+    def get_color_count(self, color_count: int = 5, color_format: str = "rgb") -> dict:
         """
         .. _get_color_count:
         get_color_count
@@ -67,17 +67,18 @@ class ColorDetect:
         """
 
         if type(color_count) != int:
-            raise TypeError(f"color_count has to be an integer. Provided {type(color_count)} ")
+            raise TypeError(
+                f"color_count has to be an integer. Provided {type(color_count)} "
+            )
 
         # convert image from BGR to RGB for better accuracy
         rgb = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
         reshape = rgb.reshape((rgb.shape[0] * rgb.shape[1], 3))
         cluster = KMeans(n_clusters=color_count).fit(reshape)
 
-        unique_colors = self._find_unique_colors(
-            cluster, cluster.cluster_centers_)
+        unique_colors = self._find_unique_colors(cluster, cluster.cluster_centers_)
 
-        color_format_options = ['rgb', 'hex', 'hsv']
+        color_format_options = ["rgb", "hex", "hsv"]
 
         if color_format not in color_format_options:
             raise ValueError(f"Invalid color format: {color_format}")
@@ -85,7 +86,7 @@ class ColorDetect:
         # round  up figures
         for percentage, v in unique_colors.items():
             rgb_value = list(np.around(v))
-            if color_format != 'rgb':
+            if color_format != "rgb":
                 color_value = self._format_color(v, color_format)
                 self.color_description[color_value] = round(percentage, 2)
             else:
@@ -98,11 +99,11 @@ class ColorDetect:
         Get the correct color format as specified
         :return:
         """
-        if color_format == 'hsv':
+        if color_format == "hsv":
             # list(np.around(v))
             return str(mcolors.rgb_to_hsv(rgb_value).tolist())
 
-        elif color_format == 'hex':
+        elif color_format == "hex":
             rgb_value = np.divide(rgb_value, 255)  # give a scale from 0-1
             return mcolors.to_hex(rgb_value)
 
@@ -115,8 +116,9 @@ class ColorDetect:
         hist /= hist.sum()
 
         # iterate through each cluster's color and percentage
-        colors = sorted([((percent * 100), color)
-                         for (percent, color) in zip(hist, centroids)])
+        colors = sorted(
+            [((percent * 100), color) for (percent, color) in zip(hist, centroids)]
+        )
 
         for (percent, color) in colors:
             color.astype("uint8").tolist()
@@ -128,13 +130,13 @@ class ColorDetect:
         -----------------
         Write the number of colors found to the image
         """
-
         if not self.color_description:
-            raise AttributeError(f"No color description found on this object. Perform get_color_count() first.")
-
+            raise AttributeError(
+                f"No color description found on this object. Perform get_color_count() first."
+            )
         line_spacing = 0
         for k, v in self.color_description.items():
-            color_values = str(v) + '% :' + k
+            color_values = str(v) + "% :" + k
             self.write_text(text=color_values, line_spacing=line_spacing)
 
             line_spacing += 23
@@ -154,7 +156,9 @@ class ColorDetect:
         :return:
         """
         if type(text) != str:
-            raise TypeError(f"text should be a string.Provided {text} of type {type(text)}")
+            raise TypeError(
+                f"text should be a string.Provided {text} of type {type(text)}"
+            )
 
         if text == "":
             raise IOError(f"text should not be empty")
@@ -167,11 +171,15 @@ class ColorDetect:
         fontColor = (0, 0, 0)
         lineType = 1
 
-        cv2.putText(self.image, text, bottomLeftCornerOfText,
-                    font,
-                    fontScale,
-                    fontColor,
-                    lineType)
+        cv2.putText(
+            self.image,
+            text,
+            bottomLeftCornerOfText,
+            font,
+            fontScale,
+            fontColor,
+            lineType,
+        )
 
     def save_image(self, location=".", file_name: str = "out.jpg"):
         """
