@@ -68,9 +68,7 @@ class ColorDetect:
         """
 
         if type(color_count) != int:
-            raise TypeError(
-                f"color_count has to be an integer. Provided {type(color_count)} "
-            )
+            raise TypeError(f"color_count has to be an integer. Provided {type(color_count)} ")
 
         # convert image from BGR to RGB for better accuracy
         rgb = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
@@ -117,9 +115,8 @@ class ColorDetect:
         hist /= hist.sum()
 
         # iterate through each cluster's color and percentage
-        colors = sorted(
-            [((percent * 100), color) for (percent, color) in zip(hist, centroids)]
-        )
+        colors = sorted([((percent * 100), color)
+                         for (percent, color) in zip(hist, centroids)])
 
         for (percent, color) in colors:
             color.astype("uint8").tolist()
@@ -157,9 +154,7 @@ class ColorDetect:
         :return:
         """
         if type(text) != str:
-            raise TypeError(
-                f"text should be a string.Provided {text} of type {type(text)}"
-            )
+            raise TypeError(f"text should be a string.Provided {text} of type {type(text)}")
 
         if text == "":
             raise IOError("text should not be empty")
@@ -172,15 +167,11 @@ class ColorDetect:
         fontColor = (0, 0, 0)
         lineType = 1
 
-        cv2.putText(
-            self.image,
-            text,
-            bottomLeftCornerOfText,
-            font,
-            fontScale,
-            fontColor,
-            lineType,
-        )
+        cv2.putText(self.image, text, bottomLeftCornerOfText,
+                    font,
+                    fontScale,
+                    fontColor,
+                    lineType)
 
     def save_image(self, location=".", file_name: str = "out.jpg"):
         """
