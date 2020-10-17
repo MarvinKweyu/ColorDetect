@@ -23,6 +23,15 @@ Bug fix
 
 - Perform check to ensure the color description has content before writing color count.
 
+.. _0.3.1:
+0.3.1 (17-10-2020)
+==================
+
+Bug fix
+-------
+
+- Perform check to ensure the color description has content before writing color count.
+
 .. _0.3.0:
 0.3.0 (26-09-2020)
 ==================
