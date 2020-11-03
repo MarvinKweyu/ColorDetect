@@ -11,6 +11,7 @@ import pytest
 import cv2
 from ..colordetect import ColorDetect
 from ..colordetect import VideoColor
+from ..colordetect import col_share
 
 
 def test_image_vid_parsed_to_class(image, video):
@@ -134,12 +135,13 @@ def test_ordered_colors_are_correct_count(video):
     :param video:
     """
     user_video = VideoColor(video)
-    user_video.get_video_frames()
+    all_colors = user_video.get_video_frames()
     with pytest.raises(Exception) as e_info:
-        user_video.color_sort(color_count="5")
-    dominant_colors = user_video.color_sort(color_count=6)
+        col_share.sort_order(object_description=all_colors, key_count="5")
     with pytest.raises(Exception) as e_info:
-        user_video.color_sort(ascending='random')
+        col_share.sort_order(object_description=all_colors, ascending="random")
+
+    dominant_colors = col_share.sort_order(object_description=all_colors, key_count=6)
     assert len(dominant_colors) == 6
     '''
     below line might fail as colors are grabbed on the second instead of per frame
