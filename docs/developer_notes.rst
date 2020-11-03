@@ -15,6 +15,11 @@ and feel free to submit a pull. The project source is hosted on `Github <https:/
    :undoc-members:
    :show-inheritance:
 
+.. automodule:: colordetect.col_share
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 
 .. automodule:: colordetect
    :members:
