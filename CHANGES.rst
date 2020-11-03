@@ -2,14 +2,29 @@
 ColorDetect Changelog
 =====================
 
+
+.. _1.0.0:
+1.0.0 (03-09-2020)
+==================
+
+Features
+--------
+- Creation of col_share module. Split methods non-exclusive to `VideoColor` and `ColorDetect`
+
+Documentation
+-------------
+
+- Include col_share documentation.
+- Update readme to reflect col_share.
+
 .. _0.3.1:
 0.3.1 (17-10-2020)
-==================
 
 Bug fix
 -------
 
 - Perform check to ensure the color description has content before writing color count.
+
 
 .. _0.3.0:
 0.3.0 (26-09-2020)
