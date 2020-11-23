@@ -2,6 +2,20 @@
 ColorDetect Changelog
 =====================
 
+
+.. _1.0.1:
+1.0.0 (23-11-2020)
+==================
+
+Features
+--------
+- Add pre-commit hooks for better contribution styling
+
+Documentation
+-------------
+
+- Update readme with development guide.
+
 .. _1.0.0:
 1.0.0 (03-10-2020)
 ==================
