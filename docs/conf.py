@@ -14,10 +14,11 @@ import os
 import sys
 from datetime import date
 
+from colordetect import ColorDetect
+
 file_loc = os.path.split(__file__)[0]
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(file_loc), ".")))
 
-from colordetect import ColorDetect
 
 # -- Project information -----------------------------------------------------
 
@@ -26,7 +27,7 @@ copyright = "2020, Marvin Kweyu"
 author = "Marvin Kweyu"
 
 # The full version, including alpha/beta/rc tags
-release = "1.0.0"
+release = "1.0.1"
 
 # -- General configuration ---------------------------------------------------
 

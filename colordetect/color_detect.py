@@ -21,9 +21,10 @@ import logging
 from pathlib import Path
 
 import cv2
+import matplotlib.colors as mcolors
 import numpy as np
 from sklearn.cluster import KMeans
-import matplotlib.colors as mcolors
+
 from . import col_share
 
 LOGGER = logging.getLogger(__name__)
@@ -132,7 +133,7 @@ class ColorDetect:
         """
         if not self.color_description:
             raise AttributeError(
-                f"No color description found on this object. Perform get_color_count() first."
+                "No color description found on this object. Perform get_color_count() first."
             )
         line_spacing = 0
         for k, v in self.color_description.items():
@@ -161,7 +162,7 @@ class ColorDetect:
             )
 
         if text == "":
-            raise IOError(f"text should not be empty")
+            raise IOError("text should not be empty")
 
         y_axis = 200 + line_spacing
 

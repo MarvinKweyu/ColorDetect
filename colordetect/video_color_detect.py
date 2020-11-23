@@ -17,14 +17,16 @@ Usage:
 """
 
 import sys
+
 import cv2
-from .color_detect import ColorDetect
+
 from . import col_share
+from .color_detect import ColorDetect
 
 
 class VideoColor(ColorDetect):
     """
-      Detect and recognize the number of colors in a video
+    Detect and recognize the number of colors in a video
     """
 
     def __init__(self, video):
@@ -32,7 +34,12 @@ class VideoColor(ColorDetect):
         self.video_file = cv2.VideoCapture(video)
         self.color_description = {}
 
-    def get_video_frames(self, frame_color_count: int = 5, color_format: str = "rgb", progress: bool = False) -> dict:
+    def get_video_frames(
+        self,
+        frame_color_count: int = 5,
+        color_format: str = "rgb",
+        progress: bool = False,
+    ) -> dict:
         """
         .. _get_video_frames:
         get_video_frames
@@ -76,17 +83,20 @@ class VideoColor(ColorDetect):
                 self.video_file.set(cv2.CAP_PROP_POS_MSEC, (count * 1000))
                 success, image = self.video_file.read()
                 image_object = ColorDetect(image)
-                colors = image_object.get_color_count(color_count=frame_color_count, color_format=color_format)
+                colors = image_object.get_color_count(
+                    color_count=frame_color_count, color_format=color_format
+                )
                 # merge dictionaries as they are created
                 self.color_description = {**self.color_description, **colors}
                 count += 1
                 if count >= video_duration:
                     break
                 if progress:
-                    col_share.progress_bar(position=count, total_length=round(video_duration))
+                    col_share.progress_bar(
+                        position=count, total_length=round(video_duration)
+                    )
 
         self.video_file.release()
         cv2.destroyAllWindows()
         print("\n")
         return self.color_description
-

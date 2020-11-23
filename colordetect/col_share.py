@@ -33,7 +33,7 @@ def progress_bar(position: int, total_length: int, post_text: str = "Color Detec
         Text to display along with progress bar
     """
     n_bar = 100
-#       # size of progress bar
+    #       # size of progress bar
     j = position / total_length
     sys.stdout.write("\r")
     sys.stdout.write(f"[{'#' * int(n_bar * j):{n_bar}s}] {int(100 *j)}% {post_text}")
@@ -58,13 +58,19 @@ def sort_order(object_description: dict, key_count: int = 5, ascending: bool = T
     :return: A sorted dictionary with specific number
     """
     if type(key_count) != int:
-        raise TypeError(f"color_count has to be an integer. Provided {type(key_count)} ")
+        raise TypeError(
+            f"color_count has to be an integer. Provided {type(key_count)} "
+        )
 
     if type(ascending) != bool:
-        raise TypeError(f"The value of the 'ascending' parameter is a boolean. Provided {type(ascending)} ")
+        raise TypeError(
+            f"The value of the 'ascending' parameter is a boolean. Provided {type(ascending)} "
+        )
 
     sorted_colors = {
         k: v
-        for k, v in sorted(object_description.items(), key=lambda item: item[1], reverse=ascending)
+        for k, v in sorted(
+            object_description.items(), key=lambda item: item[1], reverse=ascending
+        )
     }
     return dict(list(sorted_colors.items())[0:key_count])
