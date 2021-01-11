@@ -125,3 +125,7 @@ dmypy.json
 
 # Python virtual environment
 venv/
+
+# Development test files and folders
+assets/
+main.py
