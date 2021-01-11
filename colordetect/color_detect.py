@@ -125,7 +125,16 @@ class ColorDetect:
             color.astype("uint8").tolist()
         return dict(colors)
 
-    def write_color_count(self):
+    def write_color_count(
+        self,
+        left_margin: int = 10,
+        top_margin: int = 20,
+        font: int = cv2.FONT_HERSHEY_SIMPLEX,
+        font_color: tuple = (0, 0, 0),
+        font_scale: float = 1.0,
+        font_thickness: float = 1,
+        line_type: int = 1,
+    ):
         """
         write_color_count
         -----------------
@@ -135,14 +144,35 @@ class ColorDetect:
             raise AttributeError(
                 "No color description found on this object. Perform get_color_count() first."
             )
-        line_spacing = 0
         for k, v in self.color_description.items():
             color_values = str(v) + "% :" + k
-            self.write_text(text=color_values, line_spacing=line_spacing)
+            (text_width, text_height), baseline = cv2.getTextSize(
+                color_values, font, font_scale, font_thickness
+            )
+            self.write_text(
+                text=color_values,
+                left_margin=left_margin,
+                top_margin=top_margin,
+                font=font,
+                font_color=font_color,
+                font_scale=font_scale,
+                font_thickness=font_thickness,
+                line_type=line_type,
+            )
 
-            line_spacing += 23
+            top_margin += text_height
 
-    def write_text(self, text: str = "", line_spacing: int = 0):
+    def write_text(
+        self,
+        text: str = "",
+        left_margin: int = 10,
+        top_margin: int = 20,
+        font: int = cv2.FONT_HERSHEY_SIMPLEX,
+        font_color: tuple = (0, 0, 0),
+        font_scale: float = 1.0,
+        font_thickness: float = 1.0,
+        line_type: int = 1,
+    ):
         """
         write_text
         ----------
@@ -164,22 +194,15 @@ class ColorDetect:
         if text == "":
             raise IOError("text should not be empty")
 
-        y_axis = 200 + line_spacing
-
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        bottomLeftCornerOfText = (10, y_axis)
-        fontScale = 1
-        fontColor = (0, 0, 0)
-        lineType = 1
-
         cv2.putText(
             self.image,
             text,
-            bottomLeftCornerOfText,
+            (left_margin, top_margin),
             font,
-            fontScale,
-            fontColor,
-            lineType,
+            font_scale,
+            font_color,
+            font_thickness,
+            line_type,
         )
 
     def save_image(self, location=".", file_name: str = "out.jpg"):
