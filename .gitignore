@@ -123,3 +123,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Python virtual environment
+venv/
+
+# Development test files and folders
+assets/
+main.py
