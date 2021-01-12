@@ -23,6 +23,7 @@ from pathlib import Path
 import cv2
 import matplotlib.colors as mcolors
 import numpy as np
+import webcolors
 from sklearn.cluster import KMeans
 
 from . import col_share
@@ -46,7 +47,9 @@ class ColorDetect:
 
         self.color_description = {}
 
-    def get_color_count(self, color_count: int = 5, color_format: str = "rgb") -> dict:
+    def get_color_count(
+        self, color_count: int = 5, color_format: str = "human_readable"
+    ) -> dict:
         """
         .. _get_color_count:
         get_color_count
@@ -64,6 +67,7 @@ class ColorDetect:
                 * hsv - (60°,100%,100%)
                 * rgb - rgb(255, 255, 0) for yellow
                 * hex - #FFFF00 for yellow
+                * human_readable - yellow for yellow
         :return: color description
         """
 
@@ -79,7 +83,7 @@ class ColorDetect:
 
         unique_colors = self._find_unique_colors(cluster, cluster.cluster_centers_)
 
-        color_format_options = ["rgb", "hex", "hsv"]
+        color_format_options = ["rgb", "hex", "hsv", "human_readable"]
 
         if color_format not in color_format_options:
             raise ValueError(f"Invalid color format: {color_format}")
@@ -107,6 +111,20 @@ class ColorDetect:
         elif color_format == "hex":
             rgb_value = np.divide(rgb_value, 255)  # give a scale from 0-1
             return mcolors.to_hex(rgb_value)
+
+        elif color_format == "human_readable":
+            r0, g0, b0 = int(rgb_value[0]), int(rgb_value[1]), int(rgb_value[2])
+            try:
+                nearest = webcolors.rgb_to_name((r0, g0, b0))
+            except ValueError:  # Calculate distances between rgb value and CSS3 rgb colours to determine the closest
+                distances = {}
+                for k, v in webcolors.CSS3_HEX_TO_NAMES.items():
+                    r1, g1, b1 = webcolors.hex_to_rgb(k)
+                    distances[
+                        ((r0 - r1) ** 2 + (g0 - g1) ** 2 + (b0 - b1) ** 2)
+                    ] = v  # Ignore sqrt as it has no significant effect
+                nearest = distances[min(distances.keys())]
+            return nearest
 
     def _find_unique_colors(self, cluster, centroids) -> dict:
 
