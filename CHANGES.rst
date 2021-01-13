@@ -3,8 +3,22 @@ ColorDetect Changelog
 =====================
 
 
+.. _1.2.0:
+1.2.0 (13-01-2021)
+==================
+
+Features
+--------
+- Enable customization of text input from the user as well as color count being
+  written to the image
+
+Documentation
+-------------
+
+- Add contributors to readme and update project documentation with relevant parameter methods
+
 .. _1.0.1:
-1.0.0 (23-11-2020)
+1.0.1 (23-11-2020)
 ==================
 
 Features

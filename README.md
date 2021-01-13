@@ -73,7 +73,7 @@ To run tests:
 pytest 
 ```
 
-#### Hall of Code
+### Hall of Code
 
 To the amazing human beings and developers that made this possible.
 <div align="center">
