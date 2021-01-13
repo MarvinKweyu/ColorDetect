@@ -139,6 +139,22 @@ class ColorDetect:
         write_color_count
         -----------------
         Write the number of colors found to the image
+
+        Parameters
+        ----------
+        left_margin: int
+            Text spacing from the left
+        top_margin: int
+            Text spacing from the top
+        font: int
+            Font to use in text. Look up acceptable values from python-opencv
+        font_color:
+            RGB tuple of text font color
+        font_scale:
+            Size of the text to be written
+        font_thickness:
+            Thickness of the text
+        line_type: int = 1,
         """
         if not self.color_description:
             raise AttributeError(
@@ -184,6 +200,19 @@ class ColorDetect:
             The text to be written onto the image
         line_spacing:int
             The spacing between lines
+        left_margin: int
+            Text spacing from the left
+        top_margin: int
+            Text spacing from the top
+        font: int
+            Font to use in text. Look up acceptable values from python-opencv
+        font_color:
+            RGB tuple of text font color
+        font_scale:
+            Size of the text to be written
+        font_thickness:
+            Thickness of the text
+        line_type: int = 1,
         :return:
         """
         if type(text) != str:
