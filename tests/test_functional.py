@@ -2,11 +2,10 @@ import imghdr
 import mimetypes
 from pathlib import Path
 
-import pytest
+import matplotlib.colors as mcolors
 
 from ..colordetect import ColorDetect
-from ..colordetect import VideoColor
-import matplotlib.colors as mcolors
+
 
 """
 test whether file passed is an image/video
@@ -16,16 +15,16 @@ test whether text is written to the image
 
 def test_existence_of_image_vid_path(image, video):
     """
-  Test whether the filename used in the test is the first image
-  """
+    Test whether the filename used in the test is the first image
+    """
     assert Path(image).exists()
     assert Path(video).exists()
 
 
 def test_argument_is_image(image):
     """
-        Ensure that the argument parsed is an image
-        """
+    Ensure that the argument parsed is an image
+    """
     assert type(imghdr.what(Path(image))) is str
 
 
@@ -35,13 +34,13 @@ def test_video_passed_is_valid_video(video):
     :param video:
     :return:
     """
-    assert mimetypes.guess_type(video)[0].rsplit('/')[0] == 'video'
+    assert mimetypes.guess_type(video)[0].rsplit("/")[0] == "video"
 
 
 def test_image_has_been_saved(datadir, image):
     """
-        Ensure that 'out.jpg' has been saved to the choice directory
-        """
+    Ensure that 'out.jpg' has been saved to the choice directory
+    """
     user_image = ColorDetect(image)
     user_image.get_color_count(color_count=1)
     file_name = "out.jpg"

@@ -3,14 +3,14 @@ Unit tests: testing a small bit of code like function or class in isolation of t
 From the developers perspective
 """
 
-import os
 import mimetypes
+import os
 from pathlib import Path
 
-import pytest
 import cv2
-from ..colordetect import ColorDetect
-from ..colordetect import VideoColor
+import pytest
+
+from ..colordetect import ColorDetect, VideoColor, col_share
 
 
 def test_image_vid_parsed_to_class(image, video):
@@ -24,9 +24,9 @@ def test_image_vid_parsed_to_class(image, video):
 
 def test_color_detect_gets_numpy_array_from_video(image, video):
     """
-  Test whether the filename used in the test is the first image
-  """
-    user_video = VideoColor(video)
+    Test whether the filename used in the test is the first image
+    """
+    # user_video = VideoColor(video)
     pass
 
 
@@ -37,20 +37,20 @@ def test_get_color_count_has_correct_color_and_count(image):
     user_image = ColorDetect(image)
     # since the image is plain 255,255,255
     assert len(user_image.get_color_count(color_count=1)) == 1
-    assert user_image.get_color_count(color_count=1) == {'[255.0, 255.0, 255.0]': 100.0}
+    assert user_image.get_color_count(color_count=1) == {"[255.0, 255.0, 255.0]": 100.0}
 
 
 def test_what_is_in_dictionary_is_being_written(datadir, image):
     """
     What is in the dictionary should be what is being written
     """
-    text_in_image = []
+
     user_image = ColorDetect(image)
-    color_dictionary = user_image.get_color_count(color_count=1)
+    # color_dictionary = user_image.get_color_count(color_count=1)
     user_image.get_color_count(color_count=1)
     file_name = "out.jpg"
     user_image.save_image(location=datadir, file_name=file_name)
-    result_image = os.path.join(datadir, file_name)
+    # result_image = os.path.join(datadir, file_name)
 
 
 def test_valid_color_format_is_parsed(image, video):
@@ -59,19 +59,21 @@ def test_valid_color_format_is_parsed(image, video):
     """
     user_image = ColorDetect(image)
     user_video = VideoColor(video)
-    with pytest.raises(Exception) as e_info:
-        user_image.get_color_count(color_count=1, color_format='invalid_random_format')
+    with pytest.raises(Exception):
+        user_image.get_color_count(color_count=1, color_format="invalid_random_format")
 
-    with pytest.raises(Exception) as e_info:
-        user_video.get_video_frames(frame_color_count=1, color_format='invalid_random_format')
+    with pytest.raises(Exception):
+        user_video.get_video_frames(
+            frame_color_count=1, color_format="invalid_random_format"
+        )
 
 
 def test_valid_params_to_get_color_count(image):
     """
-       An exception is raised if an invalid color_count value is parsed. Instance, a string
-       """
+    An exception is raised if an invalid color_count value is parsed. Instance, a string
+    """
     user_image = ColorDetect(image)
-    with pytest.raises(Exception) as e_info:
+    with pytest.raises(Exception):
         user_image.get_color_count(color_count="many_colors")
 
 
@@ -82,7 +84,7 @@ def test_save_params_are_valid(image, datadir):
     user_image = ColorDetect(image)
     user_image.get_color_count(color_count=1)
 
-    with pytest.raises(Exception) as e_info:
+    with pytest.raises(Exception):
         user_image.save_image(location=datadir, file_name=5)
 
     # with pytest.raises(Exception) as e_info:
@@ -110,7 +112,7 @@ def test_progress_bar_shows_correct_percentage(video):
     :param video:
     :return:
     """
-    user_video = VideoColor(video)
+    # user_video = VideoColor(video)
     # user_video.get_video_frames(progress=True)
     pass
 
@@ -118,13 +120,13 @@ def test_progress_bar_shows_correct_percentage(video):
 def test_get_video_frames_gets_correct_params(video):
     user_video = VideoColor(video)
 
-    with pytest.raises(Exception) as e_info:
-        user_video.get_video_frames(color_format='invalid_random_format')
+    with pytest.raises(Exception):
+        user_video.get_video_frames(color_format="invalid_random_format")
 
-    with pytest.raises(Exception) as e_info:
-        user_video.get_video_frames(frame_color_count='1')
+    with pytest.raises(Exception):
+        user_video.get_video_frames(frame_color_count="1")
 
-    with pytest.raises(Exception) as e_info:
+    with pytest.raises(Exception):
         user_video.get_video_frames(progress=24)
 
 
@@ -134,15 +136,16 @@ def test_ordered_colors_are_correct_count(video):
     :param video:
     """
     user_video = VideoColor(video)
-    user_video.get_video_frames()
-    with pytest.raises(Exception) as e_info:
-        user_video.color_sort(color_count="5")
-    dominant_colors = user_video.color_sort(color_count=6)
-    with pytest.raises(Exception) as e_info:
-        user_video.color_sort(ascending='random')
+    all_colors = user_video.get_video_frames()
+    with pytest.raises(Exception):
+        col_share.sort_order(object_description=all_colors, key_count="5")
+    with pytest.raises(Exception):
+        col_share.sort_order(object_description=all_colors, ascending="random")
+
+    dominant_colors = col_share.sort_order(object_description=all_colors, key_count=6)
     assert len(dominant_colors) == 6
-    '''
+    """
     below line might fail as colors are grabbed on the second instead of per frame
     hence two consecutive calls might grab diff frames on the same second
-    '''
+    """
     # assert list(dominant_colors.values()) == [68.83, 22.48, 22.22, 21.7, 19.11, 17.77]

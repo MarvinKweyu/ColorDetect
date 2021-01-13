@@ -2,6 +2,34 @@
 ColorDetect Changelog
 =====================
 
+
+.. _1.0.1:
+1.0.0 (23-11-2020)
+==================
+
+Features
+--------
+- Add pre-commit hooks for better contribution styling
+
+Documentation
+-------------
+
+- Update readme with development guide.
+
+.. _1.0.0:
+1.0.0 (03-10-2020)
+==================
+
+Features
+--------
+- Creation of col_share module. Split methods non-exclusive to `VideoColor` and `ColorDetect`
+
+Documentation
+-------------
+
+- Include col_share documentation.
+- Update readme to reflect col_share.
+
 .. _0.3.1:
 0.3.1 (17-10-2020)
 ==================
@@ -10,6 +38,7 @@ Bug fix
 -------
 
 - Perform check to ensure the color description has content before writing color count.
+
 
 .. _0.3.0:
 0.3.0 (26-09-2020)
@@ -48,6 +77,7 @@ Features
 - Invert return of recognized colors dictionary. Return the colors
   as keys and percentages as values to avoid duplicate dictionary keys.
 
+.. _0.1.6:
 0.1.6 (17-04-2020)
 ==================
 
@@ -64,7 +94,7 @@ Misc
 - Update dev requirements
 - Improve methods types specification and exception catching.
 
-
+.. _0.1.5:
 0.1.5 (11-04-2020)
 ==================
 
@@ -78,7 +108,7 @@ Documentation
 
 - Add changelog to the documentation.
 
-
+.. _0.1.4:
 0.1.4 (5-04-2020)
 ==================
 
@@ -111,7 +141,7 @@ Misc
 
 ----
 
-
+.. _0.1.3:
 0.1.3 (22-03-2020)
 ==================
 
@@ -133,6 +163,7 @@ Misc
 
 ----
 
+.. _0.1.2:
 0.1.2 (22-03-2020)
 ==================
 Features
@@ -141,6 +172,7 @@ Features
 
 ----
 
+.. _0.1.1:
 0.1.1 (22-03-2020)
 ==================
 - Initial release

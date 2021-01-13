@@ -1,10 +1,12 @@
 from __future__ import unicode_literals
-from distutils import dir_util
+
 import os
+from distutils import dir_util
+
 import pytest
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def image(request):
     """
     parse the argument in the test else let the tests skip
@@ -15,7 +17,7 @@ def image(request):
     return image_value  # the image file name
 
 
-@pytest.fixture(scope='session')
+@pytest.fixture(scope="session")
 def video(request):
     """
     parse video to test else skip
@@ -31,11 +33,11 @@ def video(request):
 
 @pytest.fixture
 def datadir(tmpdir, request):
-    '''
+    """
     Fixture responsible for searching a folder with the same name of test
     module and, if available, moving all contents to a temporary directory so
     tests can use them freely.
-    '''
+    """
     filename = request.module.__file__
     test_dir, _ = os.path.splitext(filename)
 
