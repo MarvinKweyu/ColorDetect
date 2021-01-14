@@ -37,7 +37,7 @@ def test_get_color_count_has_correct_color_and_count(image):
     user_image = ColorDetect(image)
     # since the image is plain 255,255,255
     assert len(user_image.get_color_count(color_count=1)) == 1
-    assert user_image.get_color_count(color_count=1) == {"[255.0, 255.0, 255.0]": 100.0}
+    assert user_image.get_color_count(color_count=1) == {"white": 100.0}
 
 
 def test_what_is_in_dictionary_is_being_written(datadir, image):
