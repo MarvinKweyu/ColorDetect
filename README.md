@@ -72,3 +72,13 @@ To run tests:
 ```bash
 pytest 
 ```
+
+### Hall of Code
+
+To the amazing human beings and developers that made this possible.
+<div align="center">
+<br>
+<a href="https://github.com/MarvinKweyu/ColorDetect/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=MarvinKweyu/ColorDetect" />
+</a>
+</div>
