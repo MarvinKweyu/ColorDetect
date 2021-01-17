@@ -25,7 +25,7 @@ Remember to give it the appropriate `label <https://github.com/MarvinKweyu/Color
 Enhancements
 ------------
 Describe the enhancement in mind and what you would expect to have resulted from this process.
-Submit the enhancement with the `enhancement` tag.
+Submit the enhancement with the `enhancement` tag **along with its test**
 
 Pull requests
 -------------
