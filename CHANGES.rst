@@ -2,6 +2,13 @@
 ColorDetect Changelog
 =====================
 
+.. _1.1.1:
+1.1.1 (17-01-2021)
+==================
+
+Documentation
+-------------
+- Update setup to show correct package version.
 
 .. _1.1.0:
 1.1.0 (17-01-2021)
