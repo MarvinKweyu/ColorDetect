@@ -154,6 +154,7 @@ class ColorDetect:
         line_type: int = 1,
     ):
         """
+        .. _write_color_count:
         write_color_count
         -----------------
         Write the number of colors found to the image
@@ -206,8 +207,10 @@ class ColorDetect:
         font_scale: float = 1.0,
         font_thickness: float = 1.0,
         line_type: int = 1,
+        line_spacing: int = 0
     ):
         """
+        .. _write_text:
         write_text
         ----------
         Write text onto an image
@@ -231,6 +234,7 @@ class ColorDetect:
         font_thickness:
             Thickness of the text
         line_type: int = 1,
+            Space betweeen the lines
         :return:
         """
         if type(text) != str:
@@ -250,12 +254,13 @@ class ColorDetect:
             font_color,
             font_thickness,
             line_type,
+            line_spacing,
         )
 
     def save_image(self, location=".", file_name: str = "out.jpg"):
         """
-        .. _save_color_count:
-        save_color_count
+        .. _save_image:
+        save_image
         ----------------
 
         Save the resultant image file to the local directory
