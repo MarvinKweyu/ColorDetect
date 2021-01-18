@@ -207,6 +207,7 @@ class ColorDetect:
         font_scale: float = 1.0,
         font_thickness: float = 1.0,
         line_type: int = 1,
+        line_spacing: int = 0
     ):
         """
         .. _write_text:
@@ -233,6 +234,7 @@ class ColorDetect:
         font_thickness:
             Thickness of the text
         line_type: int = 1,
+            Space betweeen the lines
         :return:
         """
         if type(text) != str:
@@ -252,6 +254,7 @@ class ColorDetect:
             font_color,
             font_thickness,
             line_type,
+            line_spacing,
         )
 
     def save_image(self, location=".", file_name: str = "out.jpg"):
