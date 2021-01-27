@@ -1,4 +1,5 @@
 import cv2
+import numpy as np
 
 
 class ColourSegmentation:
@@ -14,8 +15,8 @@ class ColourSegmentation:
         return img
 
     @staticmethod
-    def get_segmented_image(image, lower_bound=(0, 70, 0), upper_bound=(80, 255, 255), erode_iterations=3,
-                            dilate_iterations=3):
+    def get_segmented_image(image, lower_bound, upper_bound, erode_iterations=3, dilate_iterations=3,
+                            use_grab_cut=True, gc_iterations=3):
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         output_image = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
         img2 = image.copy()
@@ -26,11 +27,26 @@ class ColourSegmentation:
         mask = cv2.inRange(img2, lower_bound, upper_bound)
         mask = cv2.erode(mask, None, iterations=erode_iterations)
         mask = cv2.dilate(mask, None, iterations=dilate_iterations)
-        extracted = cv2.bitwise_and(image, image, mask=mask)
+
+        if use_grab_cut:
+            mask[mask == 0] = cv2.GC_BGD
+            mask[mask > 0] = cv2.GC_PR_FGD
+
+            fg_model = np.zeros((1, 65), dtype="float")
+            bg_model = np.zeros((1, 65), dtype="float")
+
+            mask, bg_model, fg_model = cv2.grabCut(
+                image, mask, None, fg_model, bg_model, iterCount=gc_iterations, mode=cv2.GC_INIT_WITH_MASK
+            )
+
+            mask = np.where((mask == cv2.GC_BGD) | (mask == cv2.GC_PR_BGD), 0, 1)
+            mask = (mask * 255).astype("uint8")
+
+        segmented = cv2.bitwise_and(image, image, mask=mask)
 
         for i in range(len(mask)):
             for j in range(len(mask[i])):
                 if mask[i][j] != 0:
                     output_image[i][j] = image[i][j]
 
-        return output_image, gray, extracted, mask
+        return output_image, gray, segmented, mask
