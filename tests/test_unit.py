@@ -19,7 +19,7 @@ def test_image_vid_parsed_to_class(image, video):
     Check whether an instance is created
     """
     isinstance(ColorDetect(image), object)
-    isinstance(ColorDetect(video), object)
+    isinstance(VideoColor(video), object)
 
 
 def test_color_detect_gets_numpy_array_from_video(image, video):
