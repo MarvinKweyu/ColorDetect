@@ -2,6 +2,21 @@
 ColorDetect Changelog
 =====================
 
+
+.. _1.3.0:
+1.3.0 (02-02-2021)
+====================
+
+Features
+--------
+
+- Add a return of human readable colors.
+
+Documentation
+-------------
+
+- Update ColorDetect module documentation to show method params
+
 .. _1.3.0rc:
 1.3.0rc (18-01-2021)
 ====================

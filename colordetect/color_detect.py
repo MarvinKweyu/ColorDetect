@@ -86,9 +86,8 @@ class ColorDetect:
 
         return output_image, gray, segmented, mask
 
-    def get_color_count(
-        self, color_count: int = 5, color_format: str = "human_readable"
-    ) -> dict:
+ 
+    def get_color_count(self, color_count: int = 5, color_format: str = "human_readable") -> dict:
         """
         .. _get_color_count:
         get_color_count
