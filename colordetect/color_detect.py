@@ -36,7 +36,7 @@ class ColorDetect:
     Detect and recognize the number of colors in an image
     """
 
-    def __init__(self, image):
+    def __init__(self, image, resize_h: int = None):
         """Create ColorDetect object by providing an image"""
 
         #  check type of data being passed
@@ -44,9 +44,49 @@ class ColorDetect:
             self.image = image
         else:
             self.image = cv2.imread(image)
+        if resize_h is not None:
+            h0, w0, _ = self.image.shape
+            h1 = resize_h
+            w1 = int(w0 * h1 / h0)
+            self.image = cv2.resize(self.image, (w1, h1))
+        self.image_original = self.image.copy()
 
         self.color_description = {}
 
+    def get_segmented_image(self, lower_bound, upper_bound, erode_iterations=3, dilate_iterations=3, use_grab_cut=True,
+                            gc_iterations=3):
+        gray = cv2.cvtColor(self.image_original, cv2.COLOR_BGR2GRAY)
+        output_image = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
+        img2 = self.image_original.copy()
+        img2 = cv2.GaussianBlur(img2, (11, 11), 0)
+        img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2HSV)
+
+        mask = cv2.inRange(img2, lower_bound, upper_bound)
+        mask = cv2.erode(mask, None, iterations=erode_iterations)
+        mask = cv2.dilate(mask, None, iterations=dilate_iterations)
+
+        if use_grab_cut:
+            mask[mask == 0] = cv2.GC_BGD
+            mask[mask > 0] = cv2.GC_PR_FGD
+
+            fg_model = np.zeros((1, 65), dtype="float")
+            bg_model = np.zeros((1, 65), dtype="float")
+
+            mask, bg_model, fg_model = cv2.grabCut(self.image_original, mask, None, fg_model, bg_model,
+                                                   iterCount=gc_iterations, mode=cv2.GC_INIT_WITH_MASK)
+            mask = np.where((mask == cv2.GC_BGD) | (mask == cv2.GC_PR_BGD), 0, 1)
+            mask = (mask * 255).astype("uint8")
+
+        segmented = cv2.bitwise_and(self.image_original, self.image_original, mask=mask)
+
+        for i in range(len(mask)):
+            for j in range(len(mask[i])):
+                if mask[i][j] != 0:
+                    output_image[i][j] = self.image_original[i][j]
+
+        return output_image, gray, segmented, mask
+
+ 
     def get_color_count(self, color_count: int = 5, color_format: str = "human_readable") -> dict:
         """
         .. _get_color_count:
