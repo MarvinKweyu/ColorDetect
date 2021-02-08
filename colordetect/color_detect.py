@@ -68,7 +68,7 @@ class ColorDetect:
         lower_bound: tuple
             A lower color range from which to look from
         upper_bound: tuple
-            A higher RGB color range from which to look from
+            The higher RGB color range from which to look from
         erode_iterations: int
             The number of most dominant colors to be obtained from the image
         dilate_iterations: int
