@@ -62,7 +62,7 @@ html_theme_options = {
     'github_user': 'MarvinKweyu',
     'github_repo': 'ColorDetect',
     "github_button": True,
-    "show_related": True,
+    # "show_related": True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
