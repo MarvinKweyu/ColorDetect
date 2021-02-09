@@ -16,7 +16,6 @@ import sys
 file_loc = os.path.split(__file__)[0]
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(file_loc), ".")))
 
-
 # -- Project information -----------------------------------------------------
 
 project = "ColorDetect"
@@ -24,7 +23,7 @@ copyright = "2020, Marvin Kweyu"
 author = "Marvin Kweyu"
 
 # The full version, including alpha/beta/rc tags
-release = "1.4.0"
+release = "1.4.1"
 
 # -- General configuration ---------------------------------------------------
 
@@ -57,7 +56,13 @@ html_logo = "../img/ColorDetect.png"
 
 html_theme_options = {
     "description": "Recognize and identify different colors in an image or video.",
+    "fixed_sidebar": True,
     "logo_text_align": "justify",
+    "show_relbar_bottom": True,
+    'github_user': 'MarvinKweyu',
+    'github_repo': 'ColorDetect',
+    "github_button": True,
+    # "show_related": True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

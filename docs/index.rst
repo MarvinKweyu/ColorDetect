@@ -7,14 +7,12 @@ Welcome to ColorDetect's documentation!
 =======================================
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 6
    :caption: Contents:
 
-   colordetect.rst
-   segmentation.rst
-   videocolor.rst
-   colshare.rst
-   misc
+   getting_started.rst
+   modules.rst
+   misc.rst
 
 
 

@@ -1,8 +1,9 @@
+.. _color_segmentation:
 Color segmentation
 ==================
 
 Overview
-========
+--------
 
 Color segmentation is the process by which specific target parts of the image are extracted based on , in this case
 , their color.
