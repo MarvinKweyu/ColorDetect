@@ -70,14 +70,14 @@ class ColorDetect:
         upper_bound: tuple
             The higher RGB color range from which to look from
         erode_iterations: int
-            The number of most dominant colors to be obtained from the image
+            The number of times to perform erosion of the image
         dilate_iterations: int
-            The number of most dominant colors to be obtained from the image
+            The number of times dilation is applied.
         use_grab_cut: bool
-            The number of most dominant colors to be obtained from the image
+            A boolean indicating whether grabCut will be applied to the image. This is True by default.
         gc_iterations: int
-            The number of most dominant colors to be obtained from the image
-        :return:
+            Number of iterations the algorithm should make before returning the result
+        :return: output_image, gray, segmented, mask
         """
 
         if not self._validate_rgb(lower_bound):
@@ -91,7 +91,7 @@ class ColorDetect:
 
         if type(erode_iterations) != int:
             raise TypeError(
-                f"erode_iterations has to be a tuple of integers. Provided {type(erode_iterations)} "
+                f"erode_iterations has to be an integer. Provided {type(erode_iterations)} "
             )
 
         if type(dilate_iterations) != int:
@@ -105,7 +105,7 @@ class ColorDetect:
             )
         if type(use_grab_cut) != bool:
             raise TypeError(
-                f"use_grab_cut has to be a an integer. Provided {type(use_grab_cut)} "
+                f"use_grab_cut has to be a boolean. Provided {type(use_grab_cut)} "
             )
         gray = cv2.cvtColor(self.image_original, cv2.COLOR_BGR2GRAY)
         output_image = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
@@ -375,11 +375,16 @@ class ColorDetect:
 
     def _validate_rgb(self, rgb_tuple: tuple) -> bool:
         """
-        validate whether a tuple passed is a valid RGB
+        Validate whether a tuple passed is a valid RGB
+
+        Parameters
+        ----------
+        rgb_tuple: tuple
+            An RGB tuple color.
         :return:
         """
         result = isinstance(rgb_tuple, tuple) and isinstance(rgb_tuple[0], int) and isinstance(rgb_tuple[1],
                                                                                                int) and isinstance(
-            rgb_tuple[3],
+            rgb_tuple[2],
             int)
         return result

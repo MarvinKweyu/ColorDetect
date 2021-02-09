@@ -4,13 +4,13 @@ ColorDetect Changelog
 
 
 .. _1.4.0:
-1.4.0 (02-08-2021)
+1.4.0 (02-09-2021)
 ====================
 
 Features
 --------
 
-- Image color segmentation.
+- Image color segmentation, masking and monochromatic colors on specific image sections
 
 .. _1.3.0:
 1.3.0 (02-02-2021)
