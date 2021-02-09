@@ -11,10 +11,7 @@ Welcome to ColorDetect's documentation!
    :caption: Contents:
 
    getting_started.rst
-   colordetect.rst
-   segmentation.rst
-   videocolor.rst
-   colshare.rst
+   modules.rst
    misc.rst
 
 
