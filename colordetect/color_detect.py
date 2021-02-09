@@ -36,7 +36,7 @@ class ColorDetect:
     Detect and recognize the number of colors in an image
     """
 
-    def __init__(self, image):
+    def __init__(self, image, resize_h: int = None):
         """Create ColorDetect object by providing an image"""
 
         #  check type of data being passed
@@ -44,8 +44,99 @@ class ColorDetect:
             self.image = image
         else:
             self.image = cv2.imread(image)
+        if resize_h is not None:
+            h0, w0, _ = self.image.shape
+            h1 = resize_h
+            w1 = int(w0 * h1 / h0)
+            self.image = cv2.resize(self.image, (w1, h1))
+        self.image_original = self.image.copy()
 
         self.color_description = {}
+
+    def get_segmented_image(self, lower_bound: tuple, upper_bound: tuple, erode_iterations: int = 3,
+                            dilate_iterations: int = 3,
+                            use_grab_cut: bool = True,
+                            gc_iterations: int = 3) -> tuple:
+        """
+        .. _get_segmented_image:
+        get_segmented_image
+        ---------------
+        Get image masks from an image
+
+        Parameters
+        ----------
+        lower_bound: tuple
+            A lower color range from which to look from
+        upper_bound: tuple
+            The higher RGB color range from which to look from
+        erode_iterations: int
+            The number of times to perform erosion of the image
+        dilate_iterations: int
+            The number of times dilation is applied.
+        use_grab_cut: bool
+            A boolean indicating whether grabCut will be applied to the image. This is True by default.
+        gc_iterations: int
+            Number of iterations the algorithm should make before returning the result
+        :return: output_image, gray, segmented, mask
+        """
+
+        if not self._validate_rgb(lower_bound):
+            raise TypeError(
+                f"lower_bound has to be a tuple of integers. Provided {type(lower_bound)} "
+            )
+        if not self._validate_rgb(upper_bound):
+            raise TypeError(
+                f"upper_bound has to be a tuple of integers. Provided {type(upper_bound)} "
+            )
+
+        if type(erode_iterations) != int:
+            raise TypeError(
+                f"erode_iterations has to be an integer. Provided {type(erode_iterations)} "
+            )
+
+        if type(dilate_iterations) != int:
+            raise TypeError(
+                f"dilate_iterations has to be an integer. Provided {type(dilate_iterations)} "
+            )
+
+        if type(gc_iterations) != int:
+            raise TypeError(
+                f"gc_iterations has to be a an integer. Provided {type(gc_iterations)} "
+            )
+        if type(use_grab_cut) != bool:
+            raise TypeError(
+                f"use_grab_cut has to be a boolean. Provided {type(use_grab_cut)} "
+            )
+        gray = cv2.cvtColor(self.image_original, cv2.COLOR_BGR2GRAY)
+        output_image = cv2.cvtColor(gray, cv2.COLOR_GRAY2BGR)
+        img2 = self.image_original.copy()
+        img2 = cv2.GaussianBlur(img2, (11, 11), 0)
+        img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2HSV)
+
+        mask = cv2.inRange(img2, lower_bound, upper_bound)
+        mask = cv2.erode(mask, None, iterations=erode_iterations)
+        mask = cv2.dilate(mask, None, iterations=dilate_iterations)
+
+        if use_grab_cut:
+            mask[mask == 0] = cv2.GC_BGD
+            mask[mask > 0] = cv2.GC_PR_FGD
+
+            fg_model = np.zeros((1, 65), dtype="float")
+            bg_model = np.zeros((1, 65), dtype="float")
+
+            mask, bg_model, fg_model = cv2.grabCut(self.image_original, mask, None, fg_model, bg_model,
+                                                   iterCount=gc_iterations, mode=cv2.GC_INIT_WITH_MASK)
+            mask = np.where((mask == cv2.GC_BGD) | (mask == cv2.GC_PR_BGD), 0, 1)
+            mask = (mask * 255).astype("uint8")
+
+        segmented = cv2.bitwise_and(self.image_original, self.image_original, mask=mask)
+
+        for i in range(len(mask)):
+            for j in range(len(mask[i])):
+                if mask[i][j] != 0:
+                    output_image[i][j] = self.image_original[i][j]
+
+        return output_image, gray, segmented, mask
 
     def get_color_count(self, color_count: int = 5, color_format: str = "human_readable") -> dict:
         """
@@ -142,14 +233,14 @@ class ColorDetect:
         return dict(colors)
 
     def write_color_count(
-        self,
-        left_margin: int = 10,
-        top_margin: int = 20,
-        font: int = cv2.FONT_HERSHEY_SIMPLEX,
-        font_color: tuple = (0, 0, 0),
-        font_scale: float = 1.0,
-        font_thickness: float = 1,
-        line_type: int = 1,
+            self,
+            left_margin: int = 10,
+            top_margin: int = 20,
+            font: int = cv2.FONT_HERSHEY_SIMPLEX,
+            font_color: tuple = (0, 0, 0),
+            font_scale: float = 1.0,
+            font_thickness: float = 1,
+            line_type: int = 1,
     ):
         """
         .. _write_color_count:
@@ -196,16 +287,16 @@ class ColorDetect:
             top_margin += text_height
 
     def write_text(
-        self,
-        text: str = "",
-        left_margin: int = 10,
-        top_margin: int = 20,
-        font: int = cv2.FONT_HERSHEY_SIMPLEX,
-        font_color: tuple = (0, 0, 0),
-        font_scale: float = 1.0,
-        font_thickness: float = 1.0,
-        line_type: int = 1,
-        line_spacing: int = 0
+            self,
+            text: str = "",
+            left_margin: int = 10,
+            top_margin: int = 20,
+            font: int = cv2.FONT_HERSHEY_SIMPLEX,
+            font_color: tuple = (0, 0, 0),
+            font_scale: float = 1.0,
+            font_thickness: float = 1.0,
+            line_type: int = 1,
+            line_spacing: int = 0
     ):
         """
         .. _write_text:
@@ -281,3 +372,19 @@ class ColorDetect:
         cv2.imwrite(str(image_to_save), self.image)
 
         LOGGER.info("Image processed and saved successfully")
+
+    def _validate_rgb(self, rgb_tuple: tuple) -> bool:
+        """
+        Validate whether a tuple passed is a valid RGB
+
+        Parameters
+        ----------
+        rgb_tuple: tuple
+            An RGB tuple color.
+        :return:
+        """
+        result = isinstance(rgb_tuple, tuple) and isinstance(rgb_tuple[0], int) and isinstance(rgb_tuple[1],
+                                                                                               int) and isinstance(
+            rgb_tuple[2],
+            int)
+        return result

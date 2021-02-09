@@ -24,13 +24,13 @@ from . import col_share
 from .color_detect import ColorDetect
 
 
-class VideoColor(ColorDetect):
+class VideoColor:
     """
     Detect and recognize the number of colors in a video
     """
 
     def __init__(self, video):
-        super().__init__(video)
+        # super().__init__(video)
         self.video_file = cv2.VideoCapture(video)
         self.color_description = {}
 
