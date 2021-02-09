@@ -1,24 +1,3 @@
-Welcome to ColorDetect's documentation
-======================================
-
-This site covers ColorDetect's usage and module documentation.
-
-
-Getting started
-===============
-
-Installation
-------------
-.. code-block:: bash
-
-    $ pip install ColorDetect
-
-For usage , import as::
-
-    import colordetect
-
-
-
 
 Image color recognition
 =======================
@@ -120,8 +99,4 @@ method documentation.
 Whether using ``write_text`` or ``write_color_count``, the image has to be saved using `save_image`.
 
 Video color recognition can be done using :ref:`VideoColor<video_color_recognition>`
-
-Interested to see just how far you can go? Take a look at :ref:`Contribution guidelines<Contributing>`.
-
-`ColorDetect <https://github.com/MarvinKweyu/ColorDetect>`_  is always looking for the next step.
 

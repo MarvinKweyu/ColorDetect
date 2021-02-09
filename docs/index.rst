@@ -10,11 +10,9 @@ Welcome to ColorDetect's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-   colordetect.rst
-   segmentation.rst
-   videocolor.rst
-   colshare.rst
-   misc
+   getting_started.rst
+   modules.rst
+   misc.rst
 
 
 

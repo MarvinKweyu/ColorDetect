@@ -3,6 +3,16 @@ ColorDetect Changelog
 =====================
 
 
+.. _1.4.1:
+1.4.0 (02-09-2021)
+====================
+
+Documentation
+-------------
+
+- Fix error in image display of masked image
+- Format documentation to fix side panel and have structure in sections
+
 .. _1.4.0:
 1.4.0 (02-09-2021)
 ====================
