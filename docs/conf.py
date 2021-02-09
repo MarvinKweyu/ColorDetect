@@ -58,6 +58,11 @@ html_theme_options = {
     "description": "Recognize and identify different colors in an image or video.",
     "fixed_sidebar": True,
     "logo_text_align": "justify",
+    "show_relbar_bottom": True,
+    'github_user': 'MarvinKweyu',
+    'github_repo': 'ColorDetect',
+    "github_button": True,
+    "show_related": True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
