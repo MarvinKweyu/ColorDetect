@@ -3,6 +3,15 @@ ColorDetect Changelog
 =====================
 
 
+.. _1.4.2:
+1.4.2 (03-09-2021)
+====================
+
+Bug Fixes
+---------
+
+- Input RGB values instead of inverted BGR in writing color count and text
+
 .. _1.4.1:
 1.4.1 (02-09-2021)
 ====================

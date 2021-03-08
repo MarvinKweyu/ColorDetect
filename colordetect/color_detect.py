@@ -268,17 +268,25 @@ class ColorDetect:
             raise AttributeError(
                 "No color description found on this object. Perform get_color_count() first."
             )
+
+        if not self._validate_rgb(font_color):
+            raise TypeError(
+                f"font_color has to be a tuple of integers. Provided {font_color} "
+            )
+
         for k, v in self.color_description.items():
             color_values = str(v) + "% :" + k
             (text_width, text_height), baseline = cv2.getTextSize(
                 color_values, font, font_scale, font_thickness
             )
+            # change to BGR color format from RGB tuple
+            bgr_color_format = (font_color[2], font_color[1], font_color[0])
             self.write_text(
                 text=color_values,
                 left_margin=left_margin,
                 top_margin=top_margin,
                 font=font,
-                font_color=font_color,
+                font_color=bgr_color_format,
                 font_scale=font_scale,
                 font_thickness=font_thickness,
                 line_type=line_type,
@@ -320,7 +328,7 @@ class ColorDetect:
             RGB tuple of text font color
         font_scale:
             Size of the text to be written
-        font_thickness:
+        font_thickness: float = 1.0
             Thickness of the text
         line_type: int = 1,
             Space betweeen the lines
@@ -333,6 +341,14 @@ class ColorDetect:
 
         if text == "":
             raise IOError("text should not be empty")
+
+        if not self._validate_rgb(font_color):
+            raise TypeError(
+                f"font_color has to be a tuple of integers. Provided {font_color} "
+            )
+
+        # change to BGR color format from RGB tuple
+        font_color = (font_color[2], font_color[1], font_color[0])
 
         cv2.putText(
             self.image,
@@ -383,8 +399,17 @@ class ColorDetect:
             An RGB tuple color.
         :return:
         """
-        result = isinstance(rgb_tuple, tuple) and isinstance(rgb_tuple[0], int) and isinstance(rgb_tuple[1],
-                                                                                               int) and isinstance(
-            rgb_tuple[2],
-            int)
-        return result
+        tuple_made_of_three = isinstance(rgb_tuple, tuple) and len(rgb_tuple) == 3
+        tuple_has_integers_only = isinstance(rgb_tuple[0], int) and isinstance(rgb_tuple[1], int) and isinstance(
+            rgb_tuple[2], int)
+        color_range = []
+
+        for color in rgb_tuple:
+            if color in range(0, 255):
+                color_range.append(True)
+            else:
+                color_range.append(False)
+
+        invalid_color_range = False in color_range
+
+        return tuple_made_of_three and tuple_has_integers_only and not invalid_color_range
