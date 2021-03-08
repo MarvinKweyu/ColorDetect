@@ -59,6 +59,7 @@ def test_valid_color_format_is_parsed(image, video):
     """
     user_image = ColorDetect(image)
     user_video = VideoColor(video)
+
     with pytest.raises(Exception):
         user_image.get_color_count(color_count=1, color_format="invalid_random_format")
 
@@ -66,6 +67,10 @@ def test_valid_color_format_is_parsed(image, video):
         user_video.get_video_frames(
             frame_color_count=1, color_format="invalid_random_format"
         )
+    
+    user_image.get_color_count(color_count=1)
+    with pytest.raises(Exception):
+        user_image.write_color_count(font_color=(267,0,0))
 
 
 def test_valid_params_to_get_color_count(image):
