@@ -405,7 +405,7 @@ class ColorDetect:
         color_range = []
 
         for color in rgb_tuple:
-            if color in range(0, 255):
+            if color in range(0, 256):
                 color_range.append(True)
             else:
                 color_range.append(False)

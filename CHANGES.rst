@@ -3,9 +3,21 @@ ColorDetect Changelog
 =====================
 
 
+
+
+.. _1.4.3:
+1.4.3 (03-29-2021)
+==================
+
+Bug Fixes
+---------
+
+- Validate RGB font color input and add tests for it
+
+
 .. _1.4.2:
 1.4.2 (03-09-2021)
-====================
+==================
 
 Bug Fixes
 ---------
