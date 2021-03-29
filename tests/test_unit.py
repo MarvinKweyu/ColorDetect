@@ -154,3 +154,12 @@ def test_ordered_colors_are_correct_count(video):
     hence two consecutive calls might grab diff frames on the same second
     """
     # assert list(dominant_colors.values()) == [68.83, 22.48, 22.22, 21.7, 19.11, 17.77]
+
+def test_validation_of_rgb_is_correct(image):
+    """
+    test a valid rgb format can be identified
+    """
+    user_image = ColorDetect(image)
+    assert user_image._validate_rgb((255,0,0)) == True
+    assert user_image._validate_rgb((256,0,0)) == False
+    assert user_image._validate_rgb((255,-2,0)) == False
