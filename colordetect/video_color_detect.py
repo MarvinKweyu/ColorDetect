@@ -72,29 +72,29 @@ class VideoColor:
             raise ValueError(f"Progress should be a boolean. Provided {type(progress)}")
 
         count = 0
-        fps = self.video_file.get(cv2.CAP_PROP_FPS)
         total_frame_count = self.video_file.get(cv2.CAP_PROP_FRAME_COUNT)
-        video_duration = float(total_frame_count) / float(fps)
         while self.video_file.isOpened():
-            # frame is the image
-            success, frame = self.video_file.read()
-            if success:
-                #  read file every second
-                self.video_file.set(cv2.CAP_PROP_POS_MSEC, (count * 1000))
-                success, image = self.video_file.read()
-                image_object = ColorDetect(image)
-                colors = image_object.get_color_count(
-                    color_count=frame_color_count, color_format=color_format
+            #  read file every second
+            self.video_file.set(cv2.CAP_PROP_POS_MSEC, count * 1000)
+            success, image = self.video_file.read()
+            if not success:
+                break  # Video is complete
+            image_object = ColorDetect(image)
+            colors = image_object.get_color_count(
+                color_count=frame_color_count, color_format=color_format
+            )
+            # merge dictionaries as they are created
+            self.color_description = {**self.color_description, **colors}
+            count += 1
+            current_frame_num = self.video_file.get(cv2.CAP_PROP_POS_FRAMES)
+            if progress:
+                col_share.progress_bar(
+                    position=current_frame_num, total_length=total_frame_count
                 )
-                # merge dictionaries as they are created
-                self.color_description = {**self.color_description, **colors}
-                count += 1
-                if count >= video_duration:
-                    break
-                if progress:
-                    col_share.progress_bar(
-                        position=count, total_length=round(video_duration)
-                    )
+        if progress:
+            col_share.progress_bar(
+                position=total_frame_count, total_length=total_frame_count
+            )  # Cater for video with extra millis at the end that don't sum upto a full sec, and are thus skipped
 
         self.video_file.release()
         cv2.destroyAllWindows()
