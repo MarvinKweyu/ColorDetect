@@ -4,6 +4,14 @@ ColorDetect Changelog
 
 
 
+.. _1.4.4:
+1.4.3 (06-28-2021)
+==================
+
+Bug Fixes
+---------
+
+- Video processing percentage display fix
 
 .. _1.4.3:
 1.4.3 (03-29-2021)
