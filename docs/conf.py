@@ -23,7 +23,7 @@ copyright = "2020, Marvin Kweyu"
 author = "Marvin Kweyu"
 
 # The full version, including alpha/beta/rc tags
-release = "1.4.5"
+release = "1.4.6"
 
 # -- General configuration ---------------------------------------------------
 
@@ -59,8 +59,8 @@ html_theme_options = {
     "fixed_sidebar": True,
     "logo_text_align": "justify",
     "show_relbar_bottom": True,
-    'github_user': 'MarvinKweyu',
-    'github_repo': 'ColorDetect',
+    "github_user": "MarvinKweyu",
+    "github_repo": "ColorDetect",
     "github_button": True,
     # "show_related": True,
 }

@@ -67,10 +67,10 @@ def test_valid_color_format_is_parsed(image, video):
         user_video.get_video_frames(
             frame_color_count=1, color_format="invalid_random_format"
         )
-    
+
     user_image.get_color_count(color_count=1)
     with pytest.raises(Exception):
-        user_image.write_color_count(font_color=(267,0,0))
+        user_image.write_color_count(font_color=(267, 0, 0))
 
 
 def test_valid_params_to_get_color_count(image):
@@ -155,11 +155,12 @@ def test_ordered_colors_are_correct_count(video):
     """
     # assert list(dominant_colors.values()) == [68.83, 22.48, 22.22, 21.7, 19.11, 17.77]
 
+
 def test_validation_of_rgb_is_correct(image):
     """
     test a valid rgb format can be identified
     """
     user_image = ColorDetect(image)
-    assert user_image._validate_rgb((255,0,0)) == True
-    assert user_image._validate_rgb((256,0,0)) == False
-    assert user_image._validate_rgb((255,-2,0)) == False
+    assert user_image._validate_rgb((255, 0, 0))
+    assert not user_image._validate_rgb((256, 0, 0))
+    assert not user_image._validate_rgb((255, -2, 0))

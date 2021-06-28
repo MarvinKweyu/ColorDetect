@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="ColorDetect",
-    version="1.4.5",
+    version="1.4.6",
     author="Marvin Kweyu",
     author_email="mkweyu1@gmail.com",
     description="Detect and recognize colors in images or video",
@@ -20,7 +20,7 @@ setuptools.setup(
         "matplotlib>==3.2.1",
         "opencv-python>==4.2.0.32",
         "scikit-learn>==0.22.2.post1",
-        "webcolors>==1.11.1"
+        "webcolors>==1.11.1",
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

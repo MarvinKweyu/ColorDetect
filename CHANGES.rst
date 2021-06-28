@@ -4,6 +4,16 @@ ColorDetect Changelog
 
 
 
+.. _1.4.6:
+1.4.6 (06-28-2021)
+==================
+
+Contribution guide update
+------------------------
+
+- Contribution pre-commit file linting
+
+
 .. _1.4.5:
 1.4.5 (06-28-2021)
 ==================
