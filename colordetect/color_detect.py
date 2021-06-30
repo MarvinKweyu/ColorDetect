@@ -53,10 +53,15 @@ class ColorDetect:
 
         self.color_description = {}
 
-    def get_segmented_image(self, lower_bound: tuple, upper_bound: tuple, erode_iterations: int = 3,
-                            dilate_iterations: int = 3,
-                            use_grab_cut: bool = True,
-                            gc_iterations: int = 3) -> tuple:
+    def get_segmented_image(
+        self,
+        lower_bound: tuple,
+        upper_bound: tuple,
+        erode_iterations: int = 3,
+        dilate_iterations: int = 3,
+        use_grab_cut: bool = True,
+        gc_iterations: int = 3,
+    ) -> tuple:
         """
         .. _get_segmented_image:
         get_segmented_image
@@ -124,8 +129,15 @@ class ColorDetect:
             fg_model = np.zeros((1, 65), dtype="float")
             bg_model = np.zeros((1, 65), dtype="float")
 
-            mask, bg_model, fg_model = cv2.grabCut(self.image_original, mask, None, fg_model, bg_model,
-                                                   iterCount=gc_iterations, mode=cv2.GC_INIT_WITH_MASK)
+            mask, bg_model, fg_model = cv2.grabCut(
+                self.image_original,
+                mask,
+                None,
+                fg_model,
+                bg_model,
+                iterCount=gc_iterations,
+                mode=cv2.GC_INIT_WITH_MASK,
+            )
             mask = np.where((mask == cv2.GC_BGD) | (mask == cv2.GC_PR_BGD), 0, 1)
             mask = (mask * 255).astype("uint8")
 
@@ -138,7 +150,9 @@ class ColorDetect:
 
         return output_image, gray, segmented, mask
 
-    def get_color_count(self, color_count: int = 5, color_format: str = "human_readable") -> dict:
+    def get_color_count(
+        self, color_count: int = 5, color_format: str = "human_readable"
+    ) -> dict:
         """
         .. _get_color_count:
         get_color_count
@@ -233,14 +247,14 @@ class ColorDetect:
         return dict(colors)
 
     def write_color_count(
-            self,
-            left_margin: int = 10,
-            top_margin: int = 20,
-            font: int = cv2.FONT_HERSHEY_SIMPLEX,
-            font_color: tuple = (0, 0, 0),
-            font_scale: float = 1.0,
-            font_thickness: float = 1,
-            line_type: int = 1,
+        self,
+        left_margin: int = 10,
+        top_margin: int = 20,
+        font: int = cv2.FONT_HERSHEY_SIMPLEX,
+        font_color: tuple = (0, 0, 0),
+        font_scale: float = 1.0,
+        font_thickness: float = 1,
+        line_type: int = 1,
     ):
         """
         .. _write_color_count:
@@ -295,16 +309,16 @@ class ColorDetect:
             top_margin += text_height
 
     def write_text(
-            self,
-            text: str = "",
-            left_margin: int = 10,
-            top_margin: int = 20,
-            font: int = cv2.FONT_HERSHEY_SIMPLEX,
-            font_color: tuple = (0, 0, 0),
-            font_scale: float = 1.0,
-            font_thickness: float = 1.0,
-            line_type: int = 1,
-            line_spacing: int = 0
+        self,
+        text: str = "",
+        left_margin: int = 10,
+        top_margin: int = 20,
+        font: int = cv2.FONT_HERSHEY_SIMPLEX,
+        font_color: tuple = (0, 0, 0),
+        font_scale: float = 1.0,
+        font_thickness: float = 1.0,
+        line_type: int = 1,
+        line_spacing: int = 0,
     ):
         """
         .. _write_text:
@@ -400,8 +414,11 @@ class ColorDetect:
         :return:
         """
         tuple_made_of_three = isinstance(rgb_tuple, tuple) and len(rgb_tuple) == 3
-        tuple_has_integers_only = isinstance(rgb_tuple[0], int) and isinstance(rgb_tuple[1], int) and isinstance(
-            rgb_tuple[2], int)
+        tuple_has_integers_only = (
+            isinstance(rgb_tuple[0], int)
+            and isinstance(rgb_tuple[1], int)
+            and isinstance(rgb_tuple[2], int)
+        )
         color_range = []
 
         for color in rgb_tuple:
@@ -412,4 +429,6 @@ class ColorDetect:
 
         invalid_color_range = False in color_range
 
-        return tuple_made_of_three and tuple_has_integers_only and not invalid_color_range
+        return (
+            tuple_made_of_three and tuple_has_integers_only and not invalid_color_range
+        )
