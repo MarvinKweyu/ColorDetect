@@ -97,6 +97,5 @@ class VideoColor:
             )  # Cater for video with extra millis at the end that don't sum upto a full sec, and are thus skipped
 
         self.video_file.release()
-        cv2.destroyAllWindows()
         print("\n")
         return self.color_description
