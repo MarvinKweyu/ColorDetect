@@ -26,19 +26,11 @@ import numpy as np
 import webcolors
 import tempfile
 from sklearn.cluster import KMeans
-from urllib.parse import urlparse
 from urllib.request import urlopen
 
 from . import col_share
 
 LOGGER = logging.getLogger(__name__)
-
-def is_url(url):
-    try:
-        result = urlparse(url)
-        return all([result, result.scheme, result.netloc, result.path])
-    except:
-        return False
 
 
 class ColorDetect:
@@ -50,23 +42,23 @@ class ColorDetect:
         """Create ColorDetect object by providing an image"""
 
         #  check type of data being passed
-        print(type(image))
         if isinstance(image, np.ndarray):
             self.image = image
         elif isinstance(image, str):
-            if is_url(image) is True:
+            if col_share.is_url(image) is True:
                 img_data = urlopen(image).read()
                 dir_name = tempfile.mkdtemp()
                 dir_path = Path(dir_name)
-                dist_file =str(dir_path / "img.jpg")
+                dist_file = str(dir_path / "img.jpg")
                 f = open(dist_file, "wb")
                 f.write(img_data)
                 f.close()
-                self.image =cv2.imread(dist_file)
+                self.image = cv2.imread(dist_file)
             else:
                 self.image = cv2.imread(image)
         else:
-            raise TypeError("The image parameter accepts a numpy array , string file path or string file url argument only")
+            raise TypeError(
+                "The image parameter accepts a numpy array , string file path or string file url argument only")
         if resize_h is not None:
             h0, w0, _ = self.image.shape
             h1 = resize_h
