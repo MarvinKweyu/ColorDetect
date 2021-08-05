@@ -15,6 +15,7 @@ Usage:
 """
 
 import sys
+from urllib.parse import urlparse
 
 
 def progress_bar(position: int, total_length: int, post_text: str = "Color Detection"):
@@ -74,3 +75,19 @@ def sort_order(object_description: dict, key_count: int = 5, ascending: bool = T
         )
     }
     return dict(list(sorted_colors.items())[0:key_count])
+
+    def is_url(url: str) -> bool:
+        """
+        Check if the string parsed is a URL
+
+        Parameters
+        ----------
+
+        url: str
+            A string to be checked
+        """
+        try:
+            result = urlparse(url)
+            return all([result, result.scheme, result.netloc, result.path])
+        except Exception as e:
+            return False
