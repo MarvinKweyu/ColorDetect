@@ -2,8 +2,8 @@
 Image color recognition
 =======================
 
-Example
---------
+Example 1
+---------
 
 As a walk through some of the capabilities of ColorDetect we will use
 this sample image.
@@ -98,5 +98,37 @@ method documentation.
 
 Whether using ``write_text`` or ``write_color_count``, the image has to be saved using `save_image`.
 
-Video color recognition can be done using :ref:`VideoColor<video_color_recognition>`
 
+Getting colors from URL:
+------------------------
+
+
+::
+
+    >>> from colordetect import ColorDetect
+    >>>
+    >>> my_image = ColorDetect("<image_url>")
+    >>> my_image.get_color_count()
+
+
+Example 2
+---------
+
+We get colors from a random image on unsplash.
+
+Our photo of choice, is one by  `Ruby Cevallos <https://unsplash.com/@rubylordez?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText/>`_ on `Unsplash <https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText/>`_ 
+  
+
+::
+
+    >>> from colordetect import ColorDetect
+    >>>
+    >>> my_image = ColorDetect("https://images.unsplash.com/photo-1628127437106-0cc010a5fd2d?ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60")
+    >>> my_image.get_color_count()
+    {'saddlebrown': 6.17, 'sienna': 12.62, 'rosybrown': 15.62, 'lightgray': 27.67, 'whitesmoke': 37.91}
+
+    We may, go ahead and write this color count to the image, and save it.
+
+
+
+Video color recognition can be done using :ref:`VideoColor<video_color_recognition>`
