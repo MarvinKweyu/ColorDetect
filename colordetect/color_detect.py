@@ -18,15 +18,15 @@ For example:
 """
 
 import logging
+import tempfile
 from pathlib import Path
+from urllib.request import urlopen
 
 import cv2
 import matplotlib.colors as mcolors
 import numpy as np
 import webcolors
-import tempfile
 from sklearn.cluster import KMeans
-from urllib.request import urlopen
 
 from . import col_share
 
@@ -58,7 +58,8 @@ class ColorDetect:
                 self.image = cv2.imread(image)
         else:
             raise TypeError(
-                "The image parameter accepts a numpy array , string file path or string file url argument only")
+                "The image parameter accepts a numpy array , string file path or string file url argument only"
+            )
         if resize_h is not None:
             h0, w0, _ = self.image.shape
             h1 = resize_h
