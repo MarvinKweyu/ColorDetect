@@ -14,8 +14,11 @@ Usage:
 >>> col_share.sort_order('<dictionary>', "<items_to_return>", "<order>")
 """
 
+import logging
 import sys
 from urllib.parse import urlparse
+
+LOGGER = logging.getLogger(__name__)
 
 
 def progress_bar(position: int, total_length: int, post_text: str = "Color Detection"):
@@ -91,4 +94,5 @@ def is_url(url: str) -> bool:
         result = urlparse(url)
         return all([result, result.scheme, result.netloc, result.path])
     except Exception as e:
+        LOGGER.info(f"String passed is not an image.{e}")
         return False
