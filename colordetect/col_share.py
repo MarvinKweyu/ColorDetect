@@ -37,7 +37,7 @@ def progress_bar(position: int, total_length: int, post_text: str = "Color Detec
     #       # size of progress bar
     j = position / total_length
     sys.stdout.write("\r")
-    sys.stdout.write(f"[{'#' * int(n_bar * j):{n_bar}s}] {int(100 *j)}% {post_text}")
+    sys.stdout.write(f"[{'#' * int(n_bar * j):{n_bar}s}] {int(100 * j)}% {post_text}")
     sys.stdout.flush()
 
 
@@ -76,18 +76,19 @@ def sort_order(object_description: dict, key_count: int = 5, ascending: bool = T
     }
     return dict(list(sorted_colors.items())[0:key_count])
 
-    def is_url(url: str) -> bool:
-        """
-        Check if the string parsed is a URL
 
-        Parameters
-        ----------
+def is_url(url: str) -> bool:
+    """
+    Check if the string parsed is a URL
 
-        url: str
-            A string to be checked
-        """
-        try:
-            result = urlparse(url)
-            return all([result, result.scheme, result.netloc, result.path])
-        except Exception as e:
-            return False
+    Parameters
+    ----------
+
+    url: str
+        A string to be checked
+    """
+    try:
+        result = urlparse(url)
+        return all([result, result.scheme, result.netloc, result.path])
+    except Exception as e:
+        return False
