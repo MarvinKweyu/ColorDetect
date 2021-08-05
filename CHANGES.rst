@@ -3,6 +3,15 @@ ColorDetect Changelog
 =====================
 
 
+.. _1.5.0:
+1.5.0 (08-05-2021)
+==================
+
+Features
+---------
+
+- Perform color recognition on images based on URL passed
+
 
 .. _1.4.6:
 1.4.6 (07-09-2021)
