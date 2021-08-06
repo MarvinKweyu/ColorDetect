@@ -17,7 +17,6 @@
 
 ColorDetect works to recognize and identify different colors in an image or video.
 
-
 ### Installation
 
 ```bash
@@ -27,6 +26,7 @@ pip install ColorDetect
 ### Basic Usage
 
 #### Images
+
 ```python
 from colordetect import ColorDetect
 
@@ -58,10 +58,9 @@ user_video.get_video_frames(progress=True)
 # to order this rather long result and get only a specific number look up the `col_share` module
 ```
 
-
 ### Project Documentation
 
-For further project documentation, visit [ColorDetect's page](https://colordetect.readthedocs.io/en/latest/) 
+For further project documentation, visit [ColorDetect's page](https://colordetect.readthedocs.io/en/latest/)
 
 ### Contributions
 
@@ -69,17 +68,26 @@ Contributions are welcome.
 Do remember to take a look at the project [contribution guidelines](https://github.com/MarvinKweyu/ColorDetect/blob/master/CONTRIBUTING.rst)
 
 #### Tests
+
 To run tests:
+
 ```bash
-pytest 
+pytest
 ```
 
 ### Hall of Code
 
 To the amazing human beings and developers that made this possible.
+
 <div align="center">
 <br>
 <a href="https://github.com/MarvinKweyu/ColorDetect/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=MarvinKweyu/ColorDetect" />
 </a>
+<!-- hey ben! added this here manually as the contribution graphs did not get your commit -->
+<!-- Feature: image URLs -->
+<a href="https://github.com/henriod">
+<img src="https://avatars.githubusercontent.com/u/43642320?v=4" width="10%" alt="henroid"/>
+</a>
+
 </div>
