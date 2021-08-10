@@ -49,6 +49,7 @@ class ColorDetect:
                 img_data = urlopen(image).read()
                 dir_name = tempfile.mkdtemp()
                 dir_path = Path(dir_name)
+                # image saved in a temp dir as img.jpg to be read by colordetect
                 dist_file = str(dir_path / "img.jpg")
                 f = open(dist_file, "wb")
                 f.write(img_data)
