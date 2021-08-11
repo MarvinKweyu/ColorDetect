@@ -4,7 +4,7 @@ ColorDetect Changelog
 
 
 .. _1.5.0:
-1.5.0 (5th August 2021)
+1.5.0 (11th August 2021)
 =======================
 
 Features
