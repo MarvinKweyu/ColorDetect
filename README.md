@@ -1,6 +1,6 @@
 # ColorDetect
 
-<p align="center">
+<p style="display: flex; justify-content: center">
   <b>ColorDetect</b><br>
   <a href="https://colordetect.readthedocs.io/en/latest/">Documentation</a> |
   <a href="https://pypi.org/project/ColorDetect/">Package</a> 
@@ -75,19 +75,29 @@ To run tests:
 pytest
 ```
 
+#### Pre-commit
+
+Pre-commit hooks are used to automate linting
+
+1. Install the git hook scripts
+   ```shell
+   pre-commit install
+   ```
+
+1. (optional) Run against all the files
+    ```shell
+   pre-commit run --all-files
+   ```
+
+The installed pre-commit hooks will automatically ensure use of a consistent code format and style whenever one commits
+changes using git. For full documentation, view the [pre-commit docs](https://pre-commit.com/).
+
 ### Hall of Code
 
 To the amazing human beings and developers that made this possible.
 
-<div align="center">
-<br>
-<a href="https://github.com/MarvinKweyu/ColorDetect/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=MarvinKweyu/ColorDetect" />
-</a>
-<!-- hey ben! added this here manually as the contribution graphs did not get your commit -->
-<!-- Feature: image URLs -->
-<a href="https://github.com/henriod">
-<img src="https://avatars.githubusercontent.com/u/43642320?v=4" width="10%" alt="henroid"/>
-</a>
-
+<div style="display: flex; justify-content: center">
+    <a href="https://github.com/MarvinKweyu/ColorDetect/graphs/contributors">
+        <img alt="contributors' avatars" src="https://contrib.rocks/image?repo=MarvinKweyu/ColorDetect" />
+    </a>
 </div>
