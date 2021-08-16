@@ -1,3 +1,8 @@
+"""
+test whether file passed is an image/video
+test whether text is written to the image
+"""
+
 import imghdr
 import mimetypes
 from pathlib import Path
@@ -5,11 +10,6 @@ from pathlib import Path
 import matplotlib.colors as mcolors
 
 from ..colordetect import ColorDetect
-
-"""
-test whether file passed is an image/video
-test whether text is written to the image
-"""
 
 
 def test_existence_of_image_vid_path(image, video):
