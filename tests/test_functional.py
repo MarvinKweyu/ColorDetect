@@ -6,6 +6,7 @@ import matplotlib.colors as mcolors
 
 from ..colordetect import ColorDetect
 
+
 """
 test whether file passed is an image/video
 test whether text is written to the image
