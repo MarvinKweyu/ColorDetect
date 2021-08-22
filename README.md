@@ -1,6 +1,6 @@
 # ColorDetect
 
-<p style="display: flex; justify-content: center">
+<p align="center">
   <b>ColorDetect</b><br>
   <a href="https://colordetect.readthedocs.io/en/latest/">Documentation</a> |
   <a href="https://pypi.org/project/ColorDetect/">Package</a> 
@@ -96,7 +96,7 @@ changes using git. For full documentation, view the [pre-commit docs](https://pr
 
 To the amazing human beings and developers that made this possible.
 
-<div style="display: flex; justify-content: center">
+<div align="center">
     <a href="https://github.com/MarvinKweyu/ColorDetect/graphs/contributors">
         <img alt="contributors' avatars" src="https://contrib.rocks/image?repo=MarvinKweyu/ColorDetect" />
     </a>
