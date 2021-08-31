@@ -17,8 +17,8 @@ Features
 1.4.6 (07-09-2021)
 ==================
 
-Contribution guide update
-------------------------
+Docs
+----
 
 - Contribution pre-commit file linting
 
@@ -26,31 +26,6 @@ Bug Fixes
 ---------
 
 -  Tests passing locally and failing remotely
-
-
-.. _1.4.6:
-1.4.6 (07-09-2021)
-==================
-
-Contribution guide update
-------------------------
-
-- Contribution pre-commit file linting
-
-Bug Fixes
----------
-
--  Tests passing locally and failing remotely
-
-
-.. _1.4.6:
-1.4.6 (06-28-2021)
-==================
-
-Contribution guide update
-------------------------
-
-- Contribution pre-commit file linting
 
 
 .. _1.4.5:
