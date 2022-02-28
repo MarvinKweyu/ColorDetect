@@ -3,6 +3,20 @@ ColorDetect Changelog
 =====================
 
 
+.. _1.5.1:
+1.5.1 (30-08-2021)
+==================
+
+Docs
+----
+
+- Update contribution readme with pre-commit configuration.
+  
+Fix
+---
+
+- Linting of code
+  
 .. _1.5.0:
 1.5.0 (11th August 2021)
 =======================
@@ -17,8 +31,8 @@ Features
 1.4.6 (07-09-2021)
 ==================
 
-Contribution guide update
-------------------------
+Docs
+----
 
 - Contribution pre-commit file linting
 
