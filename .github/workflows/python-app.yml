@@ -52,7 +52,7 @@ jobs:
       uses: alexanderdamiani/pytester-cov@v1.2.3
       with:
         pytest-root-dir: '.'
-        cov-omit-list: 'test/*'
+        cov-omit-list: 'tests/*, docs/*, setup.py'
         cov-threshold-single: ${{ env.COVERAGE_SINGLE }}
         cov-threshold-total: ${{ env.COVERAGE_TOTAL }}
    
