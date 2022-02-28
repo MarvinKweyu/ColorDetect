@@ -33,7 +33,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      COVERAGE_SINGLE: 60
+      COVERAGE_SINGLE: 50
       COVERAGE_TOTAL: 60
 
     steps:
