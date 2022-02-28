@@ -51,8 +51,8 @@ jobs:
       id: pytester-cov
       uses: alexanderdamiani/pytester-cov@v1.2.3
       with:
-        pytest-root-dir: '/colordetect'
-        cov-omit-list: 'tests/*, docs/*, setup.py'
+        pytest-root-dir: '.'
+        cov-omit-list: 'tests/*, docs/*, setup.py, confest.py'
         cov-threshold-single: ${{ env.COVERAGE_SINGLE }}
         cov-threshold-total: ${{ env.COVERAGE_TOTAL }}
 
@@ -66,14 +66,21 @@ jobs:
         labels: worflow-failed
         body: ${{ steps.pytester-cov.outputs.output-table }}
 
-   
-
     - name: Coverage single fail - exit
       if: ${{ steps.pytester-cov.outputs.cov-threshold-single-fail == 'true' }}
       run: |
         echo "cov single fail ${{ steps.pytester-cov.outputs.cov-threshold-single-fail }}"
         exit 1
- 
+    - name: Coverage total fail - new issue
+      if: ${{ steps.pytester-cov.outputs.cov-threshold-total-fail == 'true' }}
+      uses: nashmaniac/create-issue-action@v1.1
+      with:
+        title: Pytest coverage total falls below minimum ${{ env.COVERAGE_TOTAL }}
+        token: ${{secrets.GITHUB_TOKEN}}
+        assignees: ${{github.actor}}
+        labels: worflow-failed
+        body: ${{ steps.pytester-cov.outputs.output-table }}
+
     - name: Coverage total fail - exit
       if: ${{ steps.pytester-cov.outputs.cov-threshold-total-fail == 'true' }}
       run: |
