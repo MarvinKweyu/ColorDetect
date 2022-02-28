@@ -51,7 +51,7 @@ jobs:
       id: pytester-cov
       uses: alexanderdamiani/pytester-cov@v1.2.3
       with:
-        pytest-root-dir: '/colordetect'
+        pytest-root-dir: '.'
         cov-omit-list: 'test/*'
         cov-threshold-single: ${{ env.COVERAGE_SINGLE }}
         cov-threshold-total: ${{ env.COVERAGE_TOTAL }}
