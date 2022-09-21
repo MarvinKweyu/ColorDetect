@@ -78,3 +78,6 @@ webcolors>==1.11.1
 WebOb>==1.8.6
 WebTest>==2.0.34
 zipp>==3.0.0
+black
+flake8
+isort

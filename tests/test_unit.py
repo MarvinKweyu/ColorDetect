@@ -18,8 +18,8 @@ def test_image_vid_parsed_to_class(image, video):
     test whether an image/video is parsed to the class ColorDetect(<image>) and VideoColor(<video>)
     Check whether an instance is created
     """
-    isinstance(ColorDetect(image), object)
-    isinstance(VideoColor(video), object)
+    isinstance(ColorDetect(image), ColorDetect)
+    isinstance(VideoColor(video), VideoColor)
 
 
 def test_color_detect_gets_numpy_array_from_video(image, video):
@@ -180,6 +180,8 @@ def test_get_time_frame_color_returns_video_colors_at_given_time(video):
     user_video = VideoColor(video)
 
     (image, colors_at_time) = user_video.get_time_frame_color(time=10000)
+    assert isinstance(image, ColorDetect)
+    assert type(colors_at_time) == dict
 
     assert len(colors_at_time) == 5
 

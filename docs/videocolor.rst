@@ -2,8 +2,8 @@
 Video color recognition
 =======================
 
-Example
---------
+Full video color detection 
+--------------------------
 
 To show how video color recognition works, the following video of planet earth will be used.
 
@@ -30,12 +30,30 @@ Colors are grabbed on a per second basis. Hence , in a video 30 seconds long, a 
 Have a look at :ref:`col_share<col_share>` for details into how you may format the results.
 
 
-Getting color from a specific time in a video
----------------------------------------------
+Working with videos and time
+----------------------------
+
+We can get colors at specific times of the parsed video
 
 ::
 
    >>> from colordetect import VideoColor
    >>> my_video = VideoColor("<video_path>")
-   >>> my_video.get_time_frame_color(time=15000)
-   
+   >>> (image, color_description) = my_video.get_time_frame_color(time=15000)
+
+The result is a tuple with a ColorDetect object and a color description. 
+We can proceed to save the color description onto the image in our preferred color
+
+::
+
+    >>> image.write_color_count(font_color=(255,255,255), save=True)
+
+
+Locate a file `out.jpg` in your current working directory.
+
+We could, **alternatively**, handle the saving ourselves and go as below:
+::
+
+
+    >>> image.write_color_count(font_color=(255,255,255))
+    >>> image.save_image(location='path/to/directory/of/choice', filename='filenameofchoice.jpg')
