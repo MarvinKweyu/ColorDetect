@@ -28,3 +28,14 @@ This is **False** by default.
 Colors are grabbed on a per second basis. Hence , in a video 30 seconds long, a single frame will be used for each second of feed.
 
 Have a look at :ref:`col_share<col_share>` for details into how you may format the results.
+
+
+Getting color from a specific time in a video
+---------------------------------------------
+
+::
+
+   >>> from colordetect import VideoColor
+   >>> my_video = VideoColor("<video_path>")
+   >>> my_video.get_time_frame_color(time=15000)
+   

@@ -16,7 +16,7 @@ Usage:
 >>> top_colors = col_share.sort_order(object_description=colors, key_count=8)
 """
 
-import datetime 
+import datetime
 import sys
 
 import cv2
@@ -123,9 +123,10 @@ class VideoColor:
     def get_time_frame_color(self,
                              color_count: int = 5,
                              color_format: str = "rgb",
-                             time: int = 1000) -> dict:
+                             time: int = 1000) -> tuple:
         """
          .. _get_time_frame_color:
+
         get_time_frame_color
         ----------------
         Get color from a specific time in the video
@@ -142,7 +143,7 @@ class VideoColor:
                 * hsv - (60°,100%,100%)
                 * rgb - rgb(255, 255, 0) for yellow
                 * hex - #FFFF00 for yellow
-          :return: color_description dictionary
+          :return: (image, color_description)
         """
         color_format_options = ["rgb", "hex", "hsv"]
 
@@ -172,7 +173,7 @@ class VideoColor:
 
         self.video_file.release()
 
-        return self.color_description
+        return (image, self.color_description)
 
     def _get_video_length(self) -> int:
         """

@@ -40,17 +40,23 @@ def test_get_color_count_has_correct_color_and_count(image):
     assert user_image.get_color_count(color_count=1) == {"white": 100.0}
 
 
-def test_what_is_in_dictionary_is_being_written(datadir, image):
+def test_image_saving(datadir, image):
     """
-    What is in the dictionary should be what is being written
+    Ensure the image is saved and arguments parsed are valid
     """
 
     user_image = ColorDetect(image)
-    # color_dictionary = user_image.get_color_count(color_count=1)
+
     user_image.get_color_count(color_count=1)
     file_name = "out.jpg"
+
+    with pytest.raises(NotADirectoryError):
+        user_image.save_image(location="/non_existent_folder", file_name=file_name)
+
     user_image.save_image(location=datadir, file_name=file_name)
-    # result_image = os.path.join(datadir, file_name)
+    saved_image = Path(os.path.join(datadir, file_name))
+
+    assert Path.exists(saved_image)
 
 
 def test_valid_color_format_is_parsed(image, video):
@@ -173,7 +179,7 @@ def test_get_time_frame_color_returns_video_colors_at_given_time(video):
     """
     user_video = VideoColor(video)
 
-    colors_at_time = user_video.get_time_frame_color(time=10000)
+    (image, colors_at_time) = user_video.get_time_frame_color(time=10000)
 
     assert len(colors_at_time) == 5
 

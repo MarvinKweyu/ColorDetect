@@ -3,6 +3,14 @@ ColorDetect Changelog
 =====================
 
 
+
+.. _1.6.0:
+1.5.1 (21-09-2022)
+==================
+Features
+---------
+
+- Perform color recognition on a video at a specific time 
 .. _1.5.1:
 1.5.1 (30-08-2021)
 ==================
