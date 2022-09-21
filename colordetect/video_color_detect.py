@@ -76,7 +76,7 @@ class VideoColor:
         total_frame_count = self.video_file.get(cv2.CAP_PROP_FRAME_COUNT)
         while self.video_file.isOpened():
             # how often to extract colors from video frames. Defaults to every 1 second
-            (success, image) = self._get_frame(time=1000)
+            (success, image) = self._get_frame(time=count * 1000)
             if not success:
                 break  # Video is complete
             image_object = ColorDetect(image)
