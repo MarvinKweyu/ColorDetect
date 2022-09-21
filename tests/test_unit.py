@@ -15,7 +15,7 @@ from ..colordetect import ColorDetect, VideoColor, col_share
 
 def test_image_vid_parsed_to_class(image, video):
     """
-    test whether an image/video is parsed to the class ColorDetect(<image>)
+    test whether an image/video is parsed to the class ColorDetect(<image>) and VideoColor(<video>)
     Check whether an instance is created
     """
     isinstance(ColorDetect(image), object)
@@ -125,13 +125,13 @@ def test_progress_bar_shows_correct_percentage(video):
 def test_get_video_frames_gets_correct_params(video):
     user_video = VideoColor(video)
 
-    with pytest.raises(Exception):
+    with pytest.raises(ValueError):
         user_video.get_video_frames(color_format="invalid_random_format")
 
-    with pytest.raises(Exception):
+    with pytest.raises(TypeError):
         user_video.get_video_frames(frame_color_count="1")
 
-    with pytest.raises(Exception):
+    with pytest.raises(TypeError):
         user_video.get_video_frames(progress=24)
 
 
@@ -164,3 +164,36 @@ def test_validation_of_rgb_is_correct(image):
     assert user_image._validate_rgb((255, 0, 0))
     assert not user_image._validate_rgb((256, 0, 0))
     assert not user_image._validate_rgb((255, -2, 0))
+
+
+def test_get_time_frame_color_returns_video_colors_at_given_time(video):
+    """
+    test whether you can get colors from video at specific time
+    :param video
+    """
+    user_video = VideoColor(video)
+
+    colors_at_time = user_video.get_time_frame_color(time=10000)
+
+    assert len(colors_at_time) == 5
+
+
+def test_get_time_frame_gets_right_params(video):
+    """
+    test validity of params parsed to get time fram
+    """
+    user_video = VideoColor(video)
+
+    with pytest.raises(ValueError):
+        user_video.get_time_frame_color(color_format="invalid_random_format")
+
+    with pytest.raises(TypeError):
+        user_video.get_time_frame_color(colors="45")
+
+    # give a negative time to get color from
+    with pytest.raises(ValueError):
+        user_video.get_time_frame_color(time=-1000)
+
+    # give a time period greater than the video
+    with pytest.raises(ValueError):
+        user_video.get_time_frame_color(time=100_000_000_000)
