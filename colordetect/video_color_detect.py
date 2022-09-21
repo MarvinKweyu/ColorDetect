@@ -16,6 +16,7 @@ Usage:
 >>> top_colors = col_share.sort_order(object_description=colors, key_count=8)
 """
 
+import datetime 
 import sys
 
 import cv2
@@ -69,7 +70,7 @@ class VideoColor:
             raise ValueError(f"Invalid color format: {color_format}")
 
         if type(progress) != bool:
-            raise ValueError(f"Progress should be a boolean. Provided {type(progress)}")
+            raise TypeError(f"Progress should be a boolean. Provided {type(progress)}")
 
         count = 0
         total_frame_count = self.video_file.get(cv2.CAP_PROP_FRAME_COUNT)
@@ -116,24 +117,73 @@ class VideoColor:
         #  read file every x time in milliseconds
         self.video_file.set(cv2.CAP_PROP_POS_MSEC, time)
         success, image = self.video_file.read()
-        (success, image)
 
-    def get_frame_color(self,
-                        colors: int = 5,
-                        color_format: str = "rgb",
-                        time: int = 1000) -> dict:
+        return (success, image)
+
+    def get_time_frame_color(self,
+                             color_count: int = 5,
+                             color_format: str = "rgb",
+                             time: int = 1000) -> dict:
         """
+         .. _get_time_frame_color:
+        get_time_frame_color
+        ----------------
         Get color from a specific time in the video
+
+         Parameters
+        ----------
+        time: int
+            Time to get color from in video
+        color_count: int
+            Number of colors to return at the given time frame
+        color_format:str
+            The format to return the color in.
+            Options
+                * hsv - (60°,100%,100%)
+                * rgb - rgb(255, 255, 0) for yellow
+                * hex - #FFFF00 for yellow
+          :return: color_description dictionary
         """
+        color_format_options = ["rgb", "hex", "hsv"]
+
+        if color_format not in color_format_options:
+            raise ValueError(f"Invalid color format: {color_format}")
+
+        if type(color_count) != int:
+            raise TypeError(
+                f"color_count to extract has to be an integer. Provided {type(color_count)} "
+            )
+
+        if time < 1:
+            raise ValueError(f"Cannot give negative time to extract color from")
+
+        if self._get_video_length() < time:
+            raise ValueError(
+                f"The time given is longer than the video parsed. Provided {time} while length of video: {self._get_video_length()}")
+
         (success, image) = self._get_frame(time)
         if success:
             image_object = ColorDetect(image)
             colors = image_object.get_color_count(
-                color_count=colors, color_format=color_format
+                color_count=color_count, color_format=color_format
             )
 
             self.color_description = colors
 
         self.video_file.release()
-        print("\n")
+
         return self.color_description
+
+    def _get_video_length(self) -> int:
+        """
+          .. _get_video_length:
+        _get_video_length
+        ----------------
+        get the length of a video 
+
+        return: the length of a video 
+        """
+        frames = self.video_file.get(cv2.CAP_PROP_FRAME_COUNT)
+        fps = self.video_file.get(cv2.CAP_PROP_FPS)
+
+        return round(frames / fps) * 1000
