@@ -39,7 +39,7 @@ class VideoColor:
         self,
         frame_color_count: int = 5,
         color_format: str = "rgb",
-        progress: bool = False
+        progress: bool = False,
     ) -> dict:
         """
         .. _get_video_frames:
@@ -120,10 +120,9 @@ class VideoColor:
 
         return (success, image)
 
-    def get_time_frame_color(self,
-                             color_count: int = 5,
-                             color_format: str = "rgb",
-                             time: int = 1000) -> tuple:
+    def get_time_frame_color(
+        self, color_count: int = 5, color_format: str = "rgb", time: int = 1000
+    ) -> tuple:
         """
          .. _get_time_frame_color:
 
@@ -134,7 +133,7 @@ class VideoColor:
          Parameters
         ----------
         time: int
-            Time to get color from in video
+            Time to get color from in video in milliseconds
         color_count: int
             Number of colors to return at the given time frame
         color_format:str
@@ -156,11 +155,12 @@ class VideoColor:
             )
 
         if time < 1:
-            raise ValueError(f"Cannot give negative time to extract color from")
+            raise ValueError("Cannot give negative time to extract color from")
 
         if self._get_video_length() < time:
             raise ValueError(
-                f"The time given is longer than the video parsed. Provided {time} while length of video: {self._get_video_length()}")
+                f"The time given is longer than the video parsed. Provided {time} while length of video: {self._get_video_length()}"
+            )
 
         (success, image) = self._get_frame(time)
         if success:
@@ -173,16 +173,16 @@ class VideoColor:
 
         self.video_file.release()
 
-        return (image, self.color_description)
+        return (image_object, self.color_description)
 
     def _get_video_length(self) -> int:
         """
           .. _get_video_length:
         _get_video_length
         ----------------
-        get the length of a video 
+        get the length of a video
 
-        return: the length of a video 
+        return: the length of a video
         """
         frames = self.video_file.get(cv2.CAP_PROP_FRAME_COUNT)
         fps = self.video_file.get(cv2.CAP_PROP_FPS)

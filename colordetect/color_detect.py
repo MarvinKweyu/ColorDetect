@@ -272,6 +272,7 @@ class ColorDetect:
         font_scale: float = 1.0,
         font_thickness: float = 1,
         line_type: int = 1,
+        save: bool = False,
     ):
         """
         .. _write_color_count:
@@ -324,6 +325,9 @@ class ColorDetect:
             )
 
             top_margin += text_height
+
+        if save:
+            self.save_image()
 
     def write_text(
         self,
@@ -413,7 +417,7 @@ class ColorDetect:
         image_folder = Path(location)
 
         if not image_folder.exists():
-            raise NotADirectoryError(f"The storage folder does not exist.")
+            raise NotADirectoryError("The storage folder does not exist.")
 
         if type(file_name) != str:
             raise TypeError(f"file_name should be a string.Provided {type(file_name)}")
