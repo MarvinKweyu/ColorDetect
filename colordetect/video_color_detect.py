@@ -38,7 +38,7 @@ class VideoColor:
         self,
         frame_color_count: int = 5,
         color_format: str = "rgb",
-        progress: bool = False,
+        progress: bool = False
     ) -> dict:
         """
         .. _get_video_frames:
@@ -74,9 +74,8 @@ class VideoColor:
         count = 0
         total_frame_count = self.video_file.get(cv2.CAP_PROP_FRAME_COUNT)
         while self.video_file.isOpened():
-            #  read file every second
-            self.video_file.set(cv2.CAP_PROP_POS_MSEC, count * 1000)
-            success, image = self.video_file.read()
+            # how often to extract colors from video frames. Defaults to every 1 second
+            (success, image) = self._get_frame(time=1000)
             if not success:
                 break  # Video is complete
             image_object = ColorDetect(image)
@@ -95,6 +94,45 @@ class VideoColor:
             col_share.progress_bar(
                 position=total_frame_count, total_length=total_frame_count
             )  # Cater for video with extra millis at the end that don't sum upto a full sec, and are thus skipped
+
+        self.video_file.release()
+        print("\n")
+        return self.color_description
+
+    def _get_frame(self, time: int = 1000) -> tuple:
+        """
+         .. _get_frame_color:
+        get_frame_color
+        ----------------
+        Get image frame at specific time in a video
+
+        Parameters
+        ----------
+        time: int
+            Time to get color from in parsed image
+
+          :return: ()
+        """
+        #  read file every x time in milliseconds
+        self.video_file.set(cv2.CAP_PROP_POS_MSEC, time)
+        success, image = self.video_file.read()
+        (success, image)
+
+    def get_frame_color(self,
+                        colors: int = 5,
+                        color_format: str = "rgb",
+                        time: int = 1000) -> dict:
+        """
+        Get color from a specific time in the video
+        """
+        (success, image) = self._get_frame(time)
+        if success:
+            image_object = ColorDetect(image)
+            colors = image_object.get_color_count(
+                color_count=colors, color_format=color_format
+            )
+
+            self.color_description = colors
 
         self.video_file.release()
         print("\n")
