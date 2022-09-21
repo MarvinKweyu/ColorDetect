@@ -393,7 +393,7 @@ class ColorDetect:
             line_spacing,
         )
 
-    def save_image(self, location=".", file_name: str = "out.jpg"):
+    def save_image(self, location: str = ".", file_name: str = "out.jpg"):
         """
         .. _save_image:
         save_image
@@ -409,10 +409,15 @@ class ColorDetect:
             The name of the new image
 
         """
+
+        image_folder = Path(location)
+
+        if not image_folder.exists():
+            raise NotADirectoryError(f"The storage folder does not exist.")
+
         if type(file_name) != str:
             raise TypeError(f"file_name should be a string.Provided {type(file_name)}")
 
-        image_folder = Path(location)
         image_to_save = image_folder / file_name
 
         # Save image
