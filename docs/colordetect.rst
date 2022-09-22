@@ -1,4 +1,4 @@
-
+.. _image_color_recognition:
 Image color recognition
 =======================
 

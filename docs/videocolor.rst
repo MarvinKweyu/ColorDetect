@@ -51,9 +51,14 @@ We can proceed to save the color description onto the image in our preferred col
 
 Locate a file `out.jpg` in your current working directory.
 
+
 We could, **alternatively**, handle the saving ourselves and go as below:
 ::
 
 
     >>> image.write_color_count(font_color=(255,255,255))
     >>> image.save_image(location='path/to/directory/of/choice', filename='filenameofchoice.jpg')
+
+
+
+.. image:: _static/video_out.jpg
