@@ -18,4 +18,4 @@ For usage , import as::
     import colordetect
 
 
-For more details, proceed to :ref:`image_color_recognition` 
+For more details, proceed to :ref:`image_color_recognition<image_color_recognition>`

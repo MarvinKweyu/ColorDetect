@@ -15,17 +15,17 @@
 [![Downloads](https://pepy.tech/badge/colordetect)](https://pypi.org/project/ColorDetect/)
 [![Documentation Status](https://readthedocs.org/projects/colordetect/badge/?version=master)](https://colordetect.readthedocs.io/en/master/)
 
-ColorDetect works to recognize and identify different colors in an image or video.
+> ColorDetect works to recognize and identify different colors in an image or video.
 
-### Installation
+## Installation
 
 ```bash
 pip install ColorDetect
 ```
 
-### Basic Usage
+## Basic Usage
 
-#### Images
+### Images
 
 ```python
 from colordetect import ColorDetect
@@ -47,7 +47,7 @@ user_image.save_image(<storage_path>,<image_name>)
 
 Resultant image is stored in the string `storage_path` of choice with the `image_name` which will default to the current location and **out.jpg** respectively by default.
 
-#### Videos
+### Videos
 
 ```python
 from colordetect import VideoColor,col_share
@@ -58,16 +58,18 @@ user_video.get_video_frames(progress=True)
 # to order this rather long result and get only a specific number look up the `col_share` module
 ```
 
-### Project Documentation
+You can also get colors at a specific time and extract the frame at that given time. 
+
+## Project Documentation
 
 For further project documentation, visit [ColorDetect's page](https://colordetect.readthedocs.io/en/latest/)
 
-### Contributions
+## Contributions
 
 Contributions are welcome.
 Do remember to take a look at the project [contribution guidelines](https://github.com/MarvinKweyu/ColorDetect/blob/master/CONTRIBUTING.rst)
 
-#### Tests
+### Tests
 
 To run tests:
 
@@ -75,7 +77,7 @@ To run tests:
 pytest
 ```
 
-#### Pre-commit
+### Pre-commit
 
 Pre-commit hooks are used to automate linting
 
@@ -92,7 +94,7 @@ Pre-commit hooks are used to automate linting
 The installed pre-commit hooks will automatically ensure use of a consistent code format and style whenever one commits
 changes using git. For full documentation, view the [pre-commit docs](https://pre-commit.com/).
 
-### Hall of Code
+## Hall of Code
 
 To the amazing human beings and developers that made this possible.
 
