@@ -59,7 +59,7 @@ class VideoColor:
                 * hex - #FFFF00 for yellow
           :return: color_description dictionary
         """
-        if type(frame_color_count) != int:
+        if not isinstance(frame_color_count, int):
             raise TypeError(
                 f"frame_color_count has to be an integer. Provided {type(frame_color_count)} "
             )
@@ -69,7 +69,7 @@ class VideoColor:
         if color_format not in color_format_options:
             raise ValueError(f"Invalid color format: {color_format}")
 
-        if type(progress) != bool:
+        if not isinstance(progress, bool):
             raise TypeError(f"Progress should be a boolean. Provided {type(progress)}")
 
         count = 0
@@ -149,7 +149,7 @@ class VideoColor:
         if color_format not in color_format_options:
             raise ValueError(f"Invalid color format: {color_format}")
 
-        if type(color_count) != int:
+        if not isinstance(color_count, int):
             raise TypeError(
                 f"color_count to extract has to be an integer. Provided {type(color_count)} "
             )

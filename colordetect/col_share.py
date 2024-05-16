@@ -61,12 +61,12 @@ def sort_order(object_description: dict, key_count: int = 5, ascending: bool = T
         The order to perform the dictionary sort. By default, set to True.
     :return: A sorted dictionary with specific number
     """
-    if type(key_count) != int:
+    if not isinstance(key_count, int):
         raise TypeError(
             f"color_count has to be an integer. Provided {type(key_count)} "
         )
 
-    if type(ascending) != bool:
+    if not isinstance(ascending, bool):
         raise TypeError(
             f"The value of the 'ascending' parameter is a boolean. Provided {type(ascending)} "
         )

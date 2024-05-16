@@ -35,7 +35,7 @@ extensions = [
     "sphinx.ext.doctest",
     "sphinx.ext.viewcode",  # package rst sources with docs
     "sphinx.ext.intersphinx",
-    "sphinx.ext.autosectionlabel"
+    "sphinx.ext.autosectionlabel",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
