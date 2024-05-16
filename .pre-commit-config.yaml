@@ -1,15 +1,21 @@
 repos:
-- repo: https://github.com/ambv/black
-  rev: 22.8.0
-  hooks:
-  - id: black
-    language_version: python3
-- repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v1.2.3
-  hooks:
-  - id: flake8
-- repo: https://github.com/pre-commit/mirrors-isort
-  rev: v5.10.1
-  hooks:
-  - id: isort
-    language_version: python3
+  - repo: https://github.com/ambv/black
+    rev: 22.8.0
+    hooks:
+      - id: black
+        language_version: python3
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v1.2.3
+    hooks:
+      - id: flake8
+  - repo: https://github.com/pre-commit/mirrors-isort
+    rev: v5.10.1
+    hooks:
+      - id: isort
+        language_version: python3
+
+# sets up .pre-commit-ci.yaml to ensure pre-commit dependencies stay up to date
+ci:
+  autoupdate_schedule: weekly
+  skip: []
+  submodules: false

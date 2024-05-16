@@ -111,21 +111,21 @@ class ColorDetect:
                 f"upper_bound has to be a tuple of integers. Provided {type(upper_bound)} "
             )
 
-        if type(erode_iterations) != int:
+        if not isinstance(erode_iterations, int):
             raise TypeError(
                 f"erode_iterations has to be an integer. Provided {type(erode_iterations)} "
             )
 
-        if type(dilate_iterations) != int:
+        if not isinstance(dilate_iterations, int):
             raise TypeError(
                 f"dilate_iterations has to be an integer. Provided {type(dilate_iterations)} "
             )
 
-        if type(gc_iterations) != int:
+        if not isinstance(gc_iterations, int):
             raise TypeError(
                 f"gc_iterations has to be a an integer. Provided {type(gc_iterations)} "
             )
-        if type(use_grab_cut) != bool:
+        if not isinstance(use_grab_cut, bool):
             raise TypeError(
                 f"use_grab_cut has to be a boolean. Provided {type(use_grab_cut)} "
             )
@@ -191,7 +191,7 @@ class ColorDetect:
         :return: color description
         """
 
-        if type(color_count) != int:
+        if not isinstance(color_count, int):
             raise TypeError(
                 f"color_count has to be an integer. Provided {type(color_count)} "
             )
@@ -236,13 +236,15 @@ class ColorDetect:
             r0, g0, b0 = int(rgb_value[0]), int(rgb_value[1]), int(rgb_value[2])
             try:
                 nearest = webcolors.rgb_to_name((r0, g0, b0))
-            except ValueError:  # Calculate distances between rgb value and CSS3 rgb colours to determine the closest
+            except (
+                ValueError
+            ):  # Calculate distances between rgb value and CSS3 rgb colours to determine the closest
                 distances = {}
                 for k, v in webcolors.CSS3_HEX_TO_NAMES.items():
                     r1, g1, b1 = webcolors.hex_to_rgb(k)
-                    distances[
-                        ((r0 - r1) ** 2 + (g0 - g1) ** 2 + (b0 - b1) ** 2)
-                    ] = v  # Ignore sqrt as it has no significant effect
+                    distances[((r0 - r1) ** 2 + (g0 - g1) ** 2 + (b0 - b1) ** 2)] = (
+                        v  # Ignore sqrt as it has no significant effect
+                    )
                 nearest = distances[min(distances.keys())]
             return nearest
 
@@ -255,11 +257,10 @@ class ColorDetect:
         hist /= hist.sum()
 
         # iterate through each cluster's color and percentage
-        colors = sorted(
-            [((percent * 100), color) for (percent, color) in zip(hist, centroids)]
-        )
+        colors = [(percent * 100, color) for (percent, color) in zip(hist, centroids)]
+        colors.sort(key=lambda x: (x[0], id(x[1])))
 
-        for (percent, color) in colors:
+        for percent, color in colors:
             color.astype("uint8").tolist()
         return dict(colors)
 
@@ -369,7 +370,7 @@ class ColorDetect:
             Space betweeen the lines
         :return:
         """
-        if type(text) != str:
+        if not isinstance(text, str):
             raise TypeError(
                 f"text should be a string.Provided {text} of type {type(text)}"
             )
@@ -419,7 +420,7 @@ class ColorDetect:
         if not image_folder.exists():
             raise NotADirectoryError("The storage folder does not exist.")
 
-        if type(file_name) != str:
+        if not isinstance(file_name, str):
             raise TypeError(f"file_name should be a string.Provided {type(file_name)}")
 
         image_to_save = image_folder / file_name
