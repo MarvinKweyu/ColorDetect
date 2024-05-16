@@ -3,6 +3,15 @@ ColorDetect Changelog
 =====================
 
 
+.. _1.6.1:
+1.6.0 (14-08-2024)
+==================
+Fix
+---------
+
+- ColorDetect fails when it gets multiple colors of the same dominance.
+
+
 
 .. _1.6.0:
 1.6.0 (22-09-2022)

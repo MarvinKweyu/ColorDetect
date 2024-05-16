@@ -181,7 +181,7 @@ def test_get_time_frame_color_returns_video_colors_at_given_time(video):
 
     (image, colors_at_time) = user_video.get_time_frame_color(time=10000)
     assert isinstance(image, ColorDetect)
-    assert type(colors_at_time) == dict
+    assert isinstance(colors_at_time, dict)
 
     assert len(colors_at_time) == 5
 
@@ -196,7 +196,7 @@ def test_get_time_frame_gets_right_params(video):
         user_video.get_time_frame_color(color_format="invalid_random_format")
 
     with pytest.raises(TypeError):
-        user_video.get_time_frame_color(colors="45")
+        user_video.get_time_frame_color(color_count="45")
 
     # give a negative time to get color from
     with pytest.raises(ValueError):
