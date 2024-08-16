@@ -12,7 +12,7 @@ Usage:
 >>> colors =  user_video.get_video_frames(frame_color_count=7)
 >>> colors
 # alternatively shorten the dictionary to get a specific number of sorted colors from the whole lot
->>> from colordetect import col_share
+>>> from src.colordetect import col_share
 >>> top_colors = col_share.sort_order(object_description=colors, key_count=8)
 """
 

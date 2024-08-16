@@ -7,7 +7,7 @@ Global methods non-object specific
 Usage:
 
 
->>> from colordetect import col_share
+>>> from src.color_detect import col_share
 # show a progress bar for a process
 >>> col_share.progress_bar("<current_process_position>", "<total_process_length>", "<process_description>")
 # sort a dictionary by value to required length or in specific order

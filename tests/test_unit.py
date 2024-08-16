@@ -10,7 +10,7 @@ from pathlib import Path
 import cv2
 import pytest
 
-from ..colordetect import ColorDetect, VideoColor, col_share
+from colordetect import ColorDetect, VideoColor, col_share
 
 
 def test_image_vid_parsed_to_class(image, video):
