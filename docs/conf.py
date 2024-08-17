@@ -23,7 +23,7 @@ copyright = "2020, Marvin Kweyu"
 author = "Marvin Kweyu"
 
 # The full version, including alpha/beta/rc tags
-release = "1.6.0"
+release = "1.6.3"
 
 # -- General configuration ---------------------------------------------------
 
@@ -63,7 +63,8 @@ html_theme_options = {
     "github_user": "MarvinKweyu",
     "github_repo": "ColorDetect",
     "github_button": True,
-    # "show_related": True,
+    "github_type": "star",
+    "show_related": True,
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,
