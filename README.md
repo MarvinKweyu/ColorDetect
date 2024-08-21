@@ -10,8 +10,8 @@
 
 ![Lint workflow](https://github.com/MarvinKweyu/ColorDetect/actions/workflows/lint.yml/badge.svg?branch=master)
 [![PyPI version](https://badge.fury.io/py/ColorDetect.svg)](https://pypi.org/project/ColorDetect/)
-[![Python](https://img.shields.io/badge/python-3.6%7C3.7%7C3.8%7C3.9-green)](https://pypi.org/project/ColorDetect/)
-[![CircleCI](https://circleci.com/gh/MarvinKweyu/ColorDetect.svg?style=svg)](https://circleci.com/gh/MarvinKweyu/ColorDetect)
+[![Python](https://img.shields.io/badge/python->=3.6-green)](https://pypi.org/project/ColorDetect/)
+![Package tests](https://github.com/MarvinKweyu/ColorDetect/actions/workflows/package-tests.yml/badge.svg?branch=master)
 [![Downloads](https://pepy.tech/badge/colordetect)](https://pypi.org/project/ColorDetect/)
 [![Documentation Status](https://readthedocs.org/projects/colordetect/badge/?version=master)](https://colordetect.readthedocs.io/en/master/)
 
