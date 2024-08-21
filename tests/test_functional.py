@@ -9,7 +9,7 @@ from pathlib import Path
 
 import matplotlib.colors as mcolors
 
-from ..colordetect import ColorDetect
+from src.colordetect import ColorDetect
 
 
 def test_existence_of_image_vid_path(image, video):
