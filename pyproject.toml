@@ -4,9 +4,9 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ColorDetect"
-version = "1.6.3"
+version = "1.6.5"
 authors = [
-    {name = "Marvin Kweyu", email = "mkweyu1@gmail.com"},
+    {name = "Marvin Kweyu", email = "hello@marvinkweyu.net"},
 ]
 description = "Detect and recognize colors in images or video"
 readme = "README.md"

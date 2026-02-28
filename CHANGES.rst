@@ -2,6 +2,13 @@
 ColorDetect Changelog
 =====================
 
+.. _1.6.5:
+1.6.5 (28-02-2026)
+==================
+Fix
+---------
+
+- System versioning and development contact
 
 .. _1.6.4:
 1.6.4 (28-02-2026)
