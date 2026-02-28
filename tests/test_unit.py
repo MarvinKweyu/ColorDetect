@@ -3,11 +3,9 @@ Unit tests: testing a small bit of code like function or class in isolation of t
 From the developers perspective
 """
 
-import mimetypes
 import os
 from pathlib import Path
 
-import cv2
 import pytest
 
 from ..colordetect import ColorDetect, VideoColor, col_share

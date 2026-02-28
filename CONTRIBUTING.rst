@@ -9,11 +9,15 @@ The source code, located at `the ColorDetect project page <https://github.com/Ma
 
 Setup
 -----
-This project can be setup with::
+This project uses `uv <https://docs.astral.sh/uv/>`_ for dependency management.
+Install it via::
 
-    python3 -m venv .venv
-    .venv/bin/activate
-    pip install -r requirements/requirements-dev.txt
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+Then set up the project::
+
+    uv venv
+    uv pip install -e ".[dev]"
     pre-commit install
 
 

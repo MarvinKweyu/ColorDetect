@@ -3,7 +3,6 @@ test whether file passed is an image/video
 test whether text is written to the image
 """
 
-import imghdr
 import mimetypes
 from pathlib import Path
 
@@ -24,7 +23,8 @@ def test_argument_is_image(image):
     """
     Ensure that the argument parsed is an image
     """
-    assert type(imghdr.what(Path(image))) is str
+    mime_type, _ = mimetypes.guess_type(str(image))
+    assert mime_type is not None and mime_type.startswith("image/")
 
 
 def test_video_passed_is_valid_video(video):

@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 
 import os
-from distutils import dir_util
+import shutil
 
 import pytest
 
@@ -42,6 +42,6 @@ def datadir(tmpdir, request):
     test_dir, _ = os.path.splitext(filename)
 
     if os.path.isdir(test_dir):
-        dir_util.copy_tree(test_dir, bytes(tmpdir))
+        shutil.copytree(test_dir, str(tmpdir), dirs_exist_ok=True)
 
     return tmpdir
