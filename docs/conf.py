@@ -23,7 +23,7 @@ copyright = "2020, Marvin Kweyu"
 author = "Marvin Kweyu"
 
 # The full version, including alpha/beta/rc tags
-release = "1.6.4"
+release = "1.6.5"
 
 # -- General configuration ---------------------------------------------------
 
