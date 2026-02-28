@@ -57,7 +57,7 @@ We could, **alternatively**, handle the saving ourselves and go as below:
 
 
     >>> image.write_color_count(font_color=(255,255,255))
-    >>> image.save_image(location='path/to/directory/of/choice', filename='filenameofchoice.jpg')
+    >>> image.save_image(location='path/to/directory/of/choice', file_name='filenameofchoice.jpg')
 
 
 

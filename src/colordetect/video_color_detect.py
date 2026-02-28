@@ -9,15 +9,12 @@ Usage:
 >>> from colordetect import VideoColor
 >>> user_video = VideoColor("<path_to_video>")
 # where frame_color_count is the target most dominant colors to be found. Default set to 5
->>> colors =  user_video.get_video_frames(frame_color_count=7)
+>>> colors = user_video.get_video_frames(frame_color_count=7)
 >>> colors
-# alternatively shorten the dictionary to get a specific number of sorted colors from the whole lot
+# shorten the result to the N most dominant colors across the whole video
 >>> from colordetect import col_share
 >>> top_colors = col_share.sort_order(object_description=colors, key_count=8)
 """
-
-import datetime
-import sys
 
 import cv2
 
@@ -31,7 +28,6 @@ class VideoColor:
     """
 
     def __init__(self, video):
-        # super().__init__(video)
         self.video_file = cv2.VideoCapture(video)
         self.color_description = {}
 
@@ -51,12 +47,14 @@ class VideoColor:
         ----------
         frame_color_count: int
             The number of most dominant colors to be obtained from a single frame
-        color_format:str
+        color_format: str
             The format to return the color in.
             Options
                 * hsv - (60°,100%,100%)
                 * rgb - rgb(255, 255, 0) for yellow
                 * hex - #FFFF00 for yellow
+        progress: bool
+            Show a progress bar during processing. Default False.
           :return: color_description dictionary
         """
         if not isinstance(frame_color_count, int):
@@ -74,30 +72,29 @@ class VideoColor:
 
         count = 0
         total_frame_count = self.video_file.get(cv2.CAP_PROP_FRAME_COUNT)
-        while self.video_file.isOpened():
-            # how often to extract colors from video frames. Defaults to every 1 second
-            (success, image) = self._get_frame(time=count * 1000)
-            if not success:
-                break  # Video is complete
-            image_object = ColorDetect(image)
-            colors = image_object.get_color_count(
-                color_count=frame_color_count, color_format=color_format
-            )
-            # merge dictionaries as they are created
-            self.color_description = {**self.color_description, **colors}
-            count += 1
-            current_frame_num = self.video_file.get(cv2.CAP_PROP_POS_FRAMES)
-            if progress:
-                col_share.progress_bar(
-                    position=current_frame_num, total_length=total_frame_count
+        try:
+            while self.video_file.isOpened():
+                success, image = self._get_frame(time=count * 1000)
+                if not success:
+                    break
+                colors = ColorDetect(image).get_color_count(
+                    color_count=frame_color_count, color_format=color_format
                 )
-        if progress:
-            col_share.progress_bar(
-                position=total_frame_count, total_length=total_frame_count
-            )  # Cater for video with extra millis at the end that don't sum upto a full sec, and are thus skipped
+                self.color_description.update(colors)
+                count += 1
+                if progress:
+                    col_share.progress_bar(
+                        position=self.video_file.get(cv2.CAP_PROP_POS_FRAMES),
+                        total_length=total_frame_count,
+                    )
+            if progress:
+                # Flush bar to 100% for any trailing millis skipped at the end
+                col_share.progress_bar(
+                    position=total_frame_count, total_length=total_frame_count
+                )
+        finally:
+            self.video_file.release()
 
-        self.video_file.release()
-        print("\n")
         return self.color_description
 
     def _get_frame(self, time: int = 1000) -> tuple:
@@ -112,13 +109,10 @@ class VideoColor:
         time: int
             Time to get color from in parsed image
 
-          :return: ()
+          :return: (success, image)
         """
-        #  read file every x time in milliseconds
         self.video_file.set(cv2.CAP_PROP_POS_MSEC, time)
-        success, image = self.video_file.read()
-
-        return (success, image)
+        return self.video_file.read()
 
     def get_time_frame_color(
         self, color_count: int = 5, color_format: str = "rgb", time: int = 1000
@@ -136,7 +130,7 @@ class VideoColor:
             Time to get color from in video in milliseconds
         color_count: int
             Number of colors to return at the given time frame
-        color_format:str
+        color_format: str
             The format to return the color in.
             Options
                 * hsv - (60°,100%,100%)
@@ -157,23 +151,23 @@ class VideoColor:
         if time < 1:
             raise ValueError("Cannot give negative time to extract color from")
 
-        if self._get_video_length() < time:
+        video_length = self._get_video_length()
+        if video_length < time:
             raise ValueError(
-                f"The time given is longer than the video parsed. Provided {time} while length of video: {self._get_video_length()}"
+                f"The time given is longer than the video parsed. Provided {time} while length of video: {video_length}"
             )
 
-        (success, image) = self._get_frame(time)
-        if success:
-            image_object = ColorDetect(image)
-            colors = image_object.get_color_count(
-                color_count=color_count, color_format=color_format
-            )
+        try:
+            success, image = self._get_frame(time)
+            if success:
+                image_object = ColorDetect(image)
+                self.color_description = image_object.get_color_count(
+                    color_count=color_count, color_format=color_format
+                )
+        finally:
+            self.video_file.release()
 
-            self.color_description = colors
-
-        self.video_file.release()
-
-        return (image_object, self.color_description)
+        return image_object, self.color_description
 
     def _get_video_length(self) -> int:
         """
@@ -182,7 +176,7 @@ class VideoColor:
         ----------------
         get the length of a video
 
-        return: the length of a video
+        return: the length of a video in milliseconds
         """
         frames = self.video_file.get(cv2.CAP_PROP_FRAME_COUNT)
         fps = self.video_file.get(cv2.CAP_PROP_FPS)

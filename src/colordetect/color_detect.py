@@ -160,15 +160,12 @@ class ColorDetect:
 
         segmented = cv2.bitwise_and(self.image_original, self.image_original, mask=mask)
 
-        for i in range(len(mask)):
-            for j in range(len(mask[i])):
-                if mask[i][j] != 0:
-                    output_image[i][j] = self.image_original[i][j]
+        output_image[mask != 0] = self.image_original[mask != 0]
 
         return output_image, gray, segmented, mask
 
     def get_color_count(
-        self, color_count: int = 5, color_format: str = "human_readable"
+        self, color_count: int = 5, color_format: str = "human_readable", max_pixels: int = 10_000
     ) -> dict:
         """
         .. _get_color_count:
@@ -188,6 +185,10 @@ class ColorDetect:
                 * rgb - rgb(255, 255, 0) for yellow
                 * hex - #FFFF00 for yellow
                 * human_readable - yellow for yellow
+        max_pixels: int
+            Maximum number of pixels sampled for clustering. Reduces memory and
+            CPU usage on large images with negligible impact on color accuracy.
+            Set to None to disable downsampling.
         :return: color description
         """
 
@@ -198,8 +199,11 @@ class ColorDetect:
 
         # convert image from BGR to RGB for better accuracy
         rgb = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
-        reshape = rgb.reshape((rgb.shape[0] * rgb.shape[1], 3))
-        cluster = KMeans(n_clusters=color_count).fit(reshape)
+        reshape = rgb.reshape((-1, 3))
+        if max_pixels is not None and len(reshape) > max_pixels:
+            indices = np.random.choice(len(reshape), max_pixels, replace=False)
+            reshape = reshape[indices]
+        cluster = KMeans(n_clusters=color_count, n_init=10).fit(reshape)
 
         unique_colors = self._find_unique_colors(cluster, cluster.cluster_centers_)
 
