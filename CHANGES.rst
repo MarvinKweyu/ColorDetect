@@ -2,6 +2,15 @@
 ColorDetect Changelog
 =====================
 
+
+.. _1.6.6:
+1.6.6 (28-08-2026)
+==================
+Feat
+---------
+
+- Migration to recommended packaging
+
 .. _1.6.5:
 1.6.5 (28-02-2026)
 ==================
@@ -53,7 +62,7 @@ Fix
 Features
 ---------
 
-- Perform color recognition on a video at a specific time 
+- Perform color recognition on a video at a specific time
 - Extract image from video at a specific time
 
 
@@ -65,12 +74,12 @@ Docs
 ----
 
 - Update contribution readme with pre-commit configuration.
-  
+
 Fix
 ---
 
 - Linting of code
-  
+
 .. _1.5.0:
 1.5.0 (11-08-2021)
 =======================
