@@ -3,3 +3,4 @@
     max-line-length = 100
     max-complexity = 18
     select = B,C,E,F,W,T4,B9
+    exclude = .git,__pycache__,.venv,venv,.tox,build,dist,*.egg-info,docs/_build

@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9]
+        python-version: [3.11]
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
@@ -21,6 +21,6 @@ jobs:
           pip install -r requirements/requirements-dev.txt
       - name: Check code format and style
         run: |
-          isort **/*.py -c -v
+          isort src/colordetect/ tests/ docs/conf.py -c -v
           black --check src/colordetect/ tests/
           flake8 src/colordetect/ tests/

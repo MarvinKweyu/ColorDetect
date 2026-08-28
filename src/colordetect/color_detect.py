@@ -165,7 +165,10 @@ class ColorDetect:
         return output_image, gray, segmented, mask
 
     def get_color_count(
-        self, color_count: int = 5, color_format: str = "human_readable", max_pixels: int = 10_000
+        self,
+        color_count: int = 5,
+        color_format: str = "human_readable",
+        max_pixels: int = 10_000,
     ) -> dict:
         """
         .. _get_color_count:
@@ -256,7 +259,7 @@ class ColorDetect:
 
         # Get the number of different clusters, create histogram, and normalize
         labels = np.arange(0, len(np.unique(cluster.labels_)) + 1)
-        (hist, _) = np.histogram(cluster.labels_, bins=labels)
+        hist, _ = np.histogram(cluster.labels_, bins=labels)
         hist = hist.astype("float")
         hist /= hist.sum()
 
