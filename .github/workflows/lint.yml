@@ -22,5 +22,5 @@ jobs:
       - name: Check code format and style
         run: |
           isort **/*.py -c -v
-          black --check colordetect/ tests/
-          flake8 colordetect/ tests/
+          black --check src/colordetect/ tests/
+          flake8 src/colordetect/ tests/
