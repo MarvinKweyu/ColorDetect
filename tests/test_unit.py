@@ -8,7 +8,7 @@ from pathlib import Path
 
 import pytest
 
-from ..colordetect import ColorDetect, VideoColor, col_share
+from colordetect import ColorDetect, VideoColor, col_share
 
 
 def test_image_vid_parsed_to_class(image, video):
@@ -177,7 +177,7 @@ def test_get_time_frame_color_returns_video_colors_at_given_time(video):
     """
     user_video = VideoColor(video)
 
-    (image, colors_at_time) = user_video.get_time_frame_color(time=10000)
+    image, colors_at_time = user_video.get_time_frame_color(time=10000)
     assert isinstance(image, ColorDetect)
     assert isinstance(colors_at_time, dict)
 
