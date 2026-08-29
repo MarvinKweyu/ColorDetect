@@ -6,6 +6,8 @@ From the developers perspective
 import os
 from pathlib import Path
 
+import cv2
+import numpy as np
 import pytest
 
 from colordetect import ColorDetect, VideoColor, col_share
@@ -36,6 +38,17 @@ def test_get_color_count_has_correct_color_and_count(image):
     # since the image is plain 255,255,255
     assert len(user_image.get_color_count(color_count=1)) == 1
     assert user_image.get_color_count(color_count=1) == {"white": 100.0}
+
+
+def test_get_color_count_uses_nearest_human_readable_color(tmp_path):
+    """Ensure colors without exact CSS3 names use the nearest name."""
+    image_path = tmp_path / "swatch.png"
+    pixels = np.full((20, 20, 3), (30, 20, 10), dtype=np.uint8)
+    assert cv2.imwrite(str(image_path), pixels)
+
+    assert ColorDetect(str(image_path)).get_color_count(color_count=1) == {
+        "black": 100.0
+    }
 
 
 def test_image_saving(datadir, image):

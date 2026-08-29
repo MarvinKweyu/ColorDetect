@@ -247,10 +247,16 @@ class ColorDetect:
                 ValueError
             ):  # Calculate distances between rgb value and CSS3 rgb colours to determine the closest
                 distances = {}
-                for k, v in webcolors.CSS3_HEX_TO_NAMES.items():
-                    r1, g1, b1 = webcolors.hex_to_rgb(k)
+                if hasattr(webcolors, "names"):
+                    color_names = webcolors.names(spec=webcolors.CSS3)
+                else:
+                    color_names = webcolors.CSS3_NAMES_TO_HEX
+
+                for color_name in color_names:
+                    r1, g1, b1 = webcolors.name_to_rgb(color_name, spec=webcolors.CSS3)
                     distances[((r0 - r1) ** 2 + (g0 - g1) ** 2 + (b0 - b1) ** 2)] = (
-                        v  # Ignore sqrt as it has no significant effect
+                        webcolors.rgb_to_name((r1, g1, b1), spec=webcolors.CSS3)
+                        # Ignore sqrt as it has no significant effect
                     )
                 nearest = distances[min(distances.keys())]
             return nearest
